@@ -4,7 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This project converts the Lord's Prayer into RDF/RDFS (Turtle format) and provides tools to parse, validate, and visualize the semantic structure. The RDF representation models the prayer as linked data with classes for Prayer, Petition, and Doxology, along with properties describing their relationships.
+This project demonstrates RDF/RDFS (Turtle format) semantic modeling with two examples:
+
+1. **Lord's Prayer** - A religious text modeled with classes for Prayer, Petition, and Doxology
+2. **Children's Story** - A narrative story modeled with classes for Story, Character, Event, Lesson, and Setting
+
+Both examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
 
 ## Architecture
 
@@ -50,7 +55,38 @@ This project converts the Lord's Prayer into RDF/RDFS (Turtle format) and provid
   - Usage: `python3 prayer_schema.py`
   - No external dependencies
 
+### Story Files
+
+- **`story.txt`** - Source text of children's story about Lily
+  - Simple narrative about learning responsibility, kindness, and listening
+  - 3 paragraphs with moral lessons
+  - Source material for RDF conversion
+
+- **`story.ttl`** - RDF/RDFS representation of the children's story
+  - Defines schema using RDFS (classes: Story, Character, Event, Lesson, Setting)
+  - Defines 14 properties for narrative structure
+  - Contains LilysStory instance with 4 characters, 7 sequential events, and 3 lessons
+  - Uses namespaces: `story:` for schema, `inst:` for instances
+  - Events have `hasOrder` property and `leadsTo` relationships showing causality
+  - Compatible with `parse_prayer.py` for validation
+
+- **`story_schema_graph.svg`** - Interactive SVG visualization (schema only)
+  - Visualizes the story RDFS schema definitions
+  - Shows 5 classes (Story, Character, Event, Lesson, Setting)
+  - Shows 14 properties with rdfs:domain and rdfs:range relationships
+  - Hover over nodes to see rdfs:comment descriptions
+  - View in any web browser
+
+- **`story_graph.svg`** - Interactive SVG visualization (full story instance)
+  - Hand-crafted SVG showing "Lily's Story" instance data
+  - Shows relationships between Story, 4 Characters, 7 Events, 3 Lessons, and Setting
+  - Blue dashed lines show narrative causality (leadsTo edges)
+  - Includes legend, statistics, and story summary
+  - View in any web browser
+
 ## RDF Schema Design
+
+### Lord's Prayer Schema
 
 The ontology uses a hierarchical structure:
 
@@ -71,11 +107,46 @@ The LordsPrayer instance follows this pattern with:
 - 7 petitions (orders 2-8)
 - 1 doxology (order 9)
 
+### Children's Story Schema
+
+The story ontology models narrative structure:
+
+```
+Story (class)
+├── hasTitle (property) → Literal
+├── hasSetting (property) → Setting (class)
+│   ├── hasLocation (property) → Literal
+│   └── hasDescription (property) → Literal
+├── hasCharacter (property) → Character (class)
+│   ├── hasName (property) → Literal
+│   ├── hasRole (property) → Literal
+│   ├── hasAttribute (property) → Literal
+│   └── hasDescription (property) → Literal
+├── hasEvent (property) → Event (class)
+│   ├── hasOrder (property) → xsd:integer
+│   ├── hasDescription (property) → Literal
+│   ├── involvesCharacter (property) → Character
+│   └── leadsTo (property) → Event (causality)
+└── hasLesson (property) → Lesson (class)
+    ├── hasTheme (property) → Literal
+    └── hasDescription (property) → Literal
+```
+
+The LilysStory instance follows this pattern with:
+- 1 story with title and setting (Lily's home)
+- 4 characters (Lily, Mommy, Friend, Friend's Mommy)
+- 7 sequential events (orders 1-7) with causal relationships
+- 3 moral lessons (responsibility, kindness, listening)
+
 ## Common Commands
 
-### Validate the RDF file
+### Validate RDF files
 ```bash
-python3 parse_prayer.py
+# Validate Lord's Prayer
+python3 parse_prayer.py lords_prayer.ttl
+
+# Validate story
+python3 parse_prayer.py story.ttl
 ```
 
 ### Generate graph visualization (requires dependencies)
@@ -83,17 +154,32 @@ python3 parse_prayer.py
 python3 visualize_prayer.py lords_prayer.ttl prayer_graph.png
 ```
 
-### View SVG visualization
+### View SVG visualizations
 ```bash
-# Open in browser
-xdg-open prayer_graph.svg  # Linux
-open prayer_graph.svg       # macOS
-start prayer_graph.svg      # Windows
+# Open in browser (Linux)
+xdg-open prayer_graph.svg
+xdg-open schema_graph.svg
+xdg-open story_graph.svg
+xdg-open story_schema_graph.svg
+
+# macOS
+open prayer_graph.svg
+open schema_graph.svg
+open story_graph.svg
+open story_schema_graph.svg
+
+# Windows
+start prayer_graph.svg
+start schema_graph.svg
+start story_graph.svg
+start story_schema_graph.svg
 ```
 
 ## Original Prompts
 
-This project was created through the following conversation flow:
+This project was created through the following conversation flows:
+
+### Lord's Prayer (Initial Project)
 
 1. **Initial request**: "Convert the Lord's Prayer to an RDF/RDFS ttl file"
    - Created `lords_prayer.ttl` with complete semantic structure
@@ -109,6 +195,25 @@ This project was created through the following conversation flow:
 4. **Alternative visualization**: "Actually, can you just make a dynamic SVG of the image file the python code was going to make"
    - Created `prayer_graph.svg` with interactive features
    - Standalone SVG with hover effects, no dependencies needed
+
+5. **Schema visualization**: Request for schema-only visualization
+   - Created `schema_graph.svg` showing RDFS class and property definitions
+
+### Children's Story (Extension)
+
+1. **Story conversion**: "I've added a file story.txt. I would like you to create a rdf/rdfs .ttl file for the simple children's story as you did for the prayer. Create an appropriate rdfs schema for the story."
+   - Created `story.ttl` with narrative-focused schema
+   - Modeled characters, events, lessons, and setting
+   - Used `hasOrder` and `leadsTo` properties for narrative structure
+
+2. **Schema visualization**: "Now create story_schema_graph.svg similar in concept to schema_graph.svg"
+   - Created `story_schema_graph.svg` showing story RDFS schema
+   - Visualized 5 classes and 14 properties
+
+3. **Instance visualization**: "create story_graph.svg following the concept of prayer_graph.svg"
+   - Created `story_graph.svg` showing full Lily's Story instance
+   - Displayed narrative flow with causal relationships
+   - Fixed XML parsing error (unescaped ampersand)
 
 ## Python Implementation Notes
 
@@ -166,14 +271,34 @@ For this use case with fixed, static ordering where you need to easily reference
 
 ## Extending This Project
 
-When adding new content:
+### Adding New Content
+
+For prayer-like structured texts:
 - Follow the existing namespace conventions (`prayer:`, `text:`)
 - Maintain the hasOrder property for sequential elements
 - Use descriptive rdfs:label and rdfs:comment annotations
 - Keep the hierarchical structure (invocation → petitions → doxology)
 
-When modifying visualizations:
+For narrative stories:
+- Use appropriate namespaces (`story:` for schema, `inst:` for instances)
+- Model characters with roles and attributes
+- Use hasOrder for sequential events
+- Use leadsTo to show causal relationships between events
+- Include lessons/themes with hasLesson property
+- Define setting with hasLocation and hasDescription
+
+### Modifying Visualizations
+
+When updating visualizations:
 - Update both Python script and SVG for consistency
-- Maintain the color coding scheme for node types
+- Maintain the color coding scheme for node types:
+  - Gold: Main entity (Story/Prayer)
+  - Pink: Characters
+  - Blue: Events/Petitions
+  - Green: Lessons/Doxology
+  - Purple: Settings
+  - Gray: Literals
 - Ensure edge labels clearly indicate RDF predicates
 - Include statistics and legends for clarity
+- Use dashed lines for special relationships (e.g., leadsTo causality)
+- Remember to escape XML entities in SVG text (& → &amp;, < → &lt;, > → &gt;)
