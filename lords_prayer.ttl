@@ -1,0 +1,125 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prayer: <http://example.org/prayer#> .
+@prefix text: <http://example.org/text#> .
+
+# Schema Definitions
+
+prayer:Prayer a rdfs:Class ;
+    rdfs:label "Prayer" ;
+    rdfs:comment "A formal religious address to God or a deity" .
+
+prayer:Petition a rdfs:Class ;
+    rdfs:label "Petition" ;
+    rdfs:comment "A request or plea within a prayer" .
+
+prayer:Doxology a rdfs:Class ;
+    rdfs:label "Doxology" ;
+    rdfs:comment "An expression of praise to God" .
+
+prayer:hasPetition a rdf:Property ;
+    rdfs:label "has petition" ;
+    rdfs:domain prayer:Prayer ;
+    rdfs:range prayer:Petition ;
+    rdfs:comment "Relates a prayer to its petitions" .
+
+prayer:hasDoxology a rdf:Property ;
+    rdfs:label "has doxology" ;
+    rdfs:domain prayer:Prayer ;
+    rdfs:range prayer:Doxology ;
+    rdfs:comment "Relates a prayer to its doxology" .
+
+prayer:hasInvocation a rdf:Property ;
+    rdfs:label "has invocation" ;
+    rdfs:domain prayer:Prayer ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "The opening address of a prayer" .
+
+prayer:hasText a rdf:Property ;
+    rdfs:label "has text" ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "The textual content" .
+
+prayer:hasOrder a rdf:Property ;
+    rdfs:label "has order" ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "The sequential order within the prayer" .
+
+prayer:addressedTo a rdf:Property ;
+    rdfs:label "addressed to" ;
+    rdfs:domain prayer:Prayer ;
+    rdfs:comment "The deity or entity being addressed" .
+
+prayer:concerns a rdf:Property ;
+    rdfs:label "concerns" ;
+    rdfs:domain prayer:Petition ;
+    rdfs:comment "The subject matter of the petition" .
+
+# The Lord's Prayer Instance
+
+prayer:LordsPrayer a prayer:Prayer ;
+    rdfs:label "The Lord's Prayer" ;
+    rdfs:comment "The prayer taught by Jesus Christ, also known as the Our Father or Pater Noster" ;
+    prayer:addressedTo "God the Father" ;
+    prayer:hasInvocation "Our Father who art in heaven" ;
+    prayer:hasPetition prayer:Petition1, prayer:Petition2, prayer:Petition3,
+                       prayer:Petition4, prayer:Petition5, prayer:Petition6, prayer:Petition7 ;
+    prayer:hasDoxology prayer:Doxology1 .
+
+# Invocation
+prayer:Invocation1 a text:TextSegment ;
+    rdfs:label "Invocation" ;
+    prayer:hasText "Our Father who art in heaven" ;
+    prayer:hasOrder 1 .
+
+# Petitions
+
+prayer:Petition1 a prayer:Petition ;
+    rdfs:label "First Petition" ;
+    prayer:hasText "Hallowed be thy name" ;
+    prayer:hasOrder 2 ;
+    prayer:concerns "Sanctification of God's name" .
+
+prayer:Petition2 a prayer:Petition ;
+    rdfs:label "Second Petition" ;
+    prayer:hasText "Thy kingdom come" ;
+    prayer:hasOrder 3 ;
+    prayer:concerns "Coming of God's kingdom" .
+
+prayer:Petition3 a prayer:Petition ;
+    rdfs:label "Third Petition" ;
+    prayer:hasText "Thy will be done on earth as it is in heaven" ;
+    prayer:hasOrder 4 ;
+    prayer:concerns "Fulfillment of God's will" .
+
+prayer:Petition4 a prayer:Petition ;
+    rdfs:label "Fourth Petition" ;
+    prayer:hasText "Give us this day our daily bread" ;
+    prayer:hasOrder 5 ;
+    prayer:concerns "Daily sustenance" .
+
+prayer:Petition5 a prayer:Petition ;
+    rdfs:label "Fifth Petition" ;
+    prayer:hasText "And forgive us our trespasses, as we forgive those who trespass against us" ;
+    prayer:hasOrder 6 ;
+    prayer:concerns "Forgiveness" .
+
+prayer:Petition6 a prayer:Petition ;
+    rdfs:label "Sixth Petition" ;
+    prayer:hasText "And lead us not into temptation" ;
+    prayer:hasOrder 7 ;
+    prayer:concerns "Protection from temptation" .
+
+prayer:Petition7 a prayer:Petition ;
+    rdfs:label "Seventh Petition" ;
+    prayer:hasText "But deliver us from evil" ;
+    prayer:hasOrder 8 ;
+    prayer:concerns "Deliverance from evil" .
+
+# Doxology (traditional Protestant version)
+
+prayer:Doxology1 a prayer:Doxology ;
+    rdfs:label "Doxology" ;
+    prayer:hasText "For thine is the kingdom, and the power, and the glory, forever. Amen." ;
+    prayer:hasOrder 9 .

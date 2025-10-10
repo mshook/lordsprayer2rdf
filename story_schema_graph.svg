@@ -1,0 +1,477 @@
+<svg width="1400" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker for property edges -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+
+  <style>
+    .class-node {
+      fill: #4A90E2;
+      stroke: #2E5C8A;
+      stroke-width: 3;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .class-node:hover {
+      fill: #5BA3F5;
+      stroke: #3D6FA0;
+      stroke-width: 4;
+    }
+    .property-node {
+      fill: #50C878;
+      stroke: #2E8B57;
+      stroke-width: 2;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .property-node:hover {
+      fill: #60D888;
+      stroke: #3E9B67;
+      stroke-width: 3;
+    }
+    .literal-node {
+      fill: #FFD700;
+      stroke: #DAA520;
+      stroke-width: 2;
+      filter: url(#shadow);
+    }
+    .xsd-node {
+      fill: #FFA500;
+      stroke: #CC8400;
+      stroke-width: 2;
+      filter: url(#shadow);
+    }
+    .class-label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .property-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .edge {
+      stroke: #666;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    .edge-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      text-anchor: middle;
+      background: white;
+      pointer-events: none;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #2E5C8A;
+      text-anchor: middle;
+    }
+    .legend-text {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+    .info-box {
+      fill: #f0f0f0;
+      stroke: #999;
+      stroke-width: 1;
+      rx: 5;
+      display: none;
+      pointer-events: none;
+    }
+    .info-text {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      display: none;
+      pointer-events: none;
+    }
+  </style>
+
+  <!-- Title -->
+  <text x="700" y="30" class="title">Children's Story RDF Schema</text>
+
+  <!-- Main Classes (Top Row) -->
+  <g id="Story" onmouseover="showInfo('Story')" onmouseout="hideInfo('Story')">
+    <rect x="600" y="80" width="200" height="80" rx="10" class="class-node"/>
+    <text x="700" y="115" class="class-label">Story</text>
+    <text x="700" y="135" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Story-info-box" x="810" y="80" width="320" height="50" class="info-box"/>
+  <text id="Story-info-text" x="820" y="100" class="info-text">A narrative composition with characters,</text>
+  <text id="Story-info-text2" x="820" y="115" class="info-text">events, and a moral lesson</text>
+
+  <!-- Secondary Classes (Middle Row) -->
+  <g id="Character" onmouseover="showInfo('Character')" onmouseout="hideInfo('Character')">
+    <rect x="100" y="300" width="160" height="70" rx="10" class="class-node"/>
+    <text x="180" y="330" class="class-label">Character</text>
+    <text x="180" y="348" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Character-info-box" x="270" y="300" width="280" height="40" class="info-box"/>
+  <text id="Character-info-text" x="280" y="320" class="info-text">A person or being in the story</text>
+
+  <g id="Event" onmouseover="showInfo('Event')" onmouseout="hideInfo('Event')">
+    <rect x="330" y="300" width="160" height="70" rx="10" class="class-node"/>
+    <text x="410" y="330" class="class-label">Event</text>
+    <text x="410" y="348" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Event-info-box" x="500" y="300" width="280" height="40" class="info-box"/>
+  <text id="Event-info-text" x="510" y="320" class="info-text">An action or occurrence in the story</text>
+
+  <g id="Lesson" onmouseover="showInfo('Lesson')" onmouseout="hideInfo('Lesson')">
+    <rect x="870" y="300" width="160" height="70" rx="10" class="class-node"/>
+    <text x="950" y="330" class="class-label">Lesson</text>
+    <text x="950" y="348" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Lesson-info-box" x="650" y="300" width="280" height="40" class="info-box"/>
+  <text id="Lesson-info-text" x="660" y="320" class="info-text">A moral or teaching from the story</text>
+
+  <g id="Setting" onmouseover="showInfo('Setting')" onmouseout="hideInfo('Setting')">
+    <rect x="1100" y="300" width="160" height="70" rx="10" class="class-node"/>
+    <text x="1180" y="330" class="class-label">Setting</text>
+    <text x="1180" y="348" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Setting-info-box" x="880" y="300" width="300" height="40" class="info-box"/>
+  <text id="Setting-info-text" x="890" y="320" class="info-text">The context where the story takes place</text>
+
+  <!-- Range types -->
+  <g id="Literal">
+    <ellipse cx="150" cy="680" rx="60" ry="35" class="literal-node"/>
+    <text x="150" y="685" class="property-label">rdfs:Literal</text>
+  </g>
+
+  <g id="Integer">
+    <ellipse cx="850" cy="680" rx="70" ry="35" class="xsd-node"/>
+    <text x="850" y="685" class="property-label">xsd:integer</text>
+  </g>
+
+  <!-- Story Properties (connecting Story to other classes) -->
+  <g id="hasCharacter" onmouseover="showInfo('hasCharacter')" onmouseout="hideInfo('hasCharacter')">
+    <ellipse cx="300" cy="200" rx="80" ry="35" class="property-node"/>
+    <text x="300" y="205" class="property-label">hasCharacter</text>
+  </g>
+  <rect id="hasCharacter-info-box" x="80" y="160" width="280" height="40" class="info-box"/>
+  <text id="hasCharacter-info-text" x="90" y="180" class="info-text">A character appearing in the story</text>
+
+  <g id="hasEvent" onmouseover="showInfo('hasEvent')" onmouseout="hideInfo('hasEvent')">
+    <ellipse cx="500" cy="200" rx="65" ry="35" class="property-node"/>
+    <text x="500" y="205" class="property-label">hasEvent</text>
+  </g>
+  <rect id="hasEvent-info-box" x="380" y="160" width="280" height="40" class="info-box"/>
+  <text id="hasEvent-info-text" x="390" y="180" class="info-text">An event occurring in the story</text>
+
+  <g id="hasLesson" onmouseover="showInfo('hasLesson')" onmouseout="hideInfo('hasLesson')">
+    <ellipse cx="900" cy="200" rx="68" ry="35" class="property-node"/>
+    <text x="900" y="205" class="property-label">hasLesson</text>
+  </g>
+  <rect id="hasLesson-info-box" x="710" y="160" width="280" height="40" class="info-box"/>
+  <text id="hasLesson-info-text" x="720" y="180" class="info-text">A moral lesson taught by the story</text>
+
+  <g id="hasSetting" onmouseover="showInfo('hasSetting')" onmouseout="hideInfo('hasSetting')">
+    <ellipse cx="1100" cy="200" rx="68" ry="35" class="property-node"/>
+    <text x="1100" y="205" class="property-label">hasSetting</text>
+  </g>
+  <rect id="hasSetting-info-box" x="920" y="160" width="280" height="40" class="info-box"/>
+  <text id="hasSetting-info-text" x="930" y="180" class="info-text">Where the story takes place</text>
+
+  <g id="hasTitle" onmouseover="showInfo('hasTitle')" onmouseout="hideInfo('hasTitle')">
+    <ellipse cx="1300" cy="120" rx="58" ry="35" class="property-node"/>
+    <text x="1300" y="125" class="property-label">hasTitle</text>
+  </g>
+  <rect id="hasTitle-info-box" x="1150" y="80" width="200" height="40" class="info-box"/>
+  <text id="hasTitle-info-text" x="1160" y="100" class="info-text">The title of the story</text>
+
+  <!-- Character Properties -->
+  <g id="hasName" onmouseover="showInfo('hasName')" onmouseout="hideInfo('hasName')">
+    <ellipse cx="90" cy="490" rx="60" ry="35" class="property-node"/>
+    <text x="90" y="495" class="property-label">hasName</text>
+  </g>
+  <rect id="hasName-info-box" x="30" y="540" width="240" height="40" class="info-box"/>
+  <text id="hasName-info-text" x="40" y="560" class="info-text">The name of a character</text>
+
+  <g id="hasRole" onmouseover="showInfo('hasRole')" onmouseout="hideInfo('hasRole')">
+    <ellipse cx="180" cy="430" rx="55" ry="35" class="property-node"/>
+    <text x="180" y="435" class="property-label">hasRole</text>
+  </g>
+  <rect id="hasRole-info-box" x="30" y="390" width="280" height="40" class="info-box"/>
+  <text id="hasRole-info-text" x="40" y="410" class="info-text">The role or relationship of a character</text>
+
+  <g id="hasAttribute" onmouseover="showInfo('hasAttribute')" onmouseout="hideInfo('hasAttribute')">
+    <ellipse cx="250" cy="490" rx="73" ry="35" class="property-node"/>
+    <text x="250" y="495" class="property-label">hasAttribute</text>
+  </g>
+  <rect id="hasAttribute-info-box" x="280" y="540" width="280" height="40" class="info-box"/>
+  <text id="hasAttribute-info-text" x="290" y="560" class="info-text">A characteristic or personality trait</text>
+
+  <!-- Event Properties -->
+  <g id="hasOrder" onmouseover="showInfo('hasOrder')" onmouseout="hideInfo('hasOrder')">
+    <ellipse cx="410" cy="490" rx="60" ry="35" class="property-node"/>
+    <text x="410" y="495" class="property-label">hasOrder</text>
+  </g>
+  <rect id="hasOrder-info-box" x="450" y="540" width="280" height="40" class="info-box"/>
+  <text id="hasOrder-info-text" x="460" y="560" class="info-text">Sequential position in the narrative</text>
+
+  <g id="involvesCharacter" onmouseover="showInfo('involvesCharacter')" onmouseout="hideInfo('involvesCharacter')">
+    <ellipse cx="280" cy="400" rx="95" ry="35" class="property-node"/>
+    <text x="280" y="405" class="property-label">involvesCharacter</text>
+  </g>
+  <rect id="involvesCharacter-info-box" x="30" y="240" width="280" height="40" class="info-box"/>
+  <text id="involvesCharacter-info-text" x="40" y="260" class="info-text">A character involved in this event</text>
+
+  <g id="leadsTo" onmouseover="showInfo('leadsTo')" onmouseout="hideInfo('leadsTo')">
+    <ellipse cx="550" cy="400" rx="58" ry="35" class="property-node"/>
+    <text x="550" y="405" class="property-label">leadsTo</text>
+  </g>
+  <rect id="leadsTo-info-box" x="580" y="390" width="280" height="50" class="info-box"/>
+  <text id="leadsTo-info-text" x="590" y="410" class="info-text">An event that follows as</text>
+  <text id="leadsTo-info-text2" x="590" y="425" class="info-text">a consequence</text>
+
+  <!-- Lesson Properties -->
+  <g id="hasTheme" onmouseover="showInfo('hasTheme')" onmouseout="hideInfo('hasTheme')">
+    <ellipse cx="950" cy="490" rx="68" ry="35" class="property-node"/>
+    <text x="950" y="495" class="property-label">hasTheme</text>
+  </g>
+  <rect id="hasTheme-info-box" x="990" y="540" width="240" height="40" class="info-box"/>
+  <text id="hasTheme-info-text" x="1000" y="560" class="info-text">The central theme of the lesson</text>
+
+  <!-- Setting Properties -->
+  <g id="hasLocation" onmouseover="showInfo('hasLocation')" onmouseout="hideInfo('hasLocation')">
+    <ellipse cx="1180" cy="490" rx="75" ry="35" class="property-node"/>
+    <text x="1180" y="495" class="property-label">hasLocation</text>
+  </g>
+  <rect id="hasLocation-info-box" x="1230" y="540" width="240" height="40" class="info-box"/>
+  <text id="hasLocation-info-text" x="1240" y="560" class="info-text">The physical location</text>
+
+  <!-- Shared Property -->
+  <g id="hasDescription" onmouseover="showInfo('hasDescription')" onmouseout="hideInfo('hasDescription')">
+    <ellipse cx="650" cy="490" rx="88" ry="35" class="property-node"/>
+    <text x="650" y="495" class="property-label">hasDescription</text>
+  </g>
+  <rect id="hasDescription-info-box" x="720" y="450" width="280" height="50" class="info-box"/>
+  <text id="hasDescription-info-text" x="730" y="470" class="info-text">A textual description of</text>
+  <text id="hasDescription-info-text2" x="730" y="485" class="info-text">an element (domain: rdfs:Resource)</text>
+
+  <!-- Edges: Story to Properties -->
+  <!-- hasCharacter -->
+  <path d="M 630 160 Q 500 180 380 195" class="edge"/>
+  <rect x="470" y="170" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="507" y="182" class="edge-label">rdfs:domain</text>
+
+  <path d="M 250 230 Q 210 260 195 275" class="edge"/>
+  <rect x="195" y="245" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="229" y="257" class="edge-label">rdfs:range</text>
+
+  <!-- hasEvent -->
+  <path d="M 650 160 Q 600 175 550 190" class="edge"/>
+  <rect x="575" y="170" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="612" y="182" class="edge-label">rdfs:domain</text>
+
+  <path d="M 475 230 Q 435 260 420 280" class="edge"/>
+  <rect x="420" y="248" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="454" y="260" class="edge-label">rdfs:range</text>
+
+  <!-- hasLesson -->
+  <path d="M 770 160 Q 820 175 850 190" class="edge"/>
+  <rect x="785" y="170" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="822" y="182" class="edge-label">rdfs:domain</text>
+
+  <path d="M 930 230 Q 940 260 945 280" class="edge"/>
+  <rect x="912" y="248" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="946" y="260" class="edge-label">rdfs:range</text>
+
+  <!-- hasSetting -->
+  <path d="M 770 160 Q 900 175 1050 190" class="edge"/>
+  <rect x="880" y="170" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="917" y="182" class="edge-label">rdfs:domain</text>
+
+  <path d="M 1130 230 Q 1160 260 1170 280" class="edge"/>
+  <rect x="1135" y="248" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="1169" y="260" class="edge-label">rdfs:range</text>
+
+  <!-- hasTitle -->
+  <path d="M 800 110 Q 1000 110 1240 115" class="edge"/>
+  <rect x="990" y="102" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="1027" y="114" class="edge-label">rdfs:domain</text>
+
+  <!-- Character properties -->
+  <path d="M 165 370 Q 140 410 115 460" class="edge"/>
+  <rect x="120" y="410" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="145" y="422" class="edge-label">property</text>
+
+  <path d="M 180 370 L 180 395" class="edge"/>
+  <rect x="145" y="375" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="170" y="387" class="edge-label">property</text>
+
+  <path d="M 195 370 Q 220 410 240 455" class="edge"/>
+  <rect x="210" y="410" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="235" y="422" class="edge-label">property</text>
+
+  <!-- Event properties -->
+  <path d="M 410 370 L 410 455" class="edge"/>
+  <rect x="375" y="405" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="400" y="417" class="edge-label">property</text>
+
+  <path d="M 390 370 Q 340 380 310 385" class="edge"/>
+  <rect x="320" y="370" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="345" y="382" class="edge-label">property</text>
+
+  <path d="M 460 370 Q 500 380 520 385" class="edge"/>
+  <rect x="475" y="370" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="500" y="382" class="edge-label">property</text>
+
+  <!-- involvesCharacter range -->
+  <path d="M 230 370 Q 200 350 195 345" class="edge"/>
+  <rect x="185" y="350" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="219" y="362" class="edge-label">rdfs:range</text>
+
+  <!-- leadsTo range (self-reference) -->
+  <path d="M 600 410 Q 680 360 490 330" class="edge" stroke-dasharray="5,5"/>
+  <rect x="560" y="345" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="594" y="357" class="edge-label">rdfs:range</text>
+
+  <!-- Lesson properties -->
+  <path d="M 950 370 L 950 455" class="edge"/>
+  <rect x="915" y="405" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="940" y="417" class="edge-label">property</text>
+
+  <!-- Setting properties -->
+  <path d="M 1180 370 L 1180 455" class="edge"/>
+  <rect x="1145" y="405" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1170" y="417" class="edge-label">property</text>
+
+  <!-- hasDescription is shared across multiple classes -->
+  <path d="M 260 370 Q 400 420 562 475" class="edge" stroke-dasharray="3,3"/>
+  <rect x="390" y="425" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="415" y="437" class="edge-label">property</text>
+
+  <path d="M 470 370 Q 550 420 600 465" class="edge" stroke-dasharray="3,3"/>
+  <rect x="515" y="420" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="540" y="432" class="edge-label">property</text>
+
+  <path d="M 1030 370 Q 850 420 738 475" class="edge" stroke-dasharray="3,3"/>
+  <rect x="875" y="425" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="900" y="437" class="edge-label">property</text>
+
+  <path d="M 1100 370 Q 900 420 738 475" class="edge" stroke-dasharray="3,3"/>
+  <rect x="900" y="425" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="925" y="437" class="edge-label">property</text>
+
+  <!-- Ranges to Literal -->
+  <path d="M 70 525 Q 120 590 135 645" class="edge"/>
+  <rect x="80" y="580" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="114" y="592" class="edge-label">rdfs:range</text>
+
+  <path d="M 155 465 Q 150 550 150 645" class="edge"/>
+  <rect x="115" y="545" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="149" y="557" class="edge-label">rdfs:range</text>
+
+  <path d="M 280 525 Q 230 590 190 650" class="edge"/>
+  <rect x="215" y="585" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="249" y="597" class="edge-label">rdfs:range</text>
+
+  <path d="M 600 525 Q 400 600 210 665" class="edge"/>
+  <rect x="385" y="590" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="419" y="602" class="edge-label">rdfs:range</text>
+
+  <path d="M 900 525 Q 550 640 220 675" class="edge"/>
+  <rect x="540" y="600" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="574" y="612" class="edge-label">rdfs:range</text>
+
+  <path d="M 1110 525 Q 700 650 220 675" class="edge"/>
+  <rect x="640" y="600" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="674" y="612" class="edge-label">rdfs:range</text>
+
+  <!-- hasOrder range to xsd:integer -->
+  <path d="M 470 505 Q 650 590 780 665" class="edge"/>
+  <rect x="610" y="580" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="644" y="592" class="edge-label">rdfs:range</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <text x="50" y="820" class="legend-text" font-weight="bold" font-size="14px">Legend:</text>
+
+    <rect x="50" y="835" width="60" height="30" rx="5" class="class-node" filter="none"/>
+    <text x="120" y="853" class="legend-text">Class (rdfs:Class)</text>
+
+    <ellipse cx="80" cy="890" rx="40" ry="20" class="property-node" filter="none"/>
+    <text x="120" y="895" class="legend-text">Property (rdf:Property)</text>
+
+    <ellipse cx="80" cy="930" rx="40" ry="20" class="literal-node" filter="none"/>
+    <text x="120" y="935" class="legend-text">Literal Type</text>
+
+    <ellipse cx="80" cy="970" rx="40" ry="20" class="xsd-node" filter="none"/>
+    <text x="120" y="975" class="legend-text">XSD Type</text>
+
+    <line x1="300" y1="850" x2="370" y2="850" class="edge" marker-end="none" stroke="#666"/>
+    <text x="380" y="855" class="legend-text">rdfs:domain/range</text>
+
+    <line x1="300" y1="890" x2="370" y2="890" class="edge" marker-end="none" stroke="#666" stroke-dasharray="3,3"/>
+    <text x="380" y="895" class="legend-text">Shared property</text>
+
+    <line x1="300" y1="930" x2="370" y2="930" class="edge" marker-end="none" stroke="#666" stroke-dasharray="5,5"/>
+    <text x="380" y="935" class="legend-text">Self-reference</text>
+  </g>
+
+  <!-- Statistics -->
+  <g id="stats">
+    <text x="850" y="820" class="legend-text" font-weight="bold" font-size="14px">Schema Statistics:</text>
+    <text x="850" y="845" class="legend-text">Classes: 5 (Story, Character, Event, Lesson, Setting)</text>
+    <text x="850" y="865" class="legend-text">Properties: 14</text>
+    <text x="850" y="885" class="legend-text">  - Object Properties: 5 (hasCharacter, hasEvent, hasLesson,</text>
+    <text x="870" y="900" class="legend-text">hasSetting, involvesCharacter)</text>
+    <text x="850" y="920" class="legend-text">  - Datatype Properties: 8 (hasTitle, hasName, hasRole,</text>
+    <text x="870" y="935" class="legend-text">hasAttribute, hasOrder, hasTheme, hasLocation, hasDescription)</text>
+    <text x="850" y="955" class="legend-text">  - Event Relations: 1 (leadsTo - connects events causally)</text>
+  </g>
+
+  <script type="text/javascript">
+    <![CDATA[
+    function showInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'block';
+      if (text) text.style.display = 'block';
+      if (text2) text2.style.display = 'block';
+    }
+
+    function hideInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'none';
+      if (text) text.style.display = 'none';
+      if (text2) text2.style.display = 'none';
+    }
+    ]]>
+  </script>
+</svg>

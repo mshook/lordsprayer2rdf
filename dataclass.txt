@@ -1,0 +1,28 @@
+● @dataclass is a Python decorator (introduced in Python 3.7) that automatically generates common methods
+  for classes that primarily store data.
+
+  Without @dataclass, you'd write:
+  class Petition:
+      def __init__(self, text, order, concerns, label=None):
+          self.text = text
+          self.order = order
+          self.concerns = concerns
+          self.label = label
+
+  With @dataclass, you just write:
+  @dataclass
+  class Petition:
+      text: str
+      order: int
+      concerns: str
+      label: Optional[str] = None
+
+  It automatically generates:
+  - __init__() method
+  - __repr__() method (for string representation)
+  - __eq__() method (for equality comparison)
+  - Other utility methods
+
+  The type hints (str, int, etc.) are required syntax for dataclasses and document what type each field
+  should be.
+

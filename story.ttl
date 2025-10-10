@@ -1,0 +1,232 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix story: <http://example.org/story/schema#> .
+@prefix inst: <http://example.org/story/instance#> .
+
+# ============================================
+# RDFS Schema Definitions
+# ============================================
+
+# Classes
+story:Story a rdfs:Class ;
+    rdfs:label "Story" ;
+    rdfs:comment "A narrative composition with characters, events, and a moral lesson" .
+
+story:Character a rdfs:Class ;
+    rdfs:label "Character" ;
+    rdfs:comment "A person or being that participates in the story" .
+
+story:Event a rdfs:Class ;
+    rdfs:label "Event" ;
+    rdfs:comment "An action or occurrence in the story narrative" .
+
+story:Lesson a rdfs:Class ;
+    rdfs:label "Lesson" ;
+    rdfs:comment "A moral or teaching conveyed by the story" .
+
+story:Setting a rdfs:Class ;
+    rdfs:label "Setting" ;
+    rdfs:comment "The context or environment where the story takes place" .
+
+# Properties for Story
+story:hasTitle a rdf:Property ;
+    rdfs:label "has title" ;
+    rdfs:comment "The title of the story" ;
+    rdfs:domain story:Story ;
+    rdfs:range rdfs:Literal .
+
+story:hasCharacter a rdf:Property ;
+    rdfs:label "has character" ;
+    rdfs:comment "A character that appears in the story" ;
+    rdfs:domain story:Story ;
+    rdfs:range story:Character .
+
+story:hasEvent a rdf:Property ;
+    rdfs:label "has event" ;
+    rdfs:comment "An event that occurs in the story" ;
+    rdfs:domain story:Story ;
+    rdfs:range story:Event .
+
+story:hasLesson a rdf:Property ;
+    rdfs:label "has lesson" ;
+    rdfs:comment "A moral lesson taught by the story" ;
+    rdfs:domain story:Story ;
+    rdfs:range story:Lesson .
+
+story:hasSetting a rdf:Property ;
+    rdfs:label "has setting" ;
+    rdfs:comment "The setting where the story takes place" ;
+    rdfs:domain story:Story ;
+    rdfs:range story:Setting .
+
+# Properties for Character
+story:hasName a rdf:Property ;
+    rdfs:label "has name" ;
+    rdfs:comment "The name of a character" ;
+    rdfs:domain story:Character ;
+    rdfs:range rdfs:Literal .
+
+story:hasRole a rdf:Property ;
+    rdfs:label "has role" ;
+    rdfs:comment "The role or relationship of a character" ;
+    rdfs:domain story:Character ;
+    rdfs:range rdfs:Literal .
+
+story:hasAttribute a rdf:Property ;
+    rdfs:label "has attribute" ;
+    rdfs:comment "A characteristic or personality trait" ;
+    rdfs:domain story:Character ;
+    rdfs:range rdfs:Literal .
+
+# Properties for Event
+story:hasDescription a rdf:Property ;
+    rdfs:label "has description" ;
+    rdfs:comment "A textual description of an element" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Literal .
+
+story:hasOrder a rdf:Property ;
+    rdfs:label "has order" ;
+    rdfs:comment "The sequential position in the narrative" ;
+    rdfs:domain story:Event ;
+    rdfs:range xsd:integer .
+
+story:involvesCharacter a rdf:Property ;
+    rdfs:label "involves character" ;
+    rdfs:comment "A character involved in this event" ;
+    rdfs:domain story:Event ;
+    rdfs:range story:Character .
+
+story:leadsTo a rdf:Property ;
+    rdfs:label "leads to" ;
+    rdfs:comment "An event that follows as a consequence" ;
+    rdfs:domain story:Event ;
+    rdfs:range story:Event .
+
+# Properties for Lesson
+story:hasTheme a rdf:Property ;
+    rdfs:label "has theme" ;
+    rdfs:comment "The central theme of the lesson" ;
+    rdfs:domain story:Lesson ;
+    rdfs:range rdfs:Literal .
+
+# Properties for Setting
+story:hasLocation a rdf:Property ;
+    rdfs:label "has location" ;
+    rdfs:comment "The physical or conceptual location" ;
+    rdfs:domain story:Setting ;
+    rdfs:range rdfs:Literal .
+
+# ============================================
+# Story Instance: Lily's Lesson
+# ============================================
+
+inst:LilysStory a story:Story ;
+    rdfs:label "Lily's Lesson About Kindness and Responsibility" ;
+    story:hasTitle "Lily's Lesson" ;
+    story:hasSetting inst:LilysHome ;
+    story:hasCharacter inst:Lily, inst:LilysMommy, inst:Friend, inst:FriendsMommy ;
+    story:hasEvent inst:Event1, inst:Event2, inst:Event3, inst:Event4, inst:Event5, inst:Event6, inst:Event7 ;
+    story:hasLesson inst:Lesson1, inst:Lesson2, inst:Lesson3 .
+
+# Setting
+inst:LilysHome a story:Setting ;
+    rdfs:label "Lily's Home" ;
+    story:hasLocation "Lily's home" ;
+    story:hasDescription "A home where Lily lives with her mommy" .
+
+# Characters
+inst:Lily a story:Character ;
+    rdfs:label "Lily" ;
+    story:hasName "Lily" ;
+    story:hasRole "protagonist" ;
+    story:hasAttribute "playful" ;
+    story:hasAttribute "learns responsibility" ;
+    story:hasDescription "A little girl who loves to play with toys" .
+
+inst:LilysMommy a story:Character ;
+    rdfs:label "Lily's Mommy" ;
+    story:hasName "Mommy" ;
+    story:hasRole "parent" ;
+    story:hasAttribute "patient" ;
+    story:hasAttribute "teaching" ;
+    story:hasDescription "Lily's mother who teaches her about responsibility and kindness" .
+
+inst:Friend a story:Character ;
+    rdfs:label "Lily's Friend" ;
+    story:hasRole "friend" ;
+    story:hasAttribute "rude at first" ;
+    story:hasAttribute "not sharing" ;
+    story:hasDescription "A friend who came over to play" .
+
+inst:FriendsMommy a story:Character ;
+    rdfs:label "Friend's Mommy" ;
+    story:hasRole "parent" ;
+    story:hasAttribute "teaching" ;
+    story:hasDescription "The friend's mother who reinforces lessons about kindness" .
+
+# Events (Narrative Sequence)
+inst:Event1 a story:Event ;
+    rdfs:label "Lily leaves toys on floor" ;
+    story:hasOrder 1 ;
+    story:hasDescription "Lily loved to play with her toys, but she always left them on the floor when she was done" ;
+    story:involvesCharacter inst:Lily ;
+    story:leadsTo inst:Event2 .
+
+inst:Event2 a story:Event ;
+    rdfs:label "Mommy asks Lily to clean up" ;
+    story:hasOrder 2 ;
+    story:hasDescription "Her mommy would always tell her to clean up her toys, but Lily never listened" ;
+    story:involvesCharacter inst:Lily, inst:LilysMommy ;
+    story:leadsTo inst:Event3 .
+
+inst:Event3 a story:Event ;
+    rdfs:label "Friend comes over and acts rude" ;
+    story:hasOrder 3 ;
+    story:hasDescription "Lily's friend came over to play. Her friend was being very rude and not sharing her toys" ;
+    story:involvesCharacter inst:Lily, inst:Friend ;
+    story:leadsTo inst:Event4 .
+
+inst:Event4 a story:Event ;
+    rdfs:label "Mommy teaches about kindness" ;
+    story:hasOrder 4 ;
+    story:hasDescription "Lily wanted to play with her friend's toys, but her mommy told her to put her toys away and explained that it was important to be kind and share with others" ;
+    story:involvesCharacter inst:Lily, inst:LilysMommy ;
+    story:leadsTo inst:Event5 .
+
+inst:Event5 a story:Event ;
+    rdfs:label "Lily cleans up toys" ;
+    story:hasOrder 5 ;
+    story:hasDescription "After Lily finished cleaning up, she went to play with her friend" ;
+    story:involvesCharacter inst:Lily ;
+    story:leadsTo inst:Event6 .
+
+inst:Event6 a story:Event ;
+    rdfs:label "Friend's mommy discusses importance of listening" ;
+    story:hasOrder 6 ;
+    story:hasDescription "Friend's mommy came in and told them to talk about how important it is to listen and be kind to others" ;
+    story:involvesCharacter inst:Lily, inst:Friend, inst:FriendsMommy ;
+    story:leadsTo inst:Event7 .
+
+inst:Event7 a story:Event ;
+    rdfs:label "Lily changes behavior" ;
+    story:hasOrder 7 ;
+    story:hasDescription "Lily remembered her mommy's words and decided to be a better friend and always be kind to others. From that day on, Lily made sure to clean up her toys before she went to bed" ;
+    story:involvesCharacter inst:Lily .
+
+# Lessons
+inst:Lesson1 a story:Lesson ;
+    rdfs:label "Importance of Cleaning Up" ;
+    story:hasTheme "Responsibility" ;
+    story:hasDescription "Children should clean up their toys and take responsibility for their belongings" .
+
+inst:Lesson2 a story:Lesson ;
+    rdfs:label "Importance of Kindness" ;
+    story:hasTheme "Kindness" ;
+    story:hasDescription "It is important to be kind and share with others" .
+
+inst:Lesson3 a story:Lesson ;
+    rdfs:label "Importance of Listening" ;
+    story:hasTheme "Listening" ;
+    story:hasDescription "Children should listen to their parents and learn from their guidance" .

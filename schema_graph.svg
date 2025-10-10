@@ -1,0 +1,325 @@
+<svg width="1200" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker for property edges -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+
+  <style>
+    .class-node {
+      fill: #4A90E2;
+      stroke: #2E5C8A;
+      stroke-width: 3;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .class-node:hover {
+      fill: #5BA3F5;
+      stroke: #3D6FA0;
+      stroke-width: 4;
+    }
+    .property-node {
+      fill: #50C878;
+      stroke: #2E8B57;
+      stroke-width: 2;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .property-node:hover {
+      fill: #60D888;
+      stroke: #3E9B67;
+      stroke-width: 3;
+    }
+    .literal-node {
+      fill: #FFD700;
+      stroke: #DAA520;
+      stroke-width: 2;
+      filter: url(#shadow);
+    }
+    .xsd-node {
+      fill: #FFA500;
+      stroke: #CC8400;
+      stroke-width: 2;
+      filter: url(#shadow);
+    }
+    .class-label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .property-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .edge {
+      stroke: #666;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    .edge-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      text-anchor: middle;
+      background: white;
+      pointer-events: none;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #2E5C8A;
+      text-anchor: middle;
+    }
+    .legend-text {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+    .info-box {
+      fill: #f0f0f0;
+      stroke: #999;
+      stroke-width: 1;
+      rx: 5;
+      display: none;
+      pointer-events: none;
+    }
+    .info-text {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      display: none;
+      pointer-events: none;
+    }
+  </style>
+
+  <!-- Title -->
+  <text x="600" y="30" class="title">Lord's Prayer RDF Schema</text>
+
+  <!-- Classes -->
+  <g id="Prayer" onmouseover="showInfo('Prayer')" onmouseout="hideInfo('Prayer')">
+    <rect x="500" y="100" width="200" height="80" rx="10" class="class-node"/>
+    <text x="600" y="135" class="class-label">Prayer</text>
+    <text x="600" y="155" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Prayer-info-box" x="710" y="100" width="280" height="50" class="info-box"/>
+  <text id="Prayer-info-text" x="720" y="120" class="info-text">A formal religious address to God</text>
+  <text id="Prayer-info-text2" x="720" y="135" class="info-text">or a deity</text>
+
+  <g id="Petition" onmouseover="showInfo('Petition')" onmouseout="hideInfo('Petition')">
+    <rect x="250" y="400" width="200" height="80" rx="10" class="class-node"/>
+    <text x="350" y="435" class="class-label">Petition</text>
+    <text x="350" y="455" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Petition-info-box" x="460" y="400" width="280" height="40" class="info-box"/>
+  <text id="Petition-info-text" x="470" y="420" class="info-text">A request or plea within a prayer</text>
+
+  <g id="Doxology" onmouseover="showInfo('Doxology')" onmouseout="hideInfo('Doxology')">
+    <rect x="750" y="400" width="200" height="80" rx="10" class="class-node"/>
+    <text x="850" y="435" class="class-label">Doxology</text>
+    <text x="850" y="455" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Doxology-info-box" x="550" y="400" width="280" height="40" class="info-box"/>
+  <text id="Doxology-info-text" x="560" y="420" class="info-text">An expression of praise to God</text>
+
+  <!-- Range types -->
+  <g id="Literal">
+    <ellipse cx="100" cy="250" rx="60" ry="35" class="literal-node"/>
+    <text x="100" y="255" class="property-label">rdfs:Literal</text>
+  </g>
+
+  <g id="Integer">
+    <ellipse cx="1100" cy="250" rx="70" ry="35" class="xsd-node"/>
+    <text x="1100" y="255" class="property-label">xsd:integer</text>
+  </g>
+
+  <!-- Properties -->
+  <g id="hasPetition" onmouseover="showInfo('hasPetition')" onmouseout="hideInfo('hasPetition')">
+    <ellipse cx="400" cy="270" rx="75" ry="35" class="property-node"/>
+    <text x="400" y="275" class="property-label">hasPetition</text>
+  </g>
+  <rect id="hasPetition-info-box" x="200" y="220" width="280" height="40" class="info-box"/>
+  <text id="hasPetition-info-text" x="210" y="240" class="info-text">Relates a prayer to its petitions</text>
+
+  <g id="hasDoxology" onmouseover="showInfo('hasDoxology')" onmouseout="hideInfo('hasDoxology')">
+    <ellipse cx="800" cy="270" rx="80" ry="35" class="property-node"/>
+    <text x="800" y="275" class="property-label">hasDoxology</text>
+  </g>
+  <rect id="hasDoxology-info-box" x="820" y="220" width="280" height="40" class="info-box"/>
+  <text id="hasDoxology-info-text" x="830" y="240" class="info-text">Relates a prayer to its doxology</text>
+
+  <g id="hasInvocation" onmouseover="showInfo('hasInvocation')" onmouseout="hideInfo('hasInvocation')">
+    <ellipse cx="250" cy="160" rx="82" ry="35" class="property-node"/>
+    <text x="250" y="165" class="property-label">hasInvocation</text>
+  </g>
+  <rect id="hasInvocation-info-box" x="30" y="120" width="280" height="40" class="info-box"/>
+  <text id="hasInvocation-info-text" x="40" y="140" class="info-text">The opening address of a prayer</text>
+
+  <g id="hasText" onmouseover="showInfo('hasText')" onmouseout="hideInfo('hasText')">
+    <ellipse cx="180" cy="550" rx="55" ry="35" class="property-node"/>
+    <text x="180" y="555" class="property-label">hasText</text>
+  </g>
+  <rect id="hasText-info-box" x="30" y="590" width="200" height="40" class="info-box"/>
+  <text id="hasText-info-text" x="40" y="610" class="info-text">The textual content</text>
+
+  <g id="hasOrder" onmouseover="showInfo('hasOrder')" onmouseout="hideInfo('hasOrder')">
+    <ellipse cx="950" cy="550" rx="60" ry="35" class="property-node"/>
+    <text x="950" y="555" class="property-label">hasOrder</text>
+  </g>
+  <rect id="hasOrder-info-box" x="970" y="590" width="280" height="50" class="info-box"/>
+  <text id="hasOrder-info-text" x="980" y="610" class="info-text">The sequential order within</text>
+  <text id="hasOrder-info-text2" x="980" y="625" class="info-text">the prayer</text>
+
+  <g id="addressedTo" onmouseover="showInfo('addressedTo')" onmouseout="hideInfo('addressedTo')">
+    <ellipse cx="950" cy="160" rx="75" ry="35" class="property-node"/>
+    <text x="950" y="165" class="property-label">addressedTo</text>
+  </g>
+  <rect id="addressedTo-info-box" x="880" y="120" width="280" height="40" class="info-box"/>
+  <text id="addressedTo-info-text" x="890" y="140" class="info-text">The deity or entity being addressed</text>
+
+  <g id="concerns" onmouseover="showInfo('concerns')" onmouseout="hideInfo('concerns')">
+    <ellipse cx="550" cy="550" rx="60" ry="35" class="property-node"/>
+    <text x="550" y="555" class="property-label">concerns</text>
+  </g>
+  <rect id="concerns-info-box" x="400" y="590" width="280" height="40" class="info-box"/>
+  <text id="concerns-info-text" x="410" y="610" class="info-text">The subject matter of the petition</text>
+
+  <!-- Edges (Property relationships) -->
+
+  <!-- hasPetition -> Prayer (domain) -->
+  <path d="M 435 235 Q 470 225 540 180" class="edge"/>
+  <rect x="455" y="195" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="492" y="207" class="edge-label">rdfs:domain</text>
+
+  <!-- hasPetition -> Petition (range) -->
+  <path d="M 385 305 Q 360 350 355 360" class="edge"/>
+  <rect x="320" y="325" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="354" y="337" class="edge-label">rdfs:range</text>
+
+  <!-- hasDoxology -> Prayer (domain) -->
+  <path d="M 765 235 Q 730 225 660 180" class="edge"/>
+  <rect x="680" y="195" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="717" y="207" class="edge-label">rdfs:domain</text>
+
+  <!-- hasDoxology -> Doxology (range) -->
+  <path d="M 815 305 Q 840 350 845 360" class="edge"/>
+  <rect x="812" y="325" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="846" y="337" class="edge-label">rdfs:range</text>
+
+  <!-- hasInvocation -> Prayer (domain) -->
+  <path d="M 332 155 Q 375 145 500 130" class="edge"/>
+  <rect x="385" y="130" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="422" y="142" class="edge-label">rdfs:domain</text>
+
+  <!-- hasInvocation -> Literal (range) -->
+  <path d="M 180 180 Q 140 215 115 230" class="edge"/>
+  <rect x="120" y="198" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="154" y="210" class="edge-label">rdfs:range</text>
+
+  <!-- addressedTo -> Prayer (domain) -->
+  <path d="M 875 155 Q 825 145 700 130" class="edge"/>
+  <rect x="770" y="130" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="807" y="142" class="edge-label">rdfs:domain</text>
+
+  <!-- concerns -> Petition (domain) -->
+  <path d="M 490 535 Q 470 515 390 480" class="edge"/>
+  <rect x="417" y="500" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="454" y="512" class="edge-label">rdfs:domain</text>
+
+  <!-- Petition -> hasText -->
+  <path d="M 280 480 Q 230 515 210 530" class="edge"/>
+  <rect x="220" y="500" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="245" y="512" class="edge-label">property</text>
+
+  <!-- Doxology -> hasText -->
+  <path d="M 750 460 Q 400 580 235 555" class="edge"/>
+  <rect x="460" y="520" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="485" y="532" class="edge-label">property</text>
+
+  <!-- Petition/Doxology -> hasOrder -->
+  <path d="M 450 460 Q 700 550 890 550" class="edge"/>
+  <rect x="650" y="495" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="675" y="507" class="edge-label">property</text>
+
+  <path d="M 850 480 Q 900 515 915 530" class="edge"/>
+  <rect x="865" y="500" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="890" y="512" class="edge-label">property</text>
+
+  <!-- hasOrder -> xsd:integer (range) -->
+  <path d="M 1000 530 Q 1050 390 1090 285" class="edge"/>
+  <rect x="1030" y="400" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="1064" y="412" class="edge-label">rdfs:range</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <text x="50" y="720" class="legend-text" font-weight="bold" font-size="14px">Legend:</text>
+
+    <rect x="50" y="735" width="60" height="30" rx="5" class="class-node" filter="none"/>
+    <text x="120" y="753" class="legend-text">Class (rdfs:Class)</text>
+
+    <ellipse cx="80" cy="790" rx="40" ry="20" class="property-node" filter="none"/>
+    <text x="120" y="795" class="legend-text">Property (rdf:Property)</text>
+
+    <ellipse cx="80" cy="830" rx="40" ry="20" class="literal-node" filter="none"/>
+    <text x="120" y="835" class="legend-text">Literal Type</text>
+
+    <ellipse cx="80" cy="870" rx="40" ry="20" class="xsd-node" filter="none"/>
+    <text x="120" y="875" class="legend-text">XSD Type</text>
+  </g>
+
+  <!-- Statistics -->
+  <g id="stats">
+    <text x="900" y="720" class="legend-text" font-weight="bold" font-size="14px">Schema Statistics:</text>
+    <text x="900" y="745" class="legend-text">Classes: 3 (Prayer, Petition, Doxology)</text>
+    <text x="900" y="765" class="legend-text">Properties: 7</text>
+    <text x="900" y="785" class="legend-text">  - Object Properties: 2 (hasPetition, hasDoxology)</text>
+    <text x="900" y="805" class="legend-text">  - Datatype Properties: 3 (hasText, hasOrder, hasInvocation)</text>
+    <text x="900" y="825" class="legend-text">  - Other Properties: 2 (addressedTo, concerns)</text>
+  </g>
+
+  <script type="text/javascript">
+    <![CDATA[
+    function showInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'block';
+      if (text) text.style.display = 'block';
+      if (text2) text2.style.display = 'block';
+    }
+
+    function hideInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'none';
+      if (text) text.style.display = 'none';
+      if (text2) text2.style.display = 'none';
+    }
+    ]]>
+  </script>
+</svg>

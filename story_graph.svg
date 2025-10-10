@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200">
+  <defs>
+    <style>
+      .node { cursor: pointer; transition: all 0.3s; }
+      .node:hover { filter: brightness(1.2); }
+      .node:hover .node-circle { stroke-width: 4; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; pointer-events: none; }
+      .edge-label { font-family: Arial, sans-serif; font-size: 9px; fill: #d32f2f; font-weight: bold; text-anchor: middle; pointer-events: none; }
+      .edge { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .edge:hover { stroke: #000; stroke-width: 3; }
+      .causal-edge { stroke: #0066cc; stroke-width: 2; fill: none; marker-end: url(#arrowhead-blue); stroke-dasharray: 5,5; }
+      .title-text { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-anchor: middle; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 12px; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#0066cc" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="800" y="30" class="title-text">Lily's Story - RDF Graph Visualization</text>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 60)">
+    <circle cx="10" cy="0" r="8" fill="#FFD700" stroke="black" stroke-width="2"/>
+    <text x="25" y="5" class="legend-text">Main Story</text>
+
+    <circle cx="10" cy="25" r="8" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text x="25" y="30" class="legend-text">Character</text>
+
+    <circle cx="10" cy="50" r="8" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text x="25" y="55" class="legend-text">Event</text>
+
+    <circle cx="10" cy="75" r="8" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text x="25" y="80" class="legend-text">Lesson</text>
+
+    <circle cx="10" cy="100" r="8" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text x="25" y="105" class="legend-text">Setting</text>
+
+    <line x1="5" y1="125" x2="25" y2="125" stroke="#0066cc" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="35" y="130" class="legend-text">leadsTo (causality)</text>
+  </g>
+
+  <!-- Main Story Node (Center-Top) -->
+  <g id="lilysstory" class="node" transform="translate(800, 180)">
+    <circle class="node-circle" r="45" fill="#FFD700" stroke="black" stroke-width="3"/>
+    <text y="-5" class="label" font-weight="bold" font-size="13">LilysStory</text>
+    <text y="10" class="label" font-size="10">(Story)</text>
+  </g>
+
+  <!-- Setting -->
+  <g id="setting" class="node" transform="translate(1100, 180)">
+    <circle class="node-circle" r="35" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10">LilysHome</text>
+    <text y="5" class="label" font-size="9">(Setting)</text>
+  </g>
+  <path class="edge" d="M 845 180 L 1065 180"/>
+  <text x="955" y="170" class="edge-label">hasSetting</text>
+
+  <!-- Characters (Top Row) -->
+  <g id="lily" class="node" transform="translate(400, 320)">
+    <circle class="node-circle" r="35" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="11" font-weight="bold">Lily</text>
+    <text y="5" class="label" font-size="9">(protagonist)</text>
+  </g>
+  <path class="edge" d="M 780 210 Q 600 260 435 305"/>
+  <text x="590" y="255" class="edge-label">hasCharacter</text>
+
+  <g id="lilysmommy" class="node" transform="translate(560, 320)">
+    <circle class="node-circle" r="35" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="11">Mommy</text>
+    <text y="5" class="label" font-size="9">(parent)</text>
+  </g>
+  <path class="edge" d="M 775 205 Q 680 250 595 300"/>
+  <text x="700" y="250" class="edge-label">hasCharacter</text>
+
+  <g id="friend" class="node" transform="translate(720, 320)">
+    <circle class="node-circle" r="35" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="11">Friend</text>
+    <text y="5" class="label" font-size="9">(friend)</text>
+  </g>
+  <path class="edge" d="M 780 220 Q 760 260 740 290"/>
+  <text x="785" y="255" class="edge-label">hasCharacter</text>
+
+  <g id="friendsmommy" class="node" transform="translate(880, 320)">
+    <circle class="node-circle" r="35" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="11">Friend's Mommy</text>
+    <text y="5" class="label" font-size="9">(parent)</text>
+  </g>
+  <path class="edge" d="M 820 220 Q 840 260 860 290"/>
+  <text x="830" y="255" class="edge-label">hasCharacter</text>
+
+  <!-- Events (arranged vertically showing narrative flow) -->
+
+  <!-- Event 1 -->
+  <g id="event1" class="node" transform="translate(250, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event1 (order: 1)</text>
+    <text y="-15" class="label" font-size="8">Lily leaves toys</text>
+    <text y="-5" class="label" font-size="8">on floor</text>
+  </g>
+  <path class="edge" d="M 770 215 Q 500 340 290 450"/>
+  <text x="520" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Event1 involves Lily -->
+  <path class="edge" d="M 380 340 Q 320 400 275 440" stroke-dasharray="3,3"/>
+  <text x="315" y="390" class="edge-label" font-size="8">involvesCharacter</text>
+
+  <!-- Event 2 -->
+  <g id="event2" class="node" transform="translate(430, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event2 (order: 2)</text>
+    <text y="-15" class="label" font-size="8">Mommy asks to</text>
+    <text y="-5" class="label" font-size="8">clean up</text>
+  </g>
+  <path class="edge" d="M 780 215 Q 600 340 465 450"/>
+  <text x="640" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Event2 involves Lily and Mommy -->
+  <path class="edge" d="M 415 350 Q 425 410 425 440" stroke-dasharray="3,3"/>
+  <text x="390" y="395" class="edge-label" font-size="8">involvesCharacter</text>
+
+  <path class="edge" d="M 545 355 Q 490 410 460 445" stroke-dasharray="3,3"/>
+  <text x="500" y="400" class="edge-label" font-size="8">involvesCharacter</text>
+
+  <!-- Event 3 -->
+  <g id="event3" class="node" transform="translate(610, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event3 (order: 3)</text>
+    <text y="-15" class="label" font-size="8">Friend comes over,</text>
+    <text y="-5" class="label" font-size="8">acts rude</text>
+  </g>
+  <path class="edge" d="M 790 220 Q 700 340 640 445"/>
+  <text x="730" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Event3 involves Lily and Friend -->
+  <path class="edge" d="M 695 355 Q 660 410 640 440" stroke-dasharray="3,3"/>
+  <text x="670" y="400" class="edge-label" font-size="8">involvesCharacter</text>
+
+  <!-- Event 4 -->
+  <g id="event4" class="node" transform="translate(800, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event4 (order: 4)</text>
+    <text y="-15" class="label" font-size="8">Mommy teaches</text>
+    <text y="-5" class="label" font-size="8">about kindness</text>
+  </g>
+  <path class="edge" d="M 800 225 L 800 440"/>
+  <text x="820" y="335" class="edge-label">hasEvent</text>
+
+  <!-- Event 5 -->
+  <g id="event5" class="node" transform="translate(990, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event5 (order: 5)</text>
+    <text y="-15" class="label" font-size="8">Lily cleans up</text>
+    <text y="-5" class="label" font-size="8">toys</text>
+  </g>
+  <path class="edge" d="M 810 220 Q 900 340 960 445"/>
+  <text x="890" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Event 6 -->
+  <g id="event6" class="node" transform="translate(1170, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event6 (order: 6)</text>
+    <text y="-15" class="label" font-size="8">Friend's mommy</text>
+    <text y="-5" class="label" font-size="8">discusses listening</text>
+  </g>
+  <path class="edge" d="M 820 215 Q 1000 340 1135 450"/>
+  <text x="1000" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Event6 involves Friend's Mommy -->
+  <path class="edge" d="M 900 355 Q 1030 410 1145 445" stroke-dasharray="3,3"/>
+  <text x="1030" y="405" class="edge-label" font-size="8">involvesCharacter</text>
+
+  <!-- Event 7 -->
+  <g id="event7" class="node" transform="translate(1350, 480)">
+    <circle class="node-circle" r="40" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Event7 (order: 7)</text>
+    <text y="-15" class="label" font-size="8">Lily changes</text>
+    <text y="-5" class="label" font-size="8">behavior</text>
+  </g>
+  <path class="edge" d="M 830 215 Q 1100 340 1315 450"/>
+  <text x="1100" y="340" class="edge-label">hasEvent</text>
+
+  <!-- Causal relationships (leadsTo) between events -->
+  <path class="causal-edge" d="M 290 480 L 390 480"/>
+  <text x="340" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <path class="causal-edge" d="M 470 480 L 570 480"/>
+  <text x="520" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <path class="causal-edge" d="M 650 480 L 760 480"/>
+  <text x="705" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <path class="causal-edge" d="M 840 480 L 950 480"/>
+  <text x="895" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <path class="causal-edge" d="M 1030 480 L 1130 480"/>
+  <text x="1080" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <path class="causal-edge" d="M 1210 480 L 1310 480"/>
+  <text x="1260" y="470" class="edge-label" fill="#0066cc">leadsTo</text>
+
+  <!-- Lessons (Bottom Row) -->
+  <g id="lesson1" class="node" transform="translate(500, 750)">
+    <circle class="node-circle" r="40" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Lesson1</text>
+    <text y="-15" class="label" font-size="9">Responsibility:</text>
+    <text y="-5" class="label" font-size="8">Clean up toys</text>
+  </g>
+  <path class="edge" d="M 770 220 Q 650 480 530 715"/>
+  <text x="620" y="470" class="edge-label">hasLesson</text>
+
+  <g id="lesson2" class="node" transform="translate(800, 750)">
+    <circle class="node-circle" r="40" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Lesson2</text>
+    <text y="-15" class="label" font-size="9">Kindness:</text>
+    <text y="-5" class="label" font-size="8">Be kind &amp; share</text>
+  </g>
+  <path class="edge" d="M 800 225 Q 800 480 800 710"/>
+  <text x="820" y="470" class="edge-label">hasLesson</text>
+
+  <g id="lesson3" class="node" transform="translate(1100, 750)">
+    <circle class="node-circle" r="40" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="10" font-weight="bold">Lesson3</text>
+    <text y="-15" class="label" font-size="9">Listening:</text>
+    <text y="-5" class="label" font-size="8">Listen to parents</text>
+  </g>
+  <path class="edge" d="M 830 220 Q 950 480 1070 715"/>
+  <text x="970" y="470" class="edge-label">hasLesson</text>
+
+  <!-- Graph Statistics -->
+  <g id="stats" transform="translate(50, 950)">
+    <rect x="0" y="0" width="280" height="180" fill="#f5f5f5" stroke="black" stroke-width="1" rx="5"/>
+    <text x="140" y="25" class="legend-text" text-anchor="middle" font-weight="bold">Graph Statistics</text>
+    <text x="10" y="50" class="legend-text" font-size="11">Nodes: 16</text>
+    <text x="10" y="70" class="legend-text" font-size="11">  - 1 Story</text>
+    <text x="10" y="85" class="legend-text" font-size="11">  - 4 Characters</text>
+    <text x="10" y="100" class="legend-text" font-size="11">  - 7 Events (sequential)</text>
+    <text x="10" y="115" class="legend-text" font-size="11">  - 3 Lessons</text>
+    <text x="10" y="130" class="legend-text" font-size="11">  - 1 Setting</text>
+    <text x="10" y="150" class="legend-text" font-size="11">Edges: 29 (shown)</text>
+    <text x="10" y="170" class="legend-text" font-size="11">Total Triples: ~80</text>
+  </g>
+
+  <!-- Story Summary -->
+  <g id="summary" transform="translate(400, 950)">
+    <rect x="0" y="0" width="800" height="180" fill="#fffacd" stroke="black" stroke-width="1" rx="5"/>
+    <text x="400" y="25" class="legend-text" text-anchor="middle" font-weight="bold" font-size="14">Story Summary</text>
+    <text x="20" y="50" class="legend-text" font-size="10">Lily learns important lessons about responsibility, kindness, and listening to her parents.</text>
+    <text x="20" y="70" class="legend-text" font-size="10">The story follows a simple narrative arc:</text>
+    <text x="20" y="90" class="legend-text" font-size="10">1. Problem: Lily doesn't clean up her toys</text>
+    <text x="20" y="105" class="legend-text" font-size="10">2. Inciting incident: Friend visits and acts rudely</text>
+    <text x="20" y="120" class="legend-text" font-size="10">3. Teaching moment: Mommy explains importance of kindness and sharing</text>
+    <text x="20" y="135" class="legend-text" font-size="10">4. Action: Lily cleans up her toys</text>
+    <text x="20" y="150" class="legend-text" font-size="10">5. Reinforcement: Friend's mommy discusses listening and kindness</text>
+    <text x="20" y="165" class="legend-text" font-size="10">6. Resolution: Lily decides to be more responsible and kind going forward</text>
+  </g>
+
+  <!-- Interactivity note -->
+  <text x="800" y="1180" class="label" font-size="11" fill="#666" text-anchor="middle">
+    Hover over nodes to highlight • Blue dashed lines show narrative causality (leadsTo) • SVG visualization of RDF/RDFS structure
+  </text>
+
+</svg>
