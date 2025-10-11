@@ -401,3 +401,62 @@ When updating visualizations:
 - Use dashed lines for special relationships (e.g., leadsTo causality)
 - Remember to escape XML entities in SVG text (& → &amp;, < → &lt;, > → &gt;)
 - Check for malformed SVG attributes (e.g., duplicate "=" in path d attribute)
+
+## Reflections on the Knowledge Graph Creation Process
+
+Having created three knowledge graphs from disparate texts (prayer, story, poem), several insights emerge about RDF modeling:
+
+### Domain-Specific Ontologies Emerge Naturally
+
+Each text type demanded fundamentally different schemas:
+- **Prayer**: Hierarchical and ritualistic (Petition, Doxology, invocation)
+- **Story**: Narrative-driven with causality (Events with `leadsTo`, Characters, moral Lessons)
+- **Poem**: Literary-analytical (Metaphor with vehicle/tenor, Themes, Speaker/addressee)
+
+The content itself dictates the ontology - you can't force a narrative schema onto a prayer or a poetic schema onto a story.
+
+### Common Structural Patterns
+
+Despite different domains, certain patterns recurred:
+- **Sequential ordering**: All used `hasOrder` for temporal/structural sequence
+- **Hierarchical containment**: Prayer→Petitions, Story→Events, Poem→Stanzas→Lines
+- **Metadata separation**: Structural elements vs. content vs. analysis/interpretation
+- **The `hasDescription` pattern**: Multiple classes needed textual descriptions
+
+### Modeling Decisions Have Consequences
+
+- **hasOrder vs. RDF Lists**: We chose simplicity and query-ability over RDF idiomaticity
+- **Granularity choices**: Modeled individual lines in poetry (20 Line instances) but not word-level in the prayer
+- **Analysis vs. Content**: The poem schema included literary analysis (metaphor, theme) while the story focused on narrative structure
+
+### The Interpretation Layer
+
+Each schema encodes a **particular interpretation**:
+- The prayer schema assumes a petition-based structure (Protestant/Catholic view)
+- The story schema emphasizes moral lessons (pedagogical interpretation)
+- The poem schema applies New Critical literary analysis (metaphor, theme, close reading)
+
+Different scholarly or cultural perspectives would produce different schemas from the same texts.
+
+### Technical Patterns That Emerged
+
+- **XML escaping** was a recurring issue (`&` → `&amp;`)
+- **Arrow directionality** matters semantically (domain arrows point FROM property TO class)
+- **Color coding** became a visual vocabulary across all three visualizations
+- **Namespace discipline** (`schema:` vs. `inst:` separation) proved valuable
+
+### Reusability vs. Specificity
+
+- The generic parser (`parse_prayer.py`) worked across all three - showing good abstraction
+- But each visualization was hand-crafted - showing that meaningful visualization requires domain understanding
+- A fourth text (maybe a legal document or scientific paper) would need yet another schema, but could reuse the patterns
+
+### What This Reveals About Knowledge
+
+The exercise shows that **knowledge graphs aren't neutral representations** - they're:
+1. **Interpretive**: They encode specific analytical frameworks
+2. **Purpose-driven**: Different uses would suggest different schemas
+3. **Cultural artifacts**: They reflect particular ways of understanding texts
+4. **Pragmatic**: Design choices balance theoretical purity with practical usability
+
+The fact that we could model all three suggests RDF/RDFS is genuinely flexible, but the **very different schemas** show that semantic modeling is as much art as engineering - requiring deep understanding of both the domain and the intended uses.
