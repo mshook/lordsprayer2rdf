@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This project demonstrates RDF/RDFS (Turtle format) semantic modeling with two examples:
+This project demonstrates RDF/RDFS (Turtle format) semantic modeling with three examples:
 
 1. **Lord's Prayer** - A religious text modeled with classes for Prayer, Petition, and Doxology
 2. **Children's Story** - A narrative story modeled with classes for Story, Character, Event, Lesson, and Setting
+3. **Emily Dickinson Poem** - A literary poem modeled with classes for Poem, Stanza, Line, Theme, Metaphor, and Speaker
 
-Both examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
+All examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
 
 ## Architecture
 
@@ -84,6 +85,35 @@ Both examples include complete schema definitions, instance data, and interactiv
   - Includes legend, statistics, and story summary
   - View in any web browser
 
+### Poem Files
+
+- **`emily_poem.txt`** - Source text of Emily Dickinson poem
+  - "Why do I love You, Sir?" - a poem about inexplicable love through nature metaphors
+  - 4 stanzas with 20 total lines
+  - Source material for RDF conversion
+
+- **`emily_poem.ttl`** - RDF/RDFS representation of the poem
+  - Defines schema using RDFS (classes: Poem, Stanza, Line, Theme, Metaphor, Speaker)
+  - Defines 15 properties for poetic and literary structure
+  - Contains "Why do I love You, Sir?" instance with 4 stanzas, 20 lines, 3 themes, and 3 metaphors
+  - Uses namespaces: `poem:` for schema, `inst:` for instances
+  - Models literary analysis elements: metaphor (vehicle/tenor), themes, speaker/addressee
+  - Compatible with `parse_prayer.py` for validation
+
+- **`emily_poem_schema_graph.svg`** - Interactive SVG visualization (schema only)
+  - Visualizes the poem RDFS schema definitions
+  - Shows 6 classes (Poem, Stanza, Line, Theme, Metaphor, Speaker)
+  - Shows 15 properties with rdfs:domain and rdfs:range relationships
+  - Hover over nodes to see rdfs:comment descriptions
+  - View in any web browser
+
+- **`emily_poem_graph.svg`** - Interactive SVG visualization (full poem instance)
+  - Hand-crafted SVG showing Emily Dickinson's poem instance data
+  - Shows relationships between Poem, Speaker, 4 Stanzas, 3 Themes, and 3 Metaphors
+  - Displays stanzas with text excerpts and line counts
+  - Includes literary analysis, poem summary, and biographical context
+  - View in any web browser
+
 ## RDF Schema Design
 
 ### Lord's Prayer Schema
@@ -138,6 +168,37 @@ The LilysStory instance follows this pattern with:
 - 7 sequential events (orders 1-7) with causal relationships
 - 3 moral lessons (responsibility, kindness, listening)
 
+### Poetry Schema
+
+The poetry ontology models literary structure and analysis:
+
+```
+Poem (class)
+├── hasTitle (property) → Literal
+├── hasAuthor (property) → Literal
+├── hasSpeaker (property) → Speaker (class)
+│   └── addressesTo (property) → Literal
+├── hasStanza (property) → Stanza (class)
+│   ├── hasOrder (property) → xsd:integer
+│   └── hasLine (property) → Line (class)
+│       ├── hasOrder (property) → xsd:integer
+│       └── hasText (property) → Literal
+├── hasTheme (property) → Theme (class)
+│   ├── hasSubject (property) → Literal
+│   └── hasDescription (property) → Literal
+└── usesMetaphor (property) → Metaphor (class)
+    ├── hasVehicle (property) → Literal
+    ├── hasTenor (property) → Literal
+    └── hasDescription (property) → Literal
+```
+
+The "Why do I love You, Sir?" instance follows this pattern with:
+- 1 poem by Emily Dickinson with title and author
+- 1 speaker addressing "Sir"
+- 4 stanzas (orders 1-4) containing 20 total lines
+- 3 themes (Inexplicable Love, Nature as Metaphor, Compulsion & Inevitability)
+- 3 metaphors analyzing natural imagery (Wind/Grass, Lightning/Eye, Sunrise)
+
 ## Common Commands
 
 ### Validate RDF files
@@ -147,6 +208,9 @@ python3 parse_prayer.py lords_prayer.ttl
 
 # Validate story
 python3 parse_prayer.py story.ttl
+
+# Validate poem
+python3 parse_prayer.py emily_poem.ttl
 ```
 
 ### Generate graph visualization (requires dependencies)
@@ -161,18 +225,24 @@ xdg-open prayer_graph.svg
 xdg-open schema_graph.svg
 xdg-open story_graph.svg
 xdg-open story_schema_graph.svg
+xdg-open emily_poem_graph.svg
+xdg-open emily_poem_schema_graph.svg
 
 # macOS
 open prayer_graph.svg
 open schema_graph.svg
 open story_graph.svg
 open story_schema_graph.svg
+open emily_poem_graph.svg
+open emily_poem_schema_graph.svg
 
 # Windows
 start prayer_graph.svg
 start schema_graph.svg
 start story_graph.svg
 start story_schema_graph.svg
+start emily_poem_graph.svg
+start emily_poem_schema_graph.svg
 ```
 
 ## Original Prompts
@@ -214,6 +284,25 @@ This project was created through the following conversation flows:
    - Created `story_graph.svg` showing full Lily's Story instance
    - Displayed narrative flow with causal relationships
    - Fixed XML parsing error (unescaped ampersand)
+
+### Poetry (Extension)
+
+1. **Poem conversion**: "I've added emily_poem.txt, a poem by Emily Dickensen. Do the same for it."
+   - Created `emily_poem.ttl` with poetry-focused schema
+   - Modeled stanzas, lines, themes, metaphors, and speaker
+   - Used `hasOrder` for sequential stanzas and lines
+   - Included literary analysis elements (metaphor vehicle/tenor, themes)
+
+2. **Schema visualization**: Created `emily_poem_schema_graph.svg`
+   - Visualized poetry RDFS schema
+   - Showed 6 classes and 15 properties
+   - Fixed XML parsing errors (malformed path attributes with extra "=" characters)
+
+3. **Instance visualization**: Created `emily_poem_graph.svg`
+   - Showed Emily Dickinson's "Why do I love You, Sir?" instance
+   - Displayed 4 stanzas with text excerpts
+   - Included 3 themes and 3 nature metaphors
+   - Added literary analysis and biographical context
 
 ## Python Implementation Notes
 
@@ -287,18 +376,28 @@ For narrative stories:
 - Include lessons/themes with hasLesson property
 - Define setting with hasLocation and hasDescription
 
+For poetry:
+- Use appropriate namespaces (`poem:` for schema, `inst:` for instances)
+- Model hierarchical structure: Poem → Stanza → Line
+- Use hasOrder for sequential stanzas and lines
+- Include speaker and addressee information
+- Model literary elements: themes, metaphors (vehicle/tenor)
+- Capture author and title metadata
+- Use hasText to store actual line content
+
 ### Modifying Visualizations
 
 When updating visualizations:
 - Update both Python script and SVG for consistency
 - Maintain the color coding scheme for node types:
-  - Gold: Main entity (Story/Prayer)
-  - Pink: Characters
-  - Blue: Events/Petitions
-  - Green: Lessons/Doxology
-  - Purple: Settings
+  - Gold: Main entity (Story/Prayer/Poem)
+  - Pink: Characters/Themes
+  - Blue: Events/Petitions/Stanzas
+  - Green: Lessons/Doxology/Metaphors
+  - Purple: Settings/Speaker
   - Gray: Literals
 - Ensure edge labels clearly indicate RDF predicates
 - Include statistics and legends for clarity
 - Use dashed lines for special relationships (e.g., leadsTo causality)
 - Remember to escape XML entities in SVG text (& → &amp;, < → &lt;, > → &gt;)
+- Check for malformed SVG attributes (e.g., duplicate "=" in path d attribute)

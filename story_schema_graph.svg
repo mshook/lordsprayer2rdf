@@ -280,45 +280,45 @@
   <text id="hasDescription-info-text" x="730" y="470" class="info-text">A textual description of</text>
   <text id="hasDescription-info-text2" x="730" y="485" class="info-text">an element (domain: rdfs:Resource)</text>
 
-  <!-- Edges: Story to Properties -->
+  <!-- Edges: Properties to Classes -->
   <!-- hasCharacter -->
-  <path d="M 630 160 Q 500 180 380 195" class="edge"/>
-  <rect x="470" y="170" width="75" height="16" fill="white" opacity="0.8"/>
-  <text x="507" y="182" class="edge-label">rdfs:domain</text>
+  <path d="M 350 165 Q 500 140 630 140" class="edge"/>
+  <rect x="470" y="135" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="507" y="147" class="edge-label">rdfs:domain</text>
 
   <path d="M 250 230 Q 210 260 195 275" class="edge"/>
   <rect x="195" y="245" width="68" height="16" fill="white" opacity="0.8"/>
   <text x="229" y="257" class="edge-label">rdfs:range</text>
 
   <!-- hasEvent -->
-  <path d="M 650 160 Q 600 175 550 190" class="edge"/>
-  <rect x="575" y="170" width="75" height="16" fill="white" opacity="0.8"/>
-  <text x="612" y="182" class="edge-label">rdfs:domain</text>
+  <path d="M 535 185 Q 600 150 650 140" class="edge"/>
+  <rect x="575" y="155" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="612" y="167" class="edge-label">rdfs:domain</text>
 
   <path d="M 475 230 Q 435 260 420 280" class="edge"/>
   <rect x="420" y="248" width="68" height="16" fill="white" opacity="0.8"/>
   <text x="454" y="260" class="edge-label">rdfs:range</text>
 
   <!-- hasLesson -->
-  <path d="M 770 160 Q 820 175 850 190" class="edge"/>
-  <rect x="785" y="170" width="75" height="16" fill="white" opacity="0.8"/>
-  <text x="822" y="182" class="edge-label">rdfs:domain</text>
+  <path d="M 865 185 Q 820 150 750 140" class="edge"/>
+  <rect x="785" y="155" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="822" y="167" class="edge-label">rdfs:domain</text>
 
   <path d="M 930 230 Q 940 260 945 280" class="edge"/>
   <rect x="912" y="248" width="68" height="16" fill="white" opacity="0.8"/>
   <text x="946" y="260" class="edge-label">rdfs:range</text>
 
   <!-- hasSetting -->
-  <path d="M 770 160 Q 900 175 1050 190" class="edge"/>
-  <rect x="880" y="170" width="75" height="16" fill="white" opacity="0.8"/>
-  <text x="917" y="182" class="edge-label">rdfs:domain</text>
+  <path d="M 1065 185 Q 900 150 750 140" class="edge"/>
+  <rect x="880" y="155" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="917" y="167" class="edge-label">rdfs:domain</text>
 
   <path d="M 1130 230 Q 1160 260 1170 280" class="edge"/>
   <rect x="1135" y="248" width="68" height="16" fill="white" opacity="0.8"/>
   <text x="1169" y="260" class="edge-label">rdfs:range</text>
 
   <!-- hasTitle -->
-  <path d="M 800 110 Q 1000 110 1240 115" class="edge"/>
+  <path d="M 1242 120 Q 1000 110 800 110" class="edge"/>
   <rect x="990" y="102" width="75" height="16" fill="white" opacity="0.8"/>
   <text x="1027" y="114" class="edge-label">rdfs:domain</text>
 

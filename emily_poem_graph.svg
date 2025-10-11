@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1400" width="1600" height="1400">
+  <defs>
+    <style>
+      .node { cursor: pointer; transition: all 0.3s; }
+      .node:hover { filter: brightness(1.2); }
+      .node:hover .node-circle { stroke-width: 4; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; pointer-events: none; }
+      .edge-label { font-family: Arial, sans-serif; font-size: 9px; fill: #d32f2f; font-weight: bold; text-anchor: middle; pointer-events: none; }
+      .edge { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .edge:hover { stroke: #000; stroke-width: 3; }
+      .title-text { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-anchor: middle; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 12px; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="800" y="30" class="title-text">Emily Dickinson: "Why do I love You, Sir?" - RDF Graph</text>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 60)">
+    <circle cx="10" cy="0" r="8" fill="#FFD700" stroke="black" stroke-width="2"/>
+    <text x="25" y="5" class="legend-text">Poem</text>
+
+    <circle cx="10" cy="25" r="8" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text x="25" y="30" class="legend-text">Speaker</text>
+
+    <circle cx="10" cy="50" r="8" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text x="25" y="55" class="legend-text">Stanza</text>
+
+    <circle cx="10" cy="75" r="8" fill="#FFB6C1" stroke="black" stroke-width="2"/>
+    <text x="25" y="80" class="legend-text">Theme</text>
+
+    <circle cx="10" cy="100" r="8" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text x="25" y="105" class="legend-text">Metaphor</text>
+  </g>
+
+  <!-- Main Poem Node (Center-Top) -->
+  <g id="poem" class="node" transform="translate(800, 180)">
+    <circle class="node-circle" r="50" fill="#FFD700" stroke="black" stroke-width="3"/>
+    <text y="-10" class="label" font-weight="bold" font-size="13">"Why do I love"</text>
+    <text y="5" class="label" font-weight="bold" font-size="13">You, Sir?</text>
+    <text y="20" class="label" font-size="10">(Poem)</text>
+  </g>
+
+  <!-- Speaker -->
+  <g id="speaker" class="node" transform="translate(1100, 180)">
+    <circle class="node-circle" r="40" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="11">Speaker</text>
+    <text y="5" class="label" font-size="9">addresses "Sir"</text>
+  </g>
+  <path class="edge" d="M 850 180 L 1060 180"/>
+  <text x="955" y="170" class="edge-label">hasSpeaker</text>
+
+  <!-- Themes (Top Right) -->
+  <g id="theme1" class="node" transform="translate(1100, 320)">
+    <circle class="node-circle" r="45" fill="#FFB6C1" stroke="black" stroke-width="2"/>
+    <text y="-25" class="label" font-size="10" font-weight="bold">Theme 1</text>
+    <text y="-10" class="label" font-size="9">Inexplicable</text>
+    <text y="3" class="label" font-size="9">Love</text>
+  </g>
+  <path class="edge" d="M 840 220 Q 960 260 1060 305"/>
+  <text x="950" y="260" class="edge-label">hasTheme</text>
+
+  <g id="theme2" class="node" transform="translate(1100, 450)">
+    <circle class="node-circle" r="45" fill="#FFB6C1" stroke="black" stroke-width="2"/>
+    <text y="-25" class="label" font-size="10" font-weight="bold">Theme 2</text>
+    <text y="-10" class="label" font-size="9">Nature as</text>
+    <text y="3" class="label" font-size="9">Metaphor</text>
+  </g>
+  <path class="edge" d="M 845 215 Q 960 320 1060 415"/>
+  <text x="950" y="320" class="edge-label">hasTheme</text>
+
+  <g id="theme3" class="node" transform="translate(1100, 580)">
+    <circle class="node-circle" r="45" fill="#FFB6C1" stroke="black" stroke-width="2"/>
+    <text y="-25" class="label" font-size="10" font-weight="bold">Theme 3</text>
+    <text y="-10" class="label" font-size="9">Compulsion &amp;</text>
+    <text y="3" class="label" font-size="9">Inevitability</text>
+  </g>
+  <path class="edge" d="M 845 220 Q 960 380 1060 545"/>
+  <text x="950" y="390" class="edge-label">hasTheme</text>
+
+  <!-- Metaphors (Bottom Right) -->
+  <g id="metaphor1" class="node" transform="translate(1350, 350)">
+    <ellipse class="node-circle" rx="65" ry="45" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-20" class="label" font-size="10" font-weight="bold">Wind &amp; Grass</text>
+    <text y="-5" class="label" font-size="8">Love as irresistible</text>
+    <text y="8" class="label" font-size="8">natural force</text>
+  </g>
+  <path class="edge" d="M 845 210 Q 1090 270 1290 330"/>
+  <text x="1080" y="270" class="edge-label">usesMetaphor</text>
+
+  <g id="metaphor2" class="node" transform="translate(1350, 480)">
+    <ellipse class="node-circle" rx="65" ry="45" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-20" class="label" font-size="10" font-weight="bold">Lightning &amp; Eye</text>
+    <text y="-5" class="label" font-size="8">Instinctive response</text>
+    <text y="8" class="label" font-size="8">to overwhelming force</text>
+  </g>
+  <path class="edge" d="M 845 215 Q 1090 340 1290 455"/>
+  <text x="1080" y="350" class="edge-label">usesMetaphor</text>
+
+  <g id="metaphor3" class="node" transform="translate(1350, 610)">
+    <ellipse class="node-circle" rx="65" ry="45" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-20" class="label" font-size="10" font-weight="bold">Sunrise</text>
+    <text y="-5" class="label" font-size="8">Love's self-evident</text>
+    <text y="8" class="label" font-size="8">nature</text>
+  </g>
+  <path class="edge" d="M 845 225 Q 1090 410 1290 585"/>
+  <text x="1080" y="425" class="edge-label">usesMetaphor</text>
+
+  <!-- Stanzas (arranged vertically on left) -->
+
+  <!-- Stanza 1 -->
+  <g id="stanza1" class="node" transform="translate(250, 350)">
+    <rect class="node-circle" x="-90" y="-55" width="180" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-40" class="label" font-size="10" font-weight="bold">Stanza 1</text>
+    <text y="-25" class="label" font-size="8">"Why do I love" You, Sir?</text>
+    <text y="-13" class="label" font-size="8">Because—</text>
+    <text y="-1" class="label" font-size="8">The Wind does not require</text>
+    <text y="11" class="label" font-size="8">the Grass / To answer—</text>
+    <text y="23" class="label" font-size="8">She cannot keep Her place.</text>
+    <text y="40" class="label" font-size="9" opacity="0.7">(5 lines)</text>
+  </g>
+  <path class="edge" d="M 760 210 Q 500 270 340 325"/>
+  <text x="540" y="265" class="edge-label">hasStanza</text>
+
+  <!-- Stanza 2 -->
+  <g id="stanza2" class="node" transform="translate(250, 540)">
+    <rect class="node-circle" x="-90" y="-55" width="180" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-40" class="label" font-size="10" font-weight="bold">Stanza 2</text>
+    <text y="-25" class="label" font-size="8">Because He knows—and</text>
+    <text y="-13" class="label" font-size="8">Do not You—</text>
+    <text y="-1" class="label" font-size="8">And We know not—</text>
+    <text y="11" class="label" font-size="8">Enough for Us</text>
+    <text y="23" class="label" font-size="8">The Wisdom it be so—</text>
+    <text y="40" class="label" font-size="9" opacity="0.7">(5 lines)</text>
+  </g>
+  <path class="edge" d="M 760 220 Q 500 360 340 510"/>
+  <text x="540" y="370" class="edge-label">hasStanza</text>
+
+  <!-- Stanza 3 -->
+  <g id="stanza3" class="node" transform="translate(500, 850)">
+    <rect class="node-circle" x="-100" y="-65" width="200" height="130" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-50" class="label" font-size="10" font-weight="bold">Stanza 3</text>
+    <text y="-35" class="label" font-size="8">The Lightning—never asked</text>
+    <text y="-23" class="label" font-size="8">an Eye / Wherefore it shut—</text>
+    <text y="-11" class="label" font-size="8">when He was by—</text>
+    <text y="1" class="label" font-size="8">Because He knows it cannot</text>
+    <text y="13" class="label" font-size="8">speak— / And reasons not</text>
+    <text y="25" class="label" font-size="8">contained— / —Of Talk—</text>
+    <text y="37" class="label" font-size="8">There be—preferred by</text>
+    <text y="49" class="label" font-size="8">Daintier Folk—</text>
+    <text y="60" class="label" font-size="9" opacity="0.7">(6 lines)</text>
+  </g>
+  <path class="edge" d="M 765 225 Q 620 520 540 785"/>
+  <text x="630" y="510" class="edge-label">hasStanza</text>
+
+  <!-- Stanza 4 -->
+  <g id="stanza4" class="node" transform="translate(850, 850)">
+    <rect class="node-circle" x="-90" y="-55" width="180" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-40" class="label" font-size="10" font-weight="bold">Stanza 4</text>
+    <text y="-25" class="label" font-size="8">The Sunrise—Sire—</text>
+    <text y="-13" class="label" font-size="8">compelleth Me—</text>
+    <text y="-1" class="label" font-size="8">Because He's Sunrise—</text>
+    <text y="11" class="label" font-size="8">and I see—</text>
+    <text y="23" class="label" font-size="8">Therefore—Then—</text>
+    <text y="35" class="label" font-size="8">I love Thee—</text>
+    <text y="48" class="label" font-size="9" opacity="0.7">(4 lines)</text>
+  </g>
+  <path class="edge" d="M 800 230 Q 800 520 835 795"/>
+  <text x="815" y="510" class="edge-label">hasStanza</text>
+
+  <!-- Order indicators -->
+  <g id="order-labels" opacity="0.7">
+    <text x="250" y="470" class="label" font-size="10" fill="#333">(order: 1)</text>
+    <text x="250" y="660" class="label" font-size="10" fill="#333">(order: 2)</text>
+    <text x="500" y="985" class="label" font-size="10" fill="#333">(order: 3)</text>
+    <text x="850" y="970" class="label" font-size="10" fill="#333">(order: 4)</text>
+  </g>
+
+  <!-- Poem Summary Box -->
+  <g id="summary" transform="translate(50, 1050)">
+    <rect x="0" y="0" width="700" height="200" fill="#fffacd" stroke="black" stroke-width="1" rx="5"/>
+    <text x="350" y="25" class="legend-text" text-anchor="middle" font-weight="bold" font-size="14">Poem Analysis</text>
+    <text x="20" y="50" class="legend-text" font-size="10" font-weight="bold">Structure:</text>
+    <text x="20" y="68" class="legend-text" font-size="10">• 4 stanzas with varying line counts (5, 5, 6, 4 lines)</text>
+    <text x="20" y="83" class="legend-text" font-size="10">• Total of 20 lines</text>
+
+    <text x="20" y="105" class="legend-text" font-size="10" font-weight="bold">Central Question:</text>
+    <text x="20" y="123" class="legend-text" font-size="10">"Why do I love You, Sir?" - The speaker explores the inexplicable nature of love</text>
+
+    <text x="20" y="145" class="legend-text" font-size="10" font-weight="bold">Key Imagery:</text>
+    <text x="20" y="163" class="legend-text" font-size="10">• Wind and Grass - Irresistible natural force</text>
+    <text x="20" y="178" class="legend-text" font-size="10">• Lightning and Eye - Instinctive, overwhelming response beyond speech</text>
+    <text x="20" y="193" class="legend-text" font-size="10">• Sunrise - Self-evident beauty that needs no explanation</text>
+  </g>
+
+  <!-- Graph Statistics -->
+  <g id="stats" transform="translate(800, 1050)">
+    <rect x="0" y="0" width="280" height="200" fill="#f5f5f5" stroke="black" stroke-width="1" rx="5"/>
+    <text x="140" y="25" class="legend-text" text-anchor="middle" font-weight="bold">Graph Statistics</text>
+    <text x="10" y="50" class="legend-text" font-size="11">Nodes: 13</text>
+    <text x="10" y="70" class="legend-text" font-size="11">  - 1 Poem</text>
+    <text x="10" y="85" class="legend-text" font-size="11">  - 1 Speaker</text>
+    <text x="10" y="100" class="legend-text" font-size="11">  - 4 Stanzas</text>
+    <text x="10" y="115" class="legend-text" font-size="11">  - 20 Lines (not shown)</text>
+    <text x="10" y="130" class="legend-text" font-size="11">  - 3 Themes</text>
+    <text x="10" y="145" class="legend-text" font-size="11">  - 3 Metaphors</text>
+    <text x="10" y="165" class="legend-text" font-size="11">Edges: 12 (shown)</text>
+    <text x="10" y="185" class="legend-text" font-size="11">Total Triples: ~85</text>
+  </g>
+
+  <!-- Literary Context -->
+  <g id="context" transform="translate(1130, 1050)">
+    <rect x="0" y="0" width="420" height="200" fill="#e8f4f8" stroke="black" stroke-width="1" rx="5"/>
+    <text x="210" y="25" class="legend-text" text-anchor="middle" font-weight="bold" font-size="14">Literary Context</text>
+    <text x="20" y="50" class="legend-text" font-size="10" font-weight="bold">Author: Emily Dickinson (1830-1886)</text>
+    <text x="20" y="68" class="legend-text" font-size="10">One of America's greatest poets, known for unconventional</text>
+    <text x="20" y="83" class="legend-text" font-size="10">punctuation, capitalization, and slant rhyme.</text>
+
+    <text x="20" y="105" class="legend-text" font-size="10" font-weight="bold">Typical Dickinson Elements:</text>
+    <text x="20" y="123" class="legend-text" font-size="10">• Use of dashes for emphasis and pause</text>
+    <text x="20" y="138" class="legend-text" font-size="10">• Capitalization of significant nouns (Wind, Grass, Lightning)</text>
+    <text x="20" y="153" class="legend-text" font-size="10">• Nature metaphors to explore abstract emotions</text>
+    <text x="20" y="168" class="legend-text" font-size="10">• Direct address to an unnamed "You" or "Sir"</text>
+    <text x="20" y="183" class="legend-text" font-size="10">• Exploration of love, death, nature, and spirituality</text>
+  </g>
+
+  <!-- Interactivity note -->
+  <text x="800" y="1380" class="label" font-size="11" fill="#666" text-anchor="middle">
+    Hover over nodes to highlight • SVG visualization of RDF/RDFS structure
+  </text>
+
+</svg>

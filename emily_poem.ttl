@@ -1,0 +1,282 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix poem: <http://example.org/poem/schema#> .
+@prefix inst: <http://example.org/poem/instance#> .
+
+# ============================================
+# RDFS Schema Definitions
+# ============================================
+
+# Classes
+poem:Poem a rdfs:Class ;
+    rdfs:label "Poem" ;
+    rdfs:comment "A literary work in verse form" .
+
+poem:Stanza a rdfs:Class ;
+    rdfs:label "Stanza" ;
+    rdfs:comment "A grouped set of lines in a poem" .
+
+poem:Line a rdfs:Class ;
+    rdfs:label "Line" ;
+    rdfs:comment "A single line of verse in a poem" .
+
+poem:Theme a rdfs:Class ;
+    rdfs:label "Theme" ;
+    rdfs:comment "A central topic or idea explored in the poem" .
+
+poem:Metaphor a rdfs:Class ;
+    rdfs:label "Metaphor" ;
+    rdfs:comment "A figure of speech comparing two unlike things" .
+
+poem:Speaker a rdfs:Class ;
+    rdfs:label "Speaker" ;
+    rdfs:comment "The voice or persona speaking in the poem" .
+
+# Properties for Poem
+poem:hasTitle a rdf:Property ;
+    rdfs:label "has title" ;
+    rdfs:comment "The title of the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range rdfs:Literal .
+
+poem:hasAuthor a rdf:Property ;
+    rdfs:label "has author" ;
+    rdfs:comment "The poet who wrote the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range rdfs:Literal .
+
+poem:hasStanza a rdf:Property ;
+    rdfs:label "has stanza" ;
+    rdfs:comment "A stanza contained in the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range poem:Stanza .
+
+poem:hasTheme a rdf:Property ;
+    rdfs:label "has theme" ;
+    rdfs:comment "A theme explored in the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range poem:Theme .
+
+poem:hasSpeaker a rdf:Property ;
+    rdfs:label "has speaker" ;
+    rdfs:comment "The speaker or voice of the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range poem:Speaker .
+
+poem:usesMetaphor a rdf:Property ;
+    rdfs:label "uses metaphor" ;
+    rdfs:comment "A metaphor employed in the poem" ;
+    rdfs:domain poem:Poem ;
+    rdfs:range poem:Metaphor .
+
+# Properties for Stanza
+poem:hasOrder a rdf:Property ;
+    rdfs:label "has order" ;
+    rdfs:comment "The sequential position in the poem" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range xsd:integer .
+
+poem:hasLine a rdf:Property ;
+    rdfs:label "has line" ;
+    rdfs:comment "A line contained in the stanza" ;
+    rdfs:domain poem:Stanza ;
+    rdfs:range poem:Line .
+
+# Properties for Line
+poem:hasText a rdf:Property ;
+    rdfs:label "has text" ;
+    rdfs:comment "The textual content" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Literal .
+
+# Properties for Theme
+poem:hasSubject a rdf:Property ;
+    rdfs:label "has subject" ;
+    rdfs:comment "The subject matter of the theme" ;
+    rdfs:domain poem:Theme ;
+    rdfs:range rdfs:Literal .
+
+poem:hasDescription a rdf:Property ;
+    rdfs:label "has description" ;
+    rdfs:comment "A description or explanation" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Literal .
+
+# Properties for Metaphor
+poem:hasVehicle a rdf:Property ;
+    rdfs:label "has vehicle" ;
+    rdfs:comment "The metaphorical image used (vehicle)" ;
+    rdfs:domain poem:Metaphor ;
+    rdfs:range rdfs:Literal .
+
+poem:hasTenor a rdf:Property ;
+    rdfs:label "has tenor" ;
+    rdfs:comment "The underlying meaning (tenor)" ;
+    rdfs:domain poem:Metaphor ;
+    rdfs:range rdfs:Literal .
+
+# Properties for Speaker
+poem:addressesTo a rdf:Property ;
+    rdfs:label "addresses to" ;
+    rdfs:comment "The addressee of the speaker's words" ;
+    rdfs:domain poem:Speaker ;
+    rdfs:range rdfs:Literal .
+
+# ============================================
+# Poem Instance: "Why do I love" You, Sir?
+# ============================================
+
+inst:WhyDoILoveYouSir a poem:Poem ;
+    rdfs:label "Why do I love You, Sir?" ;
+    poem:hasTitle "Why do I love You, Sir?" ;
+    poem:hasAuthor "Emily Dickinson" ;
+    poem:hasSpeaker inst:PoemSpeaker ;
+    poem:hasStanza inst:Stanza1, inst:Stanza2, inst:Stanza3, inst:Stanza4 ;
+    poem:hasTheme inst:Theme1, inst:Theme2, inst:Theme3 ;
+    poem:usesMetaphor inst:Metaphor1, inst:Metaphor2, inst:Metaphor3 .
+
+# Speaker
+inst:PoemSpeaker a poem:Speaker ;
+    rdfs:label "Poem Speaker" ;
+    poem:addressesTo "Sir" ;
+    poem:hasDescription "A speaker expressing inexplicable love through natural metaphors" .
+
+# Themes
+inst:Theme1 a poem:Theme ;
+    rdfs:label "Inexplicable Love" ;
+    poem:hasSubject "Love beyond reason" ;
+    poem:hasDescription "Love that cannot be explained rationally, only experienced" .
+
+inst:Theme2 a poem:Theme ;
+    rdfs:label "Nature as Metaphor" ;
+    poem:hasSubject "Natural phenomena" ;
+    poem:hasDescription "Using wind, lightning, and sunrise to explain overwhelming emotion" .
+
+inst:Theme3 a poem:Theme ;
+    rdfs:label "Compulsion and Inevitability" ;
+    poem:hasSubject "Irresistible force" ;
+    poem:hasDescription "Love as an unavoidable, compelling force like natural elements" .
+
+# Metaphors
+inst:Metaphor1 a poem:Metaphor ;
+    rdfs:label "Wind and Grass" ;
+    poem:hasVehicle "The Wind does not require the Grass to answer" ;
+    poem:hasTenor "Love as an irresistible natural force" ;
+    poem:hasDescription "Love compels without explanation, like wind moving grass" .
+
+inst:Metaphor2 a poem:Metaphor ;
+    rdfs:label "Lightning and Eye" ;
+    poem:hasVehicle "The Lightning never asked an Eye wherefore it shut" ;
+    poem:hasTenor "Instinctive response to overwhelming presence" ;
+    poem:hasDescription "Automatic reaction to powerful force, beyond speech or reason" .
+
+inst:Metaphor3 a poem:Metaphor ;
+    rdfs:label "Sunrise" ;
+    poem:hasVehicle "The Sunrise compelleth Me—Because He's Sunrise" ;
+    poem:hasTenor "Love's self-evident nature" ;
+    poem:hasDescription "Love needs no explanation beyond its own existence" .
+
+# Stanza 1
+inst:Stanza1 a poem:Stanza ;
+    rdfs:label "Stanza 1" ;
+    poem:hasOrder 1 ;
+    poem:hasLine inst:S1L1, inst:S1L2, inst:S1L3, inst:S1L4, inst:S1L5 .
+
+inst:S1L1 a poem:Line ;
+    poem:hasOrder 1 ;
+    poem:hasText "\"Why do I love\" You, Sir?" .
+
+inst:S1L2 a poem:Line ;
+    poem:hasOrder 2 ;
+    poem:hasText "Because—" .
+
+inst:S1L3 a poem:Line ;
+    poem:hasOrder 3 ;
+    poem:hasText "The Wind does not require the Grass" .
+
+inst:S1L4 a poem:Line ;
+    poem:hasOrder 4 ;
+    poem:hasText "To answer—Wherefore when He pass" .
+
+inst:S1L5 a poem:Line ;
+    poem:hasOrder 5 ;
+    poem:hasText "She cannot keep Her place." .
+
+# Stanza 2
+inst:Stanza2 a poem:Stanza ;
+    rdfs:label "Stanza 2" ;
+    poem:hasOrder 2 ;
+    poem:hasLine inst:S2L1, inst:S2L2, inst:S2L3, inst:S2L4, inst:S2L5 .
+
+inst:S2L1 a poem:Line ;
+    poem:hasOrder 1 ;
+    poem:hasText "Because He knows—and" .
+
+inst:S2L2 a poem:Line ;
+    poem:hasOrder 2 ;
+    poem:hasText "Do not You—" .
+
+inst:S2L3 a poem:Line ;
+    poem:hasOrder 3 ;
+    poem:hasText "And We know not—" .
+
+inst:S2L4 a poem:Line ;
+    poem:hasOrder 4 ;
+    poem:hasText "Enough for Us" .
+
+inst:S2L5 a poem:Line ;
+    poem:hasOrder 5 ;
+    poem:hasText "The Wisdom it be so—" .
+
+# Stanza 3
+inst:Stanza3 a poem:Stanza ;
+    rdfs:label "Stanza 3" ;
+    poem:hasOrder 3 ;
+    poem:hasLine inst:S3L1, inst:S3L2, inst:S3L3, inst:S3L4, inst:S3L5, inst:S3L6 .
+
+inst:S3L1 a poem:Line ;
+    poem:hasOrder 1 ;
+    poem:hasText "The Lightning—never asked an Eye" .
+
+inst:S3L2 a poem:Line ;
+    poem:hasOrder 2 ;
+    poem:hasText "Wherefore it shut—when He was by—" .
+
+inst:S3L3 a poem:Line ;
+    poem:hasOrder 3 ;
+    poem:hasText "Because He knows it cannot speak—" .
+
+inst:S3L4 a poem:Line ;
+    poem:hasOrder 4 ;
+    poem:hasText "And reasons not contained—" .
+
+inst:S3L5 a poem:Line ;
+    poem:hasOrder 5 ;
+    poem:hasText "—Of Talk—" .
+
+inst:S3L6 a poem:Line ;
+    poem:hasOrder 6 ;
+    poem:hasText "There be—preferred by Daintier Folk—" .
+
+# Stanza 4
+inst:Stanza4 a poem:Stanza ;
+    rdfs:label "Stanza 4" ;
+    poem:hasOrder 4 ;
+    poem:hasLine inst:S4L1, inst:S4L2, inst:S4L3, inst:S4L4 .
+
+inst:S4L1 a poem:Line ;
+    poem:hasOrder 1 ;
+    poem:hasText "The Sunrise—Sire—compelleth Me—" .
+
+inst:S4L2 a poem:Line ;
+    poem:hasOrder 2 ;
+    poem:hasText "Because He's Sunrise—and I see—" .
+
+inst:S4L3 a poem:Line ;
+    poem:hasOrder 3 ;
+    poem:hasText "Therefore—Then—" .
+
+inst:S4L4 a poem:Line ;
+    poem:hasOrder 4 ;
+    poem:hasText "I love Thee—" .
