@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This project demonstrates RDF/RDFS (Turtle format) semantic modeling with three examples:
+This project demonstrates RDF/RDFS (Turtle format) semantic modeling with four examples:
 
 1. **Lord's Prayer** - A religious text modeled with classes for Prayer, Petition, and Doxology
 2. **Children's Story** - A narrative story modeled with classes for Story, Character, Event, Lesson, and Setting
 3. **Emily Dickinson Poem** - A literary poem modeled with classes for Poem, Stanza, Line, Theme, Metaphor, and Speaker
+4. **Academic Research Abstract** - A research paper abstract modeled with classes for Paper, Dataset, Method, Finding, Contribution, Model, and Capability
 
 All examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
 
@@ -114,6 +115,35 @@ All examples include complete schema definitions, instance data, and interactive
   - Includes literary analysis, poem summary, and biographical context
   - View in any web browser
 
+### Research Abstract Files
+
+- **`tinystory.txt`** - Source text of academic research abstract
+  - Abstract from "TinyStories: How Small Can Language Models Be and Still Speak Coherent English?"
+  - From arXiv paper about training small language models
+  - Source material for RDF conversion
+
+- **`tinystory.ttl`** - RDF/RDFS representation of research abstract
+  - Defines schema using RDFS (classes: Paper, Dataset, Method, Finding, Contribution, Model, Capability)
+  - Defines 18 properties for academic research structure
+  - Contains TinyStories paper instance with dataset, method, 3 findings, 1 contribution, 2 models, and 5 capabilities
+  - Uses namespaces: `research:` for schema, `inst:` for instances
+  - Models research methodology, findings, and technical specifications
+  - Compatible with `parse_prayer.py` for validation
+
+- **`tinystory_schema_graph.svg`** - Interactive SVG visualization (schema only)
+  - Visualizes the research paper RDFS schema definitions
+  - Shows 7 classes (Paper, Dataset, Method, Finding, Contribution, Model, Capability)
+  - Shows 18 properties with rdfs:domain and rdfs:range relationships
+  - Hover over nodes to see rdfs:comment descriptions
+  - View in any web browser
+
+- **`tinystory_graph.svg`** - Interactive SVG visualization (full paper instance)
+  - Hand-crafted SVG showing TinyStories research paper instance data
+  - Shows relationships between Paper, Dataset, Method, 3 Findings, 2 Models, and 5 Capabilities
+  - Displays research summary and significance
+  - Includes graph statistics and research context
+  - View in any web browser
+
 ## RDF Schema Design
 
 ### Lord's Prayer Schema
@@ -199,6 +229,44 @@ The "Why do I love You, Sir?" instance follows this pattern with:
 - 3 themes (Inexplicable Love, Nature as Metaphor, Compulsion & Inevitability)
 - 3 metaphors analyzing natural imagery (Wind/Grass, Lightning/Eye, Sunrise)
 
+### Academic Research Abstract Schema
+
+The research ontology models scholarly communication structure:
+
+```
+Paper (class)
+├── hasTitle (property) → Literal
+├── hasAbstract (property) → Literal
+├── introducesDataset (property) → Dataset (class)
+│   ├── hasName (property) → Literal
+│   ├── contains (property) → Literal
+│   ├── generatedBy (property) → Literal
+│   └── targetedAt (property) → Literal
+├── usesMethod (property) → Method (class)
+│   └── involves (property) → Literal
+├── hasFinding (property) → Finding (class)
+│   ├── demonstrates (property) → Literal
+│   └── concernsModel (property) → Model
+├── hasContribution (property) → Contribution (class)
+│   └── hasDescription (property) → Literal
+└── Model (class)
+    ├── hasParameter (property) → Literal
+    ├── hasArchitecture (property) → Literal
+    ├── produces (property) → Literal
+    └── hasCapability (property) → Capability (class)
+        ├── hasType (property) → Literal
+        └── hasDescription (property) → Literal
+```
+
+The TinyStories paper instance follows this pattern with:
+- 1 research paper with title and abstract
+- 1 dataset (TinyStories - synthetic stories with 3-4 year old vocabulary)
+- 1 method (synthetic generation using GPT-3.5 and GPT-4)
+- 3 findings about small models, simple architectures, and output quality
+- 1 main contribution (the TinyStories dataset)
+- 2 models (Small LM <10M parameters, Simple Architecture LM with one transformer block)
+- 5 capabilities (Fluency, Consistency, Grammar, Reasoning, Diversity)
+
 ## Common Commands
 
 ### Validate RDF files
@@ -211,6 +279,9 @@ python3 parse_prayer.py story.ttl
 
 # Validate poem
 python3 parse_prayer.py emily_poem.ttl
+
+# Validate research abstract
+python3 parse_prayer.py tinystory.ttl
 ```
 
 ### Generate graph visualization (requires dependencies)
@@ -227,6 +298,8 @@ xdg-open story_graph.svg
 xdg-open story_schema_graph.svg
 xdg-open emily_poem_graph.svg
 xdg-open emily_poem_schema_graph.svg
+xdg-open tinystory_graph.svg
+xdg-open tinystory_schema_graph.svg
 
 # macOS
 open prayer_graph.svg
@@ -235,6 +308,8 @@ open story_graph.svg
 open story_schema_graph.svg
 open emily_poem_graph.svg
 open emily_poem_schema_graph.svg
+open tinystory_graph.svg
+open tinystory_schema_graph.svg
 
 # Windows
 start prayer_graph.svg
@@ -243,6 +318,8 @@ start story_graph.svg
 start story_schema_graph.svg
 start emily_poem_graph.svg
 start emily_poem_schema_graph.svg
+start tinystory_graph.svg
+start tinystory_schema_graph.svg
 ```
 
 ## Original Prompts
@@ -303,6 +380,25 @@ This project was created through the following conversation flows:
    - Displayed 4 stanzas with text excerpts
    - Included 3 themes and 3 nature metaphors
    - Added literary analysis and biographical context
+
+### Research Abstract (Extension)
+
+1. **Abstract conversion**: "I just added tinystory.txt to the project from the abstract of TinyStories: How Small Can Language Models Be and Still Speak Coherent English? - Give it the same treatment."
+   - Created `tinystory.ttl` with academic research-focused schema
+   - Modeled Paper, Dataset, Method, Finding, Contribution, Model, and Capability classes
+   - Used object properties to link research elements (concernsModel, hasCapability)
+   - Structured findings about small model performance
+
+2. **Schema visualization**: Created `tinystory_schema_graph.svg`
+   - Visualized research paper RDFS schema
+   - Showed 7 classes and 18 properties
+   - Displayed complex relationships between research components
+
+3. **Instance visualization**: Created `tinystory_graph.svg`
+   - Showed TinyStories paper instance with all research elements
+   - Displayed dataset, method, 3 findings, 2 models, and 5 capabilities
+   - Included research summary and significance context
+   - Demonstrated knowledge graph for academic literature
 
 ## Python Implementation Notes
 
@@ -385,16 +481,25 @@ For poetry:
 - Capture author and title metadata
 - Use hasText to store actual line content
 
+For research abstracts:
+- Use appropriate namespaces (`research:` for schema, `inst:` for instances)
+- Model paper structure: Paper → Dataset/Method/Finding/Contribution
+- Link findings to models using concernsModel property
+- Link models to capabilities using hasCapability property
+- Separate methodology (Method) from results (Finding)
+- Capture both what was done and what was discovered
+- Model technical specifications (parameters, architecture)
+
 ### Modifying Visualizations
 
 When updating visualizations:
 - Update both Python script and SVG for consistency
 - Maintain the color coding scheme for node types:
-  - Gold: Main entity (Story/Prayer/Poem)
-  - Pink: Characters/Themes
-  - Blue: Events/Petitions/Stanzas
-  - Green: Lessons/Doxology/Metaphors
-  - Purple: Settings/Speaker
+  - Gold: Main entity (Story/Prayer/Poem/Paper)
+  - Pink: Characters/Themes/Dataset/Contribution
+  - Blue: Events/Petitions/Stanzas/Method/Finding
+  - Green: Lessons/Doxology/Metaphors/Capabilities
+  - Purple: Settings/Speaker/Model
   - Gray: Literals
 - Ensure edge labels clearly indicate RDF predicates
 - Include statistics and legends for clarity

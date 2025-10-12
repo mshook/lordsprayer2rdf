@@ -1,0 +1,522 @@
+<svg width="1600" height="1100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker for property edges -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+
+  <style>
+    .class-node {
+      fill: #4A90E2;
+      stroke: #2E5C8A;
+      stroke-width: 3;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .class-node:hover {
+      fill: #5BA3F5;
+      stroke: #3D6FA0;
+      stroke-width: 4;
+    }
+    .property-node {
+      fill: #50C878;
+      stroke: #2E8B57;
+      stroke-width: 2;
+      filter: url(#shadow);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .property-node:hover {
+      fill: #60D888;
+      stroke: #3E9B67;
+      stroke-width: 3;
+    }
+    .literal-node {
+      fill: #FFD700;
+      stroke: #DAA520;
+      stroke-width: 2;
+      filter: url(#shadow);
+    }
+    .class-label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .property-label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+    .edge {
+      stroke: #666;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    .edge-label {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      text-anchor: middle;
+      background: white;
+      pointer-events: none;
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #2E5C8A;
+      text-anchor: middle;
+    }
+    .legend-text {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+    }
+    .info-box {
+      fill: #f0f0f0;
+      stroke: #999;
+      stroke-width: 1;
+      rx: 5;
+      display: none;
+      pointer-events: none;
+    }
+    .info-text {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      fill: #333;
+      display: none;
+      pointer-events: none;
+    }
+  </style>
+
+  <!-- Title -->
+  <text x="800" y="30" class="title">Academic Research Paper RDF Schema</text>
+
+  <!-- Main Class (Top Center) -->
+  <g id="Paper" onmouseover="showInfo('Paper')" onmouseout="hideInfo('Paper')">
+    <rect x="680" y="80" width="240" height="80" rx="10" class="class-node"/>
+    <text x="800" y="110" class="class-label">Research Paper</text>
+    <text x="800" y="130" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Paper-info-box" x="930" y="80" width="320" height="40" class="info-box"/>
+  <text id="Paper-info-text" x="940" y="100" class="info-text">An academic research paper or work</text>
+
+  <!-- Secondary Classes (Middle Row) -->
+  <g id="Dataset" onmouseover="showInfo('Dataset')" onmouseout="hideInfo('Dataset')">
+    <rect x="80" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="170" y="310" class="class-label">Dataset</text>
+    <text x="170" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Dataset-info-box" x="270" y="280" width="360" height="40" class="info-box"/>
+  <text id="Dataset-info-text" x="280" y="300" class="info-text">A collection of data used for research or training</text>
+
+  <g id="Method" onmouseover="showInfo('Method')" onmouseout="hideInfo('Method')">
+    <rect x="320" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="410" y="310" class="class-label">Method</text>
+    <text x="410" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Method-info-box" x="510" y="280" width="360" height="40" class="info-box"/>
+  <text id="Method-info-text" x="520" y="300" class="info-text">A methodology or approach used in research</text>
+
+  <g id="Finding" onmouseover="showInfo('Finding')" onmouseout="hideInfo('Finding')">
+    <rect x="560" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="650" y="310" class="class-label">Finding</text>
+    <text x="650" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Finding-info-box" x="750" y="280" width="340" height="40" class="info-box"/>
+  <text id="Finding-info-text" x="760" y="300" class="info-text">A result or discovery from the research</text>
+
+  <g id="Contribution" onmouseover="showInfo('Contribution')" onmouseout="hideInfo('Contribution')">
+    <rect x="800" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="890" y="310" class="class-label">Contribution</text>
+    <text x="890" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Contribution-info-box" x="990" y="280" width="340" height="40" class="info-box"/>
+  <text id="Contribution-info-text" x="1000" y="300" class="info-text">A novel contribution or innovation</text>
+
+  <g id="Model" onmouseover="showInfo('Model')" onmouseout="hideInfo('Model')">
+    <rect x="1040" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="1130" y="310" class="class-label">Model</text>
+    <text x="1130" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Model-info-box" x="1230" y="280" width="340" height="40" class="info-box"/>
+  <text id="Model-info-text" x="1240" y="300" class="info-text">A computational model or language model</text>
+
+  <g id="Capability" onmouseover="showInfo('Capability')" onmouseout="hideInfo('Capability')">
+    <rect x="1280" y="280" width="180" height="70" rx="10" class="class-node"/>
+    <text x="1370" y="310" class="class-label">Capability</text>
+    <text x="1370" y="328" class="class-label" font-size="10px" opacity="0.9">rdfs:Class</text>
+  </g>
+  <rect id="Capability-info-box" x="1090" y="280" width="360" height="40" class="info-box"/>
+  <text id="Capability-info-text" x="1100" y="300" class="info-text">An ability demonstrated by a model or system</text>
+
+  <!-- Range type -->
+  <g id="Literal">
+    <ellipse cx="150" cy="680" rx="60" ry="35" class="literal-node"/>
+    <text x="150" y="685" class="property-label">rdfs:Literal</text>
+  </g>
+
+  <!-- Properties connecting Paper to other classes -->
+  <g id="introducesDataset" onmouseover="showInfo('introducesDataset')" onmouseout="hideInfo('introducesDataset')">
+    <ellipse cx="280" cy="190" rx="98" ry="35" class="property-node"/>
+    <text x="280" y="195" class="property-label">introducesDataset</text>
+  </g>
+  <rect id="introducesDataset-info-box" x="100" y="140" width="300" height="40" class="info-box"/>
+  <text id="introducesDataset-info-text" x="110" y="160" class="info-text">A dataset introduced by the paper</text>
+
+  <g id="usesMethod" onmouseover="showInfo('usesMethod')" onmouseout="hideInfo('usesMethod')">
+    <ellipse cx="500" cy="190" rx="75" ry="35" class="property-node"/>
+    <text x="500" y="195" class="property-label">usesMethod</text>
+  </g>
+  <rect id="usesMethod-info-box" x="380" y="140" width="340" height="40" class="info-box"/>
+  <text id="usesMethod-info-text" x="390" y="160" class="info-text">A method or approach used in the research</text>
+
+  <g id="hasFinding" onmouseover="showInfo('hasFinding')" onmouseout="hideInfo('hasFinding')">
+    <ellipse cx="720" cy="190" rx="70" ry="35" class="property-node"/>
+    <text x="720" y="195" class="property-label">hasFinding</text>
+  </g>
+  <rect id="hasFinding-info-box" x="660" y="140" width="320" height="40" class="info-box"/>
+  <text id="hasFinding-info-text" x="670" y="160" class="info-text">A finding or result from the research</text>
+
+  <g id="hasContribution" onmouseover="showInfo('hasContribution')" onmouseout="hideInfo('hasContribution')">
+    <ellipse cx="950" cy="190" rx="93" ry="35" class="property-node"/>
+    <text x="950" y="195" class="property-label">hasContribution</text>
+  </g>
+  <rect id="hasContribution-info-box" x="800" y="140" width="320" height="40" class="info-box"/>
+  <text id="hasContribution-info-text" x="810" y="160" class="info-text">A contribution made by the research</text>
+
+  <!-- Literal properties from Paper -->
+  <g id="hasTitle" onmouseover="showInfo('hasTitle')" onmouseout="hideInfo('hasTitle')">
+    <ellipse cx="100" cy="120" rx="58" ry="35" class="property-node"/>
+    <text x="100" y="125" class="property-label">hasTitle</text>
+  </g>
+  <rect id="hasTitle-info-box" x="30" y="70" width="200" height="40" class="info-box"/>
+  <text id="hasTitle-info-text" x="40" y="90" class="info-text">The title of the paper</text>
+
+  <g id="hasAbstract" onmouseover="showInfo('hasAbstract')" onmouseout="hideInfo('hasAbstract')">
+    <ellipse cx="1470" cy="120" rx="75" ry="35" class="property-node"/>
+    <text x="1470" y="125" class="property-label">hasAbstract</text>
+  </g>
+  <rect id="hasAbstract-info-box" x="1320" y="70" width="240" height="40" class="info-box"/>
+  <text id="hasAbstract-info-text" x="1330" y="90" class="info-text">The abstract text of the paper</text>
+
+  <!-- Dataset properties -->
+  <g id="hasName" onmouseover="showInfo('hasName')" onmouseout="hideInfo('hasName')">
+    <ellipse cx="100" cy="450" rx="60" ry="35" class="property-node"/>
+    <text x="100" y="455" class="property-label">hasName</text>
+  </g>
+  <rect id="hasName-info-box" x="30" y="490" width="280" height="40" class="info-box"/>
+  <text id="hasName-info-text" x="40" y="510" class="info-text">The name of the dataset or resource</text>
+
+  <g id="contains" onmouseover="showInfo('contains')" onmouseout="hideInfo('contains')">
+    <ellipse cx="220" cy="450" rx="60" ry="35" class="property-node"/>
+    <text x="220" y="455" class="property-label">contains</text>
+  </g>
+  <rect id="contains-info-box" x="250" y="490" width="260" height="40" class="info-box"/>
+  <text id="contains-info-text" x="260" y="510" class="info-text">What the dataset contains</text>
+
+  <g id="generatedBy" onmouseover="showInfo('generatedBy')" onmouseout="hideInfo('generatedBy')">
+    <ellipse cx="100" cy="550" rx="75" ry="35" class="property-node"/>
+    <text x="100" y="555" class="property-label">generatedBy</text>
+  </g>
+  <rect id="generatedBy-info-box" x="30" y="590" width="320" height="40" class="info-box"/>
+  <text id="generatedBy-info-text" x="40" y="610" class="info-text">The tool or model that generated the dataset</text>
+
+  <g id="targetedAt" onmouseover="showInfo('targetedAt')" onmouseout="hideInfo('targetedAt')">
+    <ellipse cx="220" cy="550" rx="68" ry="35" class="property-node"/>
+    <text x="220" y="555" class="property-label">targetedAt</text>
+  </g>
+  <rect id="targetedAt-info-box" x="250" y="590" width="300" height="40" class="info-box"/>
+  <text id="targetedAt-info-text" x="260" y="610" class="info-text">The intended audience or use case</text>
+
+  <!-- Method properties -->
+  <g id="involves" onmouseover="showInfo('involves')" onmouseout="hideInfo('involves')">
+    <ellipse cx="410" cy="450" rx="58" ry="35" class="property-node"/>
+    <text x="410" y="455" class="property-label">involves</text>
+  </g>
+  <rect id="involves-info-box" x="440" y="490" width="240" height="40" class="info-box"/>
+  <text id="involves-info-text" x="450" y="510" class="info-text">What the method involves</text>
+
+  <!-- Finding properties -->
+  <g id="demonstrates" onmouseover="showInfo('demonstrates')" onmouseout="hideInfo('demonstrates')">
+    <ellipse cx="650" cy="450" rx="80" ry="35" class="property-node"/>
+    <text x="650" y="455" class="property-label">demonstrates</text>
+  </g>
+  <rect id="demonstrates-info-box" x="700" y="490" width="280" height="40" class="info-box"/>
+  <text id="demonstrates-info-text" x="710" y="510" class="info-text">What the finding demonstrates</text>
+
+  <g id="concernsModel" onmouseover="showInfo('concernsModel')" onmouseout="hideInfo('concernsModel')">
+    <ellipse cx="860" cy="400" rx="88" ry="35" class="property-node"/>
+    <text x="860" y="405" class="property-label">concernsModel</text>
+  </g>
+  <rect id="concernsModel-info-box" x="920" y="390" width="280" height="40" class="info-box"/>
+  <text id="concernsModel-info-text" x="930" y="410" class="info-text">A model that the finding is about</text>
+
+  <!-- Model properties -->
+  <g id="hasParameter" onmouseover="showInfo('hasParameter')" onmouseout="hideInfo('hasParameter')">
+    <ellipse cx="1130" cy="450" rx="85" ry="35" class="property-node"/>
+    <text x="1130" y="455" class="property-label">hasParameter</text>
+  </g>
+  <rect id="hasParameter-info-box" x="1190" y="490" width="300" height="40" class="info-box"/>
+  <text id="hasParameter-info-text" x="1200" y="510" class="info-text">A parameter specification of the model</text>
+
+  <g id="hasArchitecture" onmouseover="showInfo('hasArchitecture')" onmouseout="hideInfo('hasArchitecture')">
+    <ellipse cx="1130" cy="550" rx="93" ry="35" class="property-node"/>
+    <text x="1130" y="555" class="property-label">hasArchitecture</text>
+  </g>
+  <rect id="hasArchitecture-info-box" x="1200" y="590" width="260" height="40" class="info-box"/>
+  <text id="hasArchitecture-info-text" x="1210" y="610" class="info-text">The architecture of the model</text>
+
+  <g id="produces" onmouseover="showInfo('produces')" onmouseout="hideInfo('produces')">
+    <ellipse cx="1270" cy="450" rx="63" ry="35" class="property-node"/>
+    <text x="1270" y="455" class="property-label">produces</text>
+  </g>
+  <rect id="produces-info-box" x="1310" y="490" width="280" height="40" class="info-box"/>
+  <text id="produces-info-text" x="1320" y="510" class="info-text">What the model produces or outputs</text>
+
+  <g id="hasCapability" onmouseover="showInfo('hasCapability')" onmouseout="hideInfo('hasCapability')">
+    <ellipse cx="1250" cy="380" rx="85" ry="35" class="property-node"/>
+    <text x="1250" y="385" class="property-label">hasCapability</text>
+  </g>
+  <rect id="hasCapability-info-box" x="1310" y="370" width="280" height="40" class="info-box"/>
+  <text id="hasCapability-info-text" x="1320" y="390" class="info-text">A capability the model possesses</text>
+
+  <!-- Shared property -->
+  <g id="hasDescription" onmouseover="showInfo('hasDescription')" onmouseout="hideInfo('hasDescription')">
+    <ellipse cx="550" cy="600" rx="88" ry="35" class="property-node"/>
+    <text x="550" y="605" class="property-label">hasDescription</text>
+  </g>
+  <rect id="hasDescription-info-box" x="610" y="630" width="250" height="40" class="info-box"/>
+  <text id="hasDescription-info-text" x="620" y="650" class="info-text">A description or explanation</text>
+
+  <g id="hasType" onmouseover="showInfo('hasType')" onmouseout="hideInfo('hasType')">
+    <ellipse cx="1420" cy="450" rx="58" ry="35" class="property-node"/>
+    <text x="1420" y="455" class="property-label">hasType</text>
+  </g>
+  <rect id="hasType-info-box" x="1450" y="490" width="200" height="40" class="info-box"/>
+  <text id="hasType-info-text" x="1460" y="510" class="info-text">The type or category</text>
+
+  <!-- Edges: Properties to Classes -->
+  <!-- introducesDataset -->
+  <path d="M 350 175 Q 550 150 680 125" class="edge"/>
+  <rect x="490" y="145" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="527" y="157" class="edge-label">rdfs:domain</text>
+
+  <path d="M 210 215 Q 180 240 175 260" class="edge"/>
+  <rect x="165" y="230" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="199" y="242" class="edge-label">rdfs:range</text>
+
+  <!-- usesMethod -->
+  <path d="M 555 175 Q 640 150 680 130" class="edge"/>
+  <rect x="600" y="145" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="637" y="157" class="edge-label">rdfs:domain</text>
+
+  <path d="M 460 220 Q 430 250 420 270" class="edge"/>
+  <rect x="410" y="240" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="444" y="252" class="edge-label">rdfs:range</text>
+
+  <!-- hasFinding -->
+  <path d="M 750 175 Q 770 150 770 140" class="edge"/>
+  <rect x="745" y="150" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="782" y="162" class="edge-label">rdfs:domain</text>
+
+  <path d="M 690 220 Q 665 250 655 270" class="edge"/>
+  <rect x="645" y="240" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="679" y="252" class="edge-label">rdfs:range</text>
+
+  <!-- hasContribution -->
+  <path d="M 890 175 Q 850 150 830 140" class="edge"/>
+  <rect x="840" y="150" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="877" y="162" class="edge-label">rdfs:domain</text>
+
+  <path d="M 950 220 Q 920 250 900 270" class="edge"/>
+  <rect x="905" y="240" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="939" y="252" class="edge-label">rdfs:range</text>
+
+  <!-- hasTitle/hasAbstract -->
+  <path d="M 160 120 Q 400 100 680 105" class="edge"/>
+  <rect x="400" y="95" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="437" y="107" class="edge-label">rdfs:domain</text>
+
+  <path d="M 1395 120 Q="1100 105 920 105" class="edge"/>
+  <rect x="1130" y="95" width="75" height="16" fill="white" opacity="0.8"/>
+  <text x="1167" y="107" class="edge-label">rdfs:domain</text>
+
+  <!-- Dataset properties -->
+  <path d="M 145 370 Q 120 405 110 420" class="edge"/>
+  <rect x="110" y="390" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="135" y="402" class="edge-label">property</text>
+
+  <path d="M 190 370 Q 205 405 215 420" class="edge"/>
+  <rect x="195" y="390" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="220" y="402" class="edge-label">property</text>
+
+  <path d="M 135 370 Q 110 450 105 515" class="edge"/>
+  <rect x="100" y="440" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="125" y="452" class="edge-label">property</text>
+
+  <path d="M 195 370 Q 210 450 215 515" class="edge"/>
+  <rect x="195" y="440" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="220" y="452" class="edge-label">property</text>
+
+  <!-- Method properties -->
+  <path d="M 410 350 L 410 415" class="edge"/>
+  <rect x="375" y="375" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="400" y="387" class="edge-label">property</text>
+
+  <!-- Finding properties -->
+  <path d="M 650 350 L 650 415" class="edge"/>
+  <rect x="615" y="375" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="640" y="387" class="edge-label">property</text>
+
+  <path d="M 720 340 Q 790 370 820 385" class="edge"/>
+  <rect x="760" y="360" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="785" y="372" class="edge-label">property</text>
+
+  <!-- concernsModel range -->
+  <path d="M 948 405 Q 1040 350 1090 330" class="edge"/>
+  <rect x="1000" y="360" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="1034" y="372" class="edge-label">rdfs:range</text>
+
+  <!-- Model properties -->
+  <path d="M 1130 350 L 1130 415" class="edge"/>
+  <rect x="1095" y="375" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1120" y="387" class="edge-label">property</text>
+
+  <path d="M 1130 350 L 1130 515" class="edge"/>
+  <rect x="1095" y="430" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1120" y="442" class="edge-label">property</text>
+
+  <path d="M 1180 340 Q 1220 390 1255 415" class="edge"/>
+  <rect x="1210" y="370" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1235" y="382" class="edge-label">property</text>
+
+  <path d="M 1190 330 Q 1230 350 1245 365" class="edge"/>
+  <rect x="1205" y="340" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1230" y="352" class="edge-label">property</text>
+
+  <!-- hasCapability range -->
+  <path d="M 1335 385 Q 1350 335 1355 330" class="edge"/>
+  <rect x="1320" y="350" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="1354" y="362" class="edge-label">rdfs:range</text>
+
+  <!-- Capability property -->
+  <path d="M 1370 350 L 1400 415" class="edge"/>
+  <rect x="1370" y="375" width="50" height="16" fill="white" opacity="0.8"/>
+  <text x="1395" y="387" class="edge-label">property</text>
+
+  <!-- Ranges to Literal -->
+  <path d="M 80 485 Q 130 570 140 645" class="edge"/>
+  <rect x="90" y="555" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="124" y="567" class="edge-label">rdfs:range</text>
+
+  <path d="M 195 485 Q 170 570 160 645" class="edge"/>
+  <rect x="160" y="555" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="194" y="567" class="edge-label">rdfs:range</text>
+
+  <path d="M 75 585 Q 110 620 135 650" class="edge"/>
+  <rect x="80" y="610" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="114" y="622" class="edge-label">rdfs:range</text>
+
+  <path d="M 195 585 Q 170 620 160 650" class="edge"/>
+  <rect x="160" y="610" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="194" y="622" class="edge-label">rdfs:range</text>
+
+  <path d="M 380 470 Q 260 570 210 655" class="edge"/>
+  <rect x="280" y="560" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="314" y="572" class="edge-label">rdfs:range</text>
+
+  <path d="M 610 470 Q 400 590 210 665" class="edge"/>
+  <rect x="390" y="580" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="424" y="592" class="edge-label">rdfs:range</text>
+
+  <path d="M 1090 470 Q 680 630 210 675" class="edge"/>
+  <rect x="640" y="620" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="674" y="632" class="edge-label">rdfs:range</text>
+
+  <path d="M 1090 570 Q 680 640 210 675" class="edge"/>
+  <rect x="640" y="640" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="674" y="652" class="edge-label">rdfs:range</text>
+
+  <path d="M 1230 470 Q 800 640 210 675" class="edge"/>
+  <rect x="700" y="640" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="734" y="652" class="edge-label">rdfs:range</text>
+
+  <path d="M 1385 470 Q 900 650 210 675" class="edge"/>
+  <rect x="800" y="650" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="834" y="662" class="edge-label">rdfs:range</text>
+
+  <path d="M 490 615 Q 350 640 210 670" class="edge"/>
+  <rect x="340" y="635" width="68" height="16" fill="white" opacity="0.8"/>
+  <text x="374" y="647" class="edge-label">rdfs:range</text>
+
+  <!-- Legend -->
+  <g id="legend">
+    <text x="50" y="850" class="legend-text" font-weight="bold" font-size="14px">Legend:</text>
+
+    <rect x="50" y="865" width="60" height="30" rx="5" class="class-node" filter="none"/>
+    <text x="120" y="883" class="legend-text">Class (rdfs:Class)</text>
+
+    <ellipse cx="80" cy="920" rx="40" ry="20" class="property-node" filter="none"/>
+    <text x="120" y="925" class="legend-text">Property (rdf:Property)</text>
+
+    <ellipse cx="80" cy="960" rx="40" ry="20" class="literal-node" filter="none"/>
+    <text x="120" y="965" class="legend-text">Literal Type</text>
+  </g>
+
+  <!-- Statistics -->
+  <g id="stats">
+    <text x="850" y="850" class="legend-text" font-weight="bold" font-size="14px">Schema Statistics:</text>
+    <text x="850" y="875" class="legend-text">Classes: 7 (Paper, Dataset, Method, Finding, Contribution, Model, Capability)</text>
+    <text x="850" y="895" class="legend-text">Properties: 18</text>
+    <text x="850" y="915" class="legend-text">  - Object Properties: 6 (introducesDataset, usesMethod, hasFinding,</text>
+    <text x="870" y="930" class="legend-text">hasContribution, concernsModel, hasCapability)</text>
+    <text x="850" y="950" class="legend-text">  - Datatype Properties: 12 (hasTitle, hasAbstract, hasName, contains,</text>
+    <text x="870" y="965" class="legend-text">generatedBy, targetedAt, involves, demonstrates, hasParameter,</text>
+    <text x="870" y="980" class="legend-text">hasArchitecture, produces, hasDescription, hasType)</text>
+  </g>
+
+  <script type="text/javascript">
+    <![CDATA[
+    function showInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'block';
+      if (text) text.style.display = 'block';
+      if (text2) text2.style.display = 'block';
+    }
+
+    function hideInfo(id) {
+      var box = document.getElementById(id + '-info-box');
+      var text = document.getElementById(id + '-info-text');
+      var text2 = document.getElementById(id + '-info-text2');
+      if (box) box.style.display = 'none';
+      if (text) text.style.display = 'none';
+      if (text2) text2.style.display = 'none';
+    }
+    ]]>
+  </script>
+</svg>

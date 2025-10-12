@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1400" width="1800" height="1400">
+  <defs>
+    <style>
+      .node { cursor: pointer; transition: all 0.3s; }
+      .node:hover { filter: brightness(1.2); }
+      .node:hover .node-circle { stroke-width: 4; }
+      .label { font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; pointer-events: none; }
+      .edge-label { font-family: Arial, sans-serif; font-size: 9px; fill: #d32f2f; font-weight: bold; text-anchor: middle; pointer-events: none; }
+      .edge { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .edge:hover { stroke: #000; stroke-width: 3; }
+      .title-text { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; text-anchor: middle; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 12px; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="900" y="30" class="title-text">TinyStories Research Paper - RDF Graph</text>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 60)">
+    <circle cx="10" cy="0" r="8" fill="#FFD700" stroke="black" stroke-width="2"/>
+    <text x="25" y="5" class="legend-text">Paper</text>
+
+    <circle cx="10" cy="25" r="8" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text x="25" y="30" class="legend-text">Dataset/Contribution</text>
+
+    <circle cx="10" cy="50" r="8" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text x="25" y="55" class="legend-text">Method/Finding</text>
+
+    <circle cx="10" cy="75" r="8" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text x="25" y="80" class="legend-text">Model</text>
+
+    <circle cx="10" cy="100" r="8" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text x="25" y="105" class="legend-text">Capability</text>
+  </g>
+
+  <!-- Main Paper Node (Center-Top) -->
+  <g id="paper" class="node" transform="translate(900, 180)">
+    <ellipse class="node-circle" rx="100" ry="55" fill="#FFD700" stroke="black" stroke-width="3"/>
+    <text y="-20" class="label" font-weight="bold" font-size="13">TinyStories Paper</text>
+    <text y="-5" class="label" font-size="9">"How Small Can Language</text>
+    <text y="8" class="label" font-size="9">Models Be and Still Speak</text>
+    <text y="21" class="label" font-size="9">Coherent English?"</text>
+  </g>
+
+  <!-- Dataset (Top Left) -->
+  <g id="dataset" class="node" transform="translate(300, 200)">
+    <ellipse class="node-circle" rx="80" ry="50" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-20" class="label" font-size="11" font-weight="bold">TinyStories</text>
+    <text y="-5" class="label" font-size="9">Dataset</text>
+    <text y="10" class="label" font-size="8">Synthetic short stories</text>
+    <text y="22" class="label" font-size="8">3-4 year old vocabulary</text>
+  </g>
+  <path class="edge" d="M 800 180 Q 550 190 380 200"/>
+  <text x="580" y="180" class="edge-label">introducesDataset</text>
+
+  <!-- Method (Left Middle) -->
+  <g id="method" class="node" transform="translate(250, 380)">
+    <rect class="node-circle" x="-95" y="-50" width="190" height="100" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-25" class="label" font-size="11" font-weight="bold">Synthetic Generation</text>
+    <text y="-8" class="label" font-size="9">Method</text>
+    <text y="8" class="label" font-size="8">Using GPT-3.5 &amp; GPT-4</text>
+    <text y="22" class="label" font-size="8">to create controlled</text>
+    <text y="35" class="label" font-size="8">vocabulary stories</text>
+  </g>
+  <path class="edge" d="M 830 220 Q 550 290 345 340"/>
+  <text x="580" y="285" class="edge-label">usesMethod</text>
+
+  <!-- Contribution (Bottom Left) -->
+  <g id="contribution" class="node" transform="translate(300, 580)">
+    <ellipse class="node-circle" rx="85" ry="50" fill="#FF69B4" stroke="black" stroke-width="2"/>
+    <text y="-18" class="label" font-size="11" font-weight="bold">Main Contribution</text>
+    <text y="-3" class="label" font-size="8">TinyStories dataset for</text>
+    <text y="10" class="label" font-size="8">training &amp; evaluating</text>
+    <text y="23" class="label" font-size="8">small language models</text>
+  </g>
+  <path class="edge" d="M 830 225 Q 570 390 370 545"/>
+  <text x="620" y="390" class="edge-label">hasContribution</text>
+
+  <!-- Findings (Right Side) -->
+  <g id="finding1" class="node" transform="translate(1350, 350)">
+    <rect class="node-circle" x="-100" y="-55" width="200" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-35" class="label" font-size="11" font-weight="bold">Finding 1</text>
+    <text y="-18" class="label" font-size="9">Small Model Capability</text>
+    <text y="-3" class="label" font-size="8">TinyStories can train LMs</text>
+    <text y="10" class="label" font-size="8">much smaller than</text>
+    <text y="23" class="label" font-size="8">state-of-the-art</text>
+    <text y="38" class="label" font-size="8">(&lt;10M parameters)</text>
+  </g>
+  <path class="edge" d="M 985 210 Q 1150 270 1255 320"/>
+  <text x="1130" y="265" class="edge-label">hasFinding</text>
+
+  <g id="finding2" class="node" transform="translate(1350, 550)">
+    <rect class="node-circle" x="-100" y="-55" width="200" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-35" class="label" font-size="11" font-weight="bold">Finding 2</text>
+    <text y="-18" class="label" font-size="9">Simple Architecture</text>
+    <text y="-3" class="label" font-size="8">Models with simpler</text>
+    <text y="10" class="label" font-size="8">architectures can</text>
+    <text y="23" class="label" font-size="8">produce quality output</text>
+    <text y="38" class="label" font-size="8">(one transformer block)</text>
+  </g>
+  <path class="edge" d="M 985 215 Q 1150 370 1255 510"/>
+  <text x="1130" y="370" class="edge-label">hasFinding</text>
+
+  <g id="finding3" class="node" transform="translate(1350, 750)">
+    <rect class="node-circle" x="-100" y="-55" width="200" height="110" rx="10" fill="#87CEEB" stroke="black" stroke-width="2"/>
+    <text y="-35" class="label" font-size="11" font-weight="bold">Finding 3</text>
+    <text y="-18" class="label" font-size="9">Output Quality</text>
+    <text y="-3" class="label" font-size="8">Small models produce</text>
+    <text y="10" class="label" font-size="8">high-quality, coherent</text>
+    <text y="23" class="label" font-size="8">stories with diversity</text>
+    <text y="38" class="label" font-size="8">&amp; near-perfect grammar</text>
+  </g>
+  <path class="edge" d="M 985 220 Q 1150 470 1255 705"/>
+  <text x="1130" y="475" class="edge-label">hasFinding</text>
+
+  <!-- Models (Middle Row) -->
+  <g id="smallLM" class="node" transform="translate(700, 650)">
+    <ellipse class="node-circle" rx="90" ry="60" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="11" font-weight="bold">Small Language Model</text>
+    <text y="-13" class="label" font-size="8">&lt;10M parameters</text>
+    <text y="2" class="label" font-size="8">Produces fluent &amp;</text>
+    <text y="15" class="label" font-size="8">consistent stories</text>
+    <text y="28" class="label" font-size="8">with several paragraphs</text>
+  </g>
+  <path class="edge" d="M 1275 400 Q 1000 520 790 625"/>
+  <text x="1030" y="515" class="edge-label">concernsModel</text>
+
+  <g id="simpleArchLM" class="node" transform="translate(700, 850)">
+    <ellipse class="node-circle" rx="90" ry="60" fill="#DDA0DD" stroke="black" stroke-width="2"/>
+    <text y="-30" class="label" font-size="11" font-weight="bold">Simple Arch LM</text>
+    <text y="-13" class="label" font-size="8">One transformer block</text>
+    <text y="2" class="label" font-size="8">Produces fluent &amp;</text>
+    <text y="15" class="label" font-size="8">consistent stories</text>
+  </g>
+  <path class="edge" d="M 1275 600 Q 1000 720 790 825"/>
+  <text x="1030" y="715" class="edge-label">concernsModel</text>
+
+  <!-- Capabilities (Bottom Row) -->
+  <g id="fluency" class="node" transform="translate(400, 950)">
+    <circle class="node-circle" r="35" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10" font-weight="bold">Fluency</text>
+    <text y="5" class="label" font-size="8">Language</text>
+    <text y="17" class="label" font-size="8">production</text>
+  </g>
+  <path class="edge" d="M 640 685 Q 520 815 430 920"/>
+  <text x="530" y="810" class="edge-label" font-size="8">hasCapability</text>
+
+  <g id="consistency" class="node" transform="translate(550, 950)">
+    <circle class="node-circle" r="35" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10" font-weight="bold">Consistency</text>
+    <text y="5" class="label" font-size="8">Cross-</text>
+    <text y="17" class="label" font-size="8">paragraph</text>
+  </g>
+  <path class="edge" d="M 665 705 Q 610 825 580 920"/>
+  <text x="620" y="820" class="edge-label" font-size="8">hasCapability</text>
+
+  <g id="grammar" class="node" transform="translate(700, 1050)">
+    <circle class="node-circle" r="35" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10" font-weight="bold">Grammar</text>
+    <text y="5" class="label" font-size="8">Near-perfect</text>
+    <text y="17" class="label" font-size="8">correctness</text>
+  </g>
+  <path class="edge" d="M 700 710 L 700 1015"/>
+  <text x="720" y="865" class="edge-label" font-size="8">hasCapability</text>
+
+  <g id="reasoning" class="node" transform="translate(850, 950)">
+    <circle class="node-circle" r="35" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10" font-weight="bold">Reasoning</text>
+    <text y="5" class="label" font-size="8">Cognitive</text>
+    <text y="17" class="label" font-size="8">capability</text>
+  </g>
+  <path class="edge" d="M 760 685 Q 810 815 830 920"/>
+  <text x="800" y="810" class="edge-label" font-size="8">hasCapability</text>
+
+  <g id="diversity" class="node" transform="translate(1000, 950)">
+    <circle class="node-circle" r="35" fill="#90EE90" stroke="black" stroke-width="2"/>
+    <text y="-10" class="label" font-size="10" font-weight="bold">Diversity</text>
+    <text y="5" class="label" font-size="8">Output</text>
+    <text y="17" class="label" font-size="8">variety</text>
+  </g>
+  <path class="edge" d="M 755 695 Q 870 815 970 920"/>
+  <text x="870" y="810" class="edge-label" font-size="8">hasCapability</text>
+
+  <!-- Capabilities from simpleArchLM -->
+  <path class="edge" d="M 630 880 Q 520 910 435 940"/>
+  <text x="530" y="910" class="edge-label" font-size="8">hasCapability</text>
+
+  <path class="edge" d="M 655 895 Q 605 920 585 940"/>
+  <text x="620" y="920" class="edge-label" font-size="8">hasCapability</text>
+
+  <!-- Summary Box -->
+  <g id="summary" transform="translate(50, 1150)">
+    <rect x="0" y="0" width="850" height="200" fill="#fffacd" stroke="black" stroke-width="1" rx="5"/>
+    <text x="425" y="25" class="legend-text" text-anchor="middle" font-weight="bold" font-size="14">Research Summary</text>
+    <text x="20" y="50" class="legend-text" font-size="10" font-weight="bold">Problem:</text>
+    <text x="20" y="68" class="legend-text" font-size="10">How small can language models be while maintaining coherence?</text>
+
+    <text x="20" y="90" class="legend-text" font-size="10" font-weight="bold">Solution:</text>
+    <text x="20" y="108" class="legend-text" font-size="10">TinyStories - a synthetic dataset with 3-4 year old vocabulary, generated by GPT-3.5/4</text>
+
+    <text x="20" y="130" class="legend-text" font-size="10" font-weight="bold">Key Results:</text>
+    <text x="20" y="148" class="legend-text" font-size="10">• Models &lt;10M parameters produce fluent, consistent, diverse stories</text>
+    <text x="20" y="163" class="legend-text" font-size="10">• Architectures with just one transformer block are effective</text>
+    <text x="20" y="178" class="legend-text" font-size="10">• Output has near-perfect grammar and demonstrates reasoning capabilities</text>
+  </g>
+
+  <!-- Graph Statistics -->
+  <g id="stats" transform="translate(950, 1150)">
+    <rect x="0" y="0" width="300" height="200" fill="#f5f5f5" stroke="black" stroke-width="1" rx="5"/>
+    <text x="150" y="25" class="legend-text" text-anchor="middle" font-weight="bold">Graph Statistics</text>
+    <text x="10" y="50" class="legend-text" font-size="11">Nodes: 16</text>
+    <text x="10" y="70" class="legend-text" font-size="11">  - 1 Paper</text>
+    <text x="10" y="85" class="legend-text" font-size="11">  - 1 Dataset</text>
+    <text x="10" y="100" class="legend-text" font-size="11">  - 1 Method</text>
+    <text x="10" y="115" class="legend-text" font-size="11">  - 3 Findings</text>
+    <text x="10" y="130" class="legend-text" font-size="11">  - 1 Contribution</text>
+    <text x="10" y="145" class="legend-text" font-size="11">  - 2 Models</text>
+    <text x="10" y="160" class="legend-text" font-size="11">  - 5 Capabilities</text>
+    <text x="10" y="180" class="legend-text" font-size="11">Total Triples: ~90</text>
+  </g>
+
+  <!-- Research Context -->
+  <g id="context" transform="translate(1300, 1150)">
+    <rect x="0" y="0" width="450" height="200" fill="#e8f4f8" stroke="black" stroke-width="1" rx="5"/>
+    <text x="225" y="25" class="legend-text" text-anchor="middle" font-weight="bold" font-size="14">Research Context</text>
+    <text x="20" y="50" class="legend-text" font-size="10" font-weight="bold">Domain: Natural Language Processing / Machine Learning</text>
+    <text x="20" y="68" class="legend-text" font-size="10">Paper demonstrates that effective language models don't</text>
+    <text x="20" y="83" class="legend-text" font-size="10">require billions of parameters or complex architectures.</text>
+
+    <text x="20" y="105" class="legend-text" font-size="10" font-weight="bold">Significance:</text>
+    <text x="20" y="123" class="legend-text" font-size="10">• Makes LMs more accessible (lower computational cost)</text>
+    <text x="20" y="138" class="legend-text" font-size="10">• Challenges assumptions about model size requirements</text>
+    <text x="20" y="153" class="legend-text" font-size="10">• Provides benchmark dataset for small model evaluation</text>
+    <text x="20" y="168" class="legend-text" font-size="10">• Shows controlled vocabulary enables effective training</text>
+    <text x="20" y="183" class="legend-text" font-size="10">• Demonstrates reasoning emerges in small models</text>
+  </g>
+
+  <!-- Interactivity note -->
+  <text x="900" y="1380" class="label" font-size="11" fill="#666" text-anchor="middle">
+    Hover over nodes to highlight • SVG visualization of RDF/RDFS structure for academic research
+  </text>
+
+</svg>
