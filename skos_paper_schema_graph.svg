@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000">
+  <defs>
+    <style>
+      .class-node { fill: #4A90E2; stroke: #2E5C8A; stroke-width: 2; }
+      .class-label { fill: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .property-edge { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .property-label { fill: #333; font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; }
+      .title-text { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #333; }
+      .subtitle-text { font-family: Arial, sans-serif; font-size: 14px; fill: #666; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .comment-text { font-family: Arial, sans-serif; font-size: 10px; fill: #555; }
+      .stats-text { font-family: Arial, sans-serif; font-size: 12px; fill: #333; }
+      .hover-target:hover .class-node { fill: #5FA3F5; }
+      .hover-target:hover .comment-text { fill: #000; font-weight: bold; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="30" class="title-text" text-anchor="middle">SKOS Paper RDFS Schema</text>
+  <text x="700" y="50" class="subtitle-text" text-anchor="middle">Meta-Research Ontology for Academic Design Process</text>
+
+  <!-- Class Nodes (positioned in a logical flow) -->
+
+  <!-- Top row: Paper, Specification -->
+  <g class="hover-target">
+    <rect x="200" y="120" width="140" height="60" rx="5" class="class-node"/>
+    <text x="270" y="145" class="class-label">Paper</text>
+    <text x="270" y="160" class="class-label" font-size="10">(meta:Paper)</text>
+    <text x="270" y="195" class="comment-text" text-anchor="middle">A scholarly publication that</text>
+    <text x="270" y="207" class="comment-text" text-anchor="middle">presents research findings</text>
+  </g>
+
+  <g class="hover-target">
+    <rect x="530" y="120" width="140" height="60" rx="5" class="class-node"/>
+    <text x="600" y="145" class="class-label">Specification</text>
+    <text x="600" y="160" class="class-label" font-size="10">(meta:Specification)</text>
+    <text x="600" y="195" class="comment-text" text-anchor="middle">A formal standard or</text>
+    <text x="600" y="207" class="comment-text" text-anchor="middle">data model</text>
+  </g>
+
+  <!-- Second row: WorkingGroup, Organization, Status -->
+  <g class="hover-target">
+    <rect x="100" y="300" width="140" height="60" rx="5" class="class-node"/>
+    <text x="170" y="325" class="class-label">WorkingGroup</text>
+    <text x="170" y="340" class="class-label" font-size="10">(meta:WorkingGroup)</text>
+    <text x="170" y="375" class="comment-text" text-anchor="middle">Committee that develops</text>
+    <text x="170" y="387" class="comment-text" text-anchor="middle">specifications</text>
+  </g>
+
+  <g class="hover-target">
+    <rect x="280" y="300" width="140" height="60" rx="5" class="class-node"/>
+    <text x="350" y="325" class="class-label">Organization</text>
+    <text x="350" y="340" class="class-label" font-size="10">(meta:Organization)</text>
+    <text x="350" y="375" class="comment-text" text-anchor="middle">Standards body or</text>
+    <text x="350" y="387" class="comment-text" text-anchor="middle">institution</text>
+  </g>
+
+  <g class="hover-target">
+    <rect x="730" y="300" width="140" height="60" rx="5" class="class-node"/>
+    <text x="800" y="325" class="class-label">Status</text>
+    <text x="800" y="340" class="class-label" font-size="10">(meta:Status)</text>
+    <text x="800" y="375" class="comment-text" text-anchor="middle">Standardization maturity</text>
+    <text x="800" y="387" class="comment-text" text-anchor="middle">level</text>
+  </g>
+
+  <!-- Third row: DesignDecision, Component, DesignPrinciple -->
+  <g class="hover-target">
+    <rect x="100" y="480" width="160" height="60" rx="5" class="class-node"/>
+    <text x="180" y="505" class="class-label">DesignDecision</text>
+    <text x="180" y="520" class="class-label" font-size="10">(meta:DesignDecision)</text>
+    <text x="180" y="555" class="comment-text" text-anchor="middle">A choice with associated</text>
+    <text x="180" y="567" class="comment-text" text-anchor="middle">rationale</text>
+  </g>
+
+  <g class="hover-target">
+    <rect x="520" y="480" width="140" height="60" rx="5" class="class-node"/>
+    <text x="590" y="505" class="class-label">Component</text>
+    <text x="590" y="520" class="class-label" font-size="10">(meta:Component)</text>
+    <text x="590" y="555" class="comment-text" text-anchor="middle">A constituent part of a</text>
+    <text x="590" y="567" class="comment-text" text-anchor="middle">specification</text>
+  </g>
+
+  <g class="hover-target">
+    <rect x="300" y="660" width="160" height="60" rx="5" class="class-node"/>
+    <text x="380" y="685" class="class-label">DesignPrinciple</text>
+    <text x="380" y="700" class="class-label" font-size="10">(meta:DesignPrinciple)</text>
+    <text x="380" y="735" class="comment-text" text-anchor="middle">Guiding principle that</text>
+    <text x="380" y="747" class="comment-text" text-anchor="middle">shapes decisions</text>
+  </g>
+
+  <!-- Bottom row: Requirement -->
+  <g class="hover-target">
+    <rect x="520" y="660" width="140" height="60" rx="5" class="class-node"/>
+    <text x="590" y="685" class="class-label">Requirement</text>
+    <text x="590" y="700" class="class-label" font-size="10">(meta:Requirement)</text>
+    <text x="590" y="735" class="comment-text" text-anchor="middle">Need that influences</text>
+    <text x="590" y="747" class="comment-text" text-anchor="middle">design</text>
+  </g>
+
+  <!-- Property Edges with Labels -->
+
+  <!-- Paper → Specification -->
+  <path d="M 340 150 L 530 150" class="property-edge"/>
+  <text x="435" y="145" class="property-label">presentsSpecification</text>
+
+  <!-- Paper → DesignDecision -->
+  <path d="M 240 180 L 180 480" class="property-edge"/>
+  <text x="180" y="330" class="property-label" transform="rotate(-70 180 330)">explainsDesignDecision</text>
+
+  <!-- Specification → WorkingGroup -->
+  <path d="M 560 180 L 220 300" class="property-edge"/>
+  <text x="350" y="230" class="property-label" transform="rotate(-35 350 230)">developedBy</text>
+
+  <!-- Specification → Status -->
+  <path d="M 650 180 L 780 300" class="property-edge"/>
+  <text x="735" y="230" class="property-label" transform="rotate(35 735 230)">achievedStatus</text>
+
+  <!-- Specification → Component -->
+  <path d="M 600 180 L 590 480" class="property-edge"/>
+  <text x="580" y="330" class="property-label" transform="rotate(-85 580 330)">hasComponent</text>
+
+  <!-- Specification → DesignPrinciple -->
+  <path d="M 560 180 L 400 660" class="property-edge"/>
+  <text x="440" y="420" class="property-label" transform="rotate(-60 440 420)">guidedByPrinciple</text>
+
+  <!-- WorkingGroup → Organization -->
+  <path d="M 240 330 L 280 330" class="property-edge"/>
+  <text x="260" y="325" class="property-label">partOf</text>
+
+  <!-- DesignDecision → DesignPrinciple -->
+  <path d="M 220 540 L 340 680" class="property-edge"/>
+  <text x="270" y="615" class="property-label" transform="rotate(40 270 615)">followsPrinciple</text>
+
+  <!-- DesignDecision → Requirement -->
+  <path d="M 260 510 L 520 690" class="property-edge"/>
+  <text x="380" y="605" class="property-label" transform="rotate(30 380 605)">addressesRequirement</text>
+
+  <!-- Requirement → Specification -->
+  <path d="M 650 660 L 650 180" class="property-edge"/>
+  <text x="635" y="420" class="property-label" transform="rotate(-90 635 420)">influencedDesignOf</text>
+
+  <!-- Legend -->
+  <g>
+    <text x="950" y="130" class="legend-text" font-weight="bold">Legend:</text>
+    <rect x="950" y="145" width="60" height="30" rx="3" class="class-node"/>
+    <text x="1020" y="165" class="legend-text">rdfs:Class</text>
+
+    <line x1="950" y1="195" x2="1010" y2="195" class="property-edge"/>
+    <text x="1020" y="200" class="legend-text">rdf:Property</text>
+
+    <text x="950" y="230" class="legend-text">Arrow direction indicates</text>
+    <text x="950" y="245" class="legend-text">rdfs:domain → rdfs:range</text>
+
+    <text x="950" y="275" class="legend-text" font-style="italic">Hover over classes to see</text>
+    <text x="950" y="290" class="legend-text" font-style="italic">rdfs:comment descriptions</text>
+  </g>
+
+  <!-- Statistics -->
+  <g>
+    <text x="950" y="350" class="stats-text" font-weight="bold">Schema Statistics:</text>
+    <text x="950" y="375" class="stats-text">Classes: 9</text>
+    <text x="950" y="395" class="stats-text">Properties: 20</text>
+    <text x="950" y="425" class="stats-text" font-weight="bold">Key Classes:</text>
+    <text x="950" y="445" class="stats-text">• Paper</text>
+    <text x="950" y="465" class="stats-text">• Specification</text>
+    <text x="950" y="485" class="stats-text">• DesignDecision</text>
+    <text x="950" y="505" class="stats-text">• DesignPrinciple</text>
+    <text x="950" y="525" class="stats-text">• Requirement</text>
+  </g>
+
+  <!-- Design Notes -->
+  <g>
+    <text x="950" y="580" class="stats-text" font-weight="bold">Design Focus:</text>
+    <text x="950" y="600" class="stats-text">This schema models the</text>
+    <text x="950" y="615" class="stats-text">META-LEVEL design process</text>
+    <text x="950" y="630" class="stats-text">of creating specifications.</text>
+    <text x="950" y="650" class="stats-text">It captures:</text>
+    <text x="950" y="670" class="stats-text">• Design rationale</text>
+    <text x="950" y="685" class="stats-text">• Guiding principles</text>
+    <text x="950" y="700" class="stats-text">• Requirements</text>
+    <text x="950" y="715" class="stats-text">• Organizational context</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="700" y="980" class="subtitle-text" text-anchor="middle">Namespace: http://example.org/metaresearch#</text>
+
+</svg>

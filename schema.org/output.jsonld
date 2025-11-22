@@ -1,0 +1,359 @@
+[
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#thesauri",
+    "@type": [
+      "https://schema.org/Thing"
+    ],
+    "https://schema.org/additionalType": [
+      {
+        "@id": "https://schema.org/DefinedTerm"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "Controlled vocabularies organized in hierarchical relationships"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Thesauri"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#minimal-ontological-commitment",
+    "@type": [
+      "https://schema.org/Thing"
+    ],
+    "https://schema.org/additionalType": [
+      {
+        "@id": "https://schema.org/Concept"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "Key design principle for SKOS development"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Minimal Ontological Commitment"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#classification-schemes",
+    "@type": [
+      "https://schema.org/Thing"
+    ],
+    "https://schema.org/additionalType": [
+      {
+        "@id": "https://schema.org/CategoryCode"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "Systems for organizing and categorizing knowledge"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Classification Schemes"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#owl",
+    "@type": [
+      "https://schema.org/Thing"
+    ],
+    "https://schema.org/additionalType": [
+      {
+        "@id": "https://schema.org/ComputerLanguage"
+      }
+    ],
+    "https://schema.org/alternateName": [
+      {
+        "@value": "OWL"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "Web standard for expressing ontologies"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Web Ontology Language"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#swd-working-group",
+    "@type": [
+      "https://schema.org/Organization"
+    ],
+    "https://schema.org/alternateName": [
+      {
+        "@value": "SWD Working Group"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "W3C working group responsible for bringing SKOS to W3C Recommendation status"
+      }
+    ],
+    "https://schema.org/dissolutionDate": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#gYear",
+        "@value": "2009"
+      }
+    ],
+    "https://schema.org/foundingDate": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#gYear",
+        "@value": "2006"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Semantic Web Deployment (SWD) Working Group"
+      }
+    ],
+    "https://schema.org/parentOrganization": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#w3c"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#w3c",
+    "@type": [
+      "https://schema.org/Organization"
+    ],
+    "https://schema.org/alternateName": [
+      {
+        "@value": "W3C"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "International standards organization for the World Wide Web"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "World Wide Web Consortium"
+      }
+    ],
+    "https://schema.org/url": [
+      {
+        "@value": "https://www.w3.org/"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#semantic-web-research",
+    "@type": [
+      "https://schema.org/CreativeWorkSeries"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "Academic research area focusing on semantic web technologies and applications"
+      }
+    ],
+    "https://schema.org/genre": [
+      {
+        "@value": "Academic Research Field"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Semantic Web Research"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#skos-topic",
+    "@type": [
+      "https://schema.org/Thing"
+    ],
+    "https://schema.org/additionalType": [
+      {
+        "@id": "https://schema.org/SoftwareApplication"
+      },
+      {
+        "@id": "https://schema.org/Standard"
+      }
+    ],
+    "https://schema.org/applicationCategory": [
+      {
+        "@value": "Semantic Web Technology"
+      },
+      {
+        "@value": "Knowledge Organization"
+      }
+    ],
+    "https://schema.org/creator": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#swd-working-group"
+      }
+    ],
+    "https://schema.org/datePublished": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#gYear",
+        "@value": "2009"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "A data model and vocabulary for expressing Knowledge Organization Systems such as thesauri and classification schemes in Semantic Web applications"
+      }
+    ],
+    "https://schema.org/featureList": [
+      {
+        "@value": "Data model for thesauri"
+      },
+      {
+        "@value": "Classification scheme vocabulary"
+      },
+      {
+        "@value": "Semantic Web integration"
+      },
+      {
+        "@value": "Minimal ontological commitment"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "Simple Knowledge Organization System (SKOS)"
+      }
+    ],
+    "https://schema.org/operatingSystem": [
+      {
+        "@value": "Web-based"
+      }
+    ],
+    "https://schema.org/programmingLanguage": [
+      {
+        "@value": "OWL (Web Ontology Language)"
+      }
+    ],
+    "https://schema.org/publisher": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#w3c"
+      }
+    ],
+    "https://schema.org/version": [
+      {
+        "@value": "W3C Recommendation"
+      }
+    ]
+  },
+  {
+    "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#abstract",
+    "@type": [
+      "https://schema.org/Article"
+    ],
+    "https://schema.org/about": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#skos-topic"
+      }
+    ],
+    "https://schema.org/abstract": [
+      {
+        "@value": "Simple Knowledge Organization System (SKOS) provides a data model and vocabulary for expressing Knowledge Organization Systems (KOSs) such as thesauri and classification schemes in Semantic Web applications. This paper presents the main components of SKOS and their formal expression in Web Ontology Language (OWL), providing an extensive account of the design decisions taken by the Semantic Web Deployment (SWD) Working Group of the World Wide Web Consortium (W3C), which between 2006 and 2009 brought SKOS to the status of W3C Recommendation. The paper explains key design principles such as \"minimal ontological commitment\" and systematically cites the requirements and issues that influenced the design of SKOS components.\n\nBy reconstructing the discussion around alternative features and design options and presenting the rationale for design decisions, the paper aims at providing insight into how SKOS turned out as it did, and why. Assuming that SKOS, like any other successful technology, may eventually be subject to revision and improvement, the critical account offered here may help future editors approach such a task with deeper understanding."
+      }
+    ],
+    "https://schema.org/dateCreated": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#gYearRange",
+        "@value": "2006/2009"
+      }
+    ],
+    "https://schema.org/genre": [
+      {
+        "@value": "Academic Paper"
+      },
+      {
+        "@value": "Research Article"
+      }
+    ],
+    "https://schema.org/inLanguage": [
+      {
+        "@value": "en"
+      }
+    ],
+    "https://schema.org/isPartOf": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#semantic-web-research"
+      }
+    ],
+    "https://schema.org/keywords": [
+      {
+        "@value": "SKOS"
+      },
+      {
+        "@value": "Simple Knowledge Organization System"
+      },
+      {
+        "@value": "Knowledge Organization Systems"
+      },
+      {
+        "@value": "KOS"
+      },
+      {
+        "@value": "thesauri"
+      },
+      {
+        "@value": "classification schemes"
+      },
+      {
+        "@value": "Semantic Web"
+      },
+      {
+        "@value": "Web Ontology Language"
+      },
+      {
+        "@value": "OWL"
+      },
+      {
+        "@value": "design decisions"
+      },
+      {
+        "@value": "W3C Recommendation"
+      },
+      {
+        "@value": "minimal ontological commitment"
+      }
+    ],
+    "https://schema.org/mentions": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#skos-topic"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#w3c"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#swd-working-group"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#owl"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#thesauri"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#classification-schemes"
+      },
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#minimal-ontological-commitment"
+      }
+    ],
+    "https://schema.org/publisher": [
+      {
+        "@id": "file:///home/mshook/projects/lordsprayer2rdf/schema.org/input.ttl#w3c"
+      }
+    ]
+  }
+]

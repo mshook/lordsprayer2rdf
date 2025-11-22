@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This project demonstrates RDF/RDFS (Turtle format) semantic modeling with four examples:
+This project demonstrates RDF/RDFS (Turtle format) semantic modeling with five examples:
 
 1. **Lord's Prayer** - A religious text modeled with classes for Prayer, Petition, and Doxology
 2. **Children's Story** - A narrative story modeled with classes for Story, Character, Event, Lesson, and Setting
 3. **Emily Dickinson Poem** - A literary poem modeled with classes for Poem, Stanza, Line, Theme, Metaphor, and Speaker
 4. **Academic Research Abstract** - A research paper abstract modeled with classes for Paper, Dataset, Method, Finding, Contribution, Model, and Capability
+5. **SKOS Meta-Research Paper** - An academic paper about design process modeled with classes for Paper, Specification, DesignDecision, DesignPrinciple, WorkingGroup, Requirement, Component, Organization, and Status
 
 All examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
 
@@ -144,6 +145,36 @@ All examples include complete schema definitions, instance data, and interactive
   - Includes graph statistics and research context
   - View in any web browser
 
+### SKOS Meta-Research Paper Files
+
+- **`skos_paper.txt`** - Source text of SKOS design paper abstract
+  - Abstract about the design process of Simple Knowledge Organization System (SKOS)
+  - Describes how W3C's SWD Working Group designed SKOS (2006-2009)
+  - Focuses on design decisions, rationale, and principles
+  - Source material for RDF conversion
+
+- **`skos_paper.ttl`** - RDF/RDFS representation of meta-research paper
+  - Defines schema using RDFS (classes: Paper, Specification, DesignDecision, DesignPrinciple, WorkingGroup, Requirement, Component, Organization, Status)
+  - Defines 20 properties for meta-research structure
+  - Contains SKOS design paper instance with specification, working group, 3 design decisions, 1 principle, and 3 requirements
+  - Uses namespaces: `meta:` for schema, `inst:` for instances
+  - Models the META-LEVEL design process: how a standard was created
+  - Compatible with `parse_prayer.py` for validation
+
+- **`skos_paper_schema_graph.svg`** - Interactive SVG visualization (schema only)
+  - Visualizes the meta-research RDFS schema definitions
+  - Shows 9 classes (Paper, Specification, DesignDecision, DesignPrinciple, WorkingGroup, Requirement, Component, Organization, Status)
+  - Shows 20 properties with rdfs:domain and rdfs:range relationships
+  - Hover over nodes to see rdfs:comment descriptions
+  - View in any web browser
+
+- **`skos_paper_graph.svg`** - Interactive SVG visualization (full paper instance)
+  - Hand-crafted SVG showing SKOS design paper instance data
+  - Shows relationships between Paper, Specification, Working Group, Organization, Status, Components, Design Decisions, Principles, and Requirements
+  - Displays the design process with rationale and influences
+  - Includes paper summary and meta-research context
+  - Demonstrates knowledge graph for documenting design processes
+
 ## RDF Schema Design
 
 ### Lord's Prayer Schema
@@ -267,6 +298,46 @@ The TinyStories paper instance follows this pattern with:
 - 2 models (Small LM <10M parameters, Simple Architecture LM with one transformer block)
 - 5 capabilities (Fluency, Consistency, Grammar, Reasoning, Diversity)
 
+### SKOS Meta-Research Paper Schema
+
+The meta-research ontology models the design process of technical specifications:
+
+```
+Paper (class)
+├── hasTitle (property) → Literal
+├── hasAbstract (property) → Literal
+├── presentsSpecification (property) → Specification (class)
+│   ├── hasName (property) → Literal
+│   ├── providesDataModel (property) → Literal
+│   ├── providesVocabulary (property) → Literal
+│   ├── expressedIn (property) → Literal
+│   ├── developedBy (property) → WorkingGroup (class)
+│   │   ├── hasName (property) → Literal
+│   │   ├── operatedDuring (property) → Literal
+│   │   └── partOf (property) → Organization (class)
+│   ├── achievedStatus (property) → Status (class)
+│   ├── hasComponent (property) → Component (class)
+│   │   ├── hasDescription (property) → Literal
+│   │   └── formalizedIn (property) → Literal
+│   └── guidedByPrinciple (property) → DesignPrinciple (class)
+├── explainsDesignDecision (property) → DesignDecision (class)
+│   ├── hasRationale (property) → Literal
+│   ├── followsPrinciple (property) → DesignPrinciple
+│   └── addressesRequirement (property) → Requirement (class)
+└── Requirement (class)
+    ├── hasDescription (property) → Literal
+    └── influencedDesignOf (property) → Specification
+```
+
+The SKOS design paper instance follows this pattern with:
+- 1 paper presenting the SKOS specification design process
+- 1 specification (SKOS) with 2 components (data model, vocabulary)
+- 1 working group (SWD WG) that operated 2006-2009, part of W3C
+- 1 status achieved (W3C Recommendation)
+- 1 key design principle ("Minimal Ontological Commitment")
+- 3 design decisions with rationale
+- 3 requirements that influenced the design
+
 ## Common Commands
 
 ### Validate RDF files
@@ -282,6 +353,9 @@ python3 parse_prayer.py emily_poem.ttl
 
 # Validate research abstract
 python3 parse_prayer.py tinystory.ttl
+
+# Validate SKOS meta-research paper
+python3 parse_prayer.py skos_paper.ttl
 ```
 
 ### Generate graph visualization (requires dependencies)
@@ -300,6 +374,8 @@ xdg-open emily_poem_graph.svg
 xdg-open emily_poem_schema_graph.svg
 xdg-open tinystory_graph.svg
 xdg-open tinystory_schema_graph.svg
+xdg-open skos_paper_graph.svg
+xdg-open skos_paper_schema_graph.svg
 
 # macOS
 open prayer_graph.svg
@@ -310,6 +386,8 @@ open emily_poem_graph.svg
 open emily_poem_schema_graph.svg
 open tinystory_graph.svg
 open tinystory_schema_graph.svg
+open skos_paper_graph.svg
+open skos_paper_schema_graph.svg
 
 # Windows
 start prayer_graph.svg
@@ -320,6 +398,8 @@ start emily_poem_graph.svg
 start emily_poem_schema_graph.svg
 start tinystory_graph.svg
 start tinystory_schema_graph.svg
+start skos_paper_graph.svg
+start skos_paper_schema_graph.svg
 ```
 
 ## Original Prompts
@@ -399,6 +479,26 @@ This project was created through the following conversation flows:
    - Displayed dataset, method, 3 findings, 2 models, and 5 capabilities
    - Included research summary and significance context
    - Demonstrated knowledge graph for academic literature
+
+### SKOS Meta-Research Paper (Extension)
+
+1. **Meta-research conversion**: User provided SKOS paper abstract and discussed methodology
+   - Abstract describes how SKOS specification was designed by W3C SWD Working Group
+   - Created `skos_paper.ttl` with meta-research-focused schema
+   - Modeled Paper, Specification, DesignDecision, DesignPrinciple, WorkingGroup, Requirement, Component, Organization, and Status classes
+   - Used object properties to link design elements (followsPrinciple, addressesRequirement, influencedDesignOf)
+   - Structured the META-LEVEL design process: not just WHAT was built, but HOW and WHY
+
+2. **Schema visualization**: Created `skos_paper_schema_graph.svg`
+   - Visualized meta-research RDFS schema
+   - Showed 9 classes and 20 properties
+   - Displayed complex relationships between design process components
+
+3. **Instance visualization**: Created `skos_paper_graph.svg`
+   - Showed SKOS design paper instance with all meta-research elements
+   - Displayed paper, specification, working group, organization, status, components, design decisions, principle, and requirements
+   - Included paper summary and reflexive nature of the knowledge graph
+   - Demonstrated knowledge graph for documenting design rationale and decision-making processes
 
 ## Python Implementation Notes
 
@@ -490,6 +590,16 @@ For research abstracts:
 - Capture both what was done and what was discovered
 - Model technical specifications (parameters, architecture)
 
+For meta-research papers (about design processes):
+- Use appropriate namespaces (`meta:` for schema, `inst:` for instances)
+- Model the design process: Paper → Specification → DesignDecision
+- Capture rationale with hasRationale property
+- Link decisions to principles using followsPrinciple property
+- Link decisions to requirements using addressesRequirement property
+- Model organizational context (WorkingGroup, Organization, Status)
+- Show feedback loops (Requirements → influencedDesignOf → Specification)
+- Distinguish between components, principles, and decisions
+
 ### Modifying Visualizations
 
 When updating visualizations:
@@ -509,7 +619,7 @@ When updating visualizations:
 
 ## Reflections on the Knowledge Graph Creation Process
 
-Having created three knowledge graphs from disparate texts (prayer, story, poem), several insights emerge about RDF modeling:
+Having created five knowledge graphs from disparate texts (prayer, story, poem, research abstract, meta-research paper), several insights emerge about RDF modeling:
 
 ### Domain-Specific Ontologies Emerge Naturally
 
@@ -517,8 +627,10 @@ Each text type demanded fundamentally different schemas:
 - **Prayer**: Hierarchical and ritualistic (Petition, Doxology, invocation)
 - **Story**: Narrative-driven with causality (Events with `leadsTo`, Characters, moral Lessons)
 - **Poem**: Literary-analytical (Metaphor with vehicle/tenor, Themes, Speaker/addressee)
+- **Research Abstract**: Methodological (Dataset, Method, Finding, Contribution, Model, Capability)
+- **Meta-Research Paper**: Process-oriented (DesignDecision, DesignPrinciple, Requirement, rationale)
 
-The content itself dictates the ontology - you can't force a narrative schema onto a prayer or a poetic schema onto a story.
+The content itself dictates the ontology - you can't force a narrative schema onto a prayer, a poetic schema onto a story, or a research schema onto a design process description.
 
 ### Common Structural Patterns
 
@@ -540,6 +652,8 @@ Each schema encodes a **particular interpretation**:
 - The prayer schema assumes a petition-based structure (Protestant/Catholic view)
 - The story schema emphasizes moral lessons (pedagogical interpretation)
 - The poem schema applies New Critical literary analysis (metaphor, theme, close reading)
+- The research abstract schema focuses on scientific methodology (hypothesis, method, findings)
+- The meta-research schema emphasizes design rationale (decisions, principles, requirements)
 
 Different scholarly or cultural perspectives would produce different schemas from the same texts.
 
@@ -552,9 +666,9 @@ Different scholarly or cultural perspectives would produce different schemas fro
 
 ### Reusability vs. Specificity
 
-- The generic parser (`parse_prayer.py`) worked across all three - showing good abstraction
+- The generic parser (`parse_prayer.py`) worked across all five - showing good abstraction
 - But each visualization was hand-crafted - showing that meaningful visualization requires domain understanding
-- A fourth text (maybe a legal document or scientific paper) would need yet another schema, but could reuse the patterns
+- Additional texts (legal documents, news articles, etc.) would need new schemas, but could reuse the patterns
 
 ### What This Reveals About Knowledge
 
@@ -563,5 +677,16 @@ The exercise shows that **knowledge graphs aren't neutral representations** - th
 2. **Purpose-driven**: Different uses would suggest different schemas
 3. **Cultural artifacts**: They reflect particular ways of understanding texts
 4. **Pragmatic**: Design choices balance theoretical purity with practical usability
+5. **Reflexive**: The meta-research example demonstrates that knowledge graphs can model their own creation process
 
-The fact that we could model all three suggests RDF/RDFS is genuinely flexible, but the **very different schemas** show that semantic modeling is as much art as engineering - requiring deep understanding of both the domain and the intended uses.
+The fact that we could model all five suggests RDF/RDFS is genuinely flexible, but the **very different schemas** show that semantic modeling is as much art as engineering - requiring deep understanding of both the domain and the intended uses.
+
+### Special Note on Meta-Research
+
+The SKOS paper example is particularly interesting because it's **reflexive** - it uses a knowledge graph to model a paper ABOUT designing knowledge organization systems. This demonstrates that RDF/RDFS can capture not just domain content, but also:
+- Design processes and rationale
+- Decision-making and trade-offs
+- Organizational and temporal context
+- The intellectual lineage of technical artifacts
+
+This meta-level modeling opens possibilities for documenting software architecture decisions, API design rationale, and other process-oriented knowledge that often exists only in meeting notes and oral tradition.

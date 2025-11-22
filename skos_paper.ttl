@@ -1,0 +1,287 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix meta: <http://example.org/metaresearch#> .
+@prefix inst: <http://example.org/skos-paper#> .
+
+# ============================================
+# RDFS Schema Definitions
+# ============================================
+
+# Classes
+
+meta:Paper a rdfs:Class ;
+    rdfs:label "Academic Paper" ;
+    rdfs:comment "A scholarly publication that presents research findings or analysis" .
+
+meta:Specification a rdfs:Class ;
+    rdfs:label "Technical Specification" ;
+    rdfs:comment "A formal standard or data model, typically created by a standards body" .
+
+meta:DesignDecision a rdfs:Class ;
+    rdfs:label "Design Decision" ;
+    rdfs:comment "A choice made during the design process with associated rationale" .
+
+meta:DesignPrinciple a rdfs:Class ;
+    rdfs:label "Design Principle" ;
+    rdfs:comment "A guiding principle that shapes design decisions" .
+
+meta:WorkingGroup a rdfs:Class ;
+    rdfs:label "Working Group" ;
+    rdfs:comment "A committee or team that develops specifications or standards" .
+
+meta:Requirement a rdfs:Class ;
+    rdfs:label "Requirement" ;
+    rdfs:comment "A need or constraint that influences design" .
+
+meta:Component a rdfs:Class ;
+    rdfs:label "Component" ;
+    rdfs:comment "A constituent part of a specification or system" .
+
+meta:Organization a rdfs:Class ;
+    rdfs:label "Organization" ;
+    rdfs:comment "A standards body or institution" .
+
+meta:Status a rdfs:Class ;
+    rdfs:label "Status" ;
+    rdfs:comment "A maturity level or standardization status" .
+
+# Paper Properties
+
+meta:hasTitle a rdf:Property ;
+    rdfs:label "has title" ;
+    rdfs:comment "The title of a paper" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range rdfs:Literal .
+
+meta:hasAbstract a rdf:Property ;
+    rdfs:label "has abstract" ;
+    rdfs:comment "The abstract or summary of a paper" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range rdfs:Literal .
+
+meta:presentsSpecification a rdf:Property ;
+    rdfs:label "presents specification" ;
+    rdfs:comment "Indicates the paper presents and describes a specification" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range meta:Specification .
+
+meta:explainsDesignDecision a rdf:Property ;
+    rdfs:label "explains design decision" ;
+    rdfs:comment "Indicates the paper explains a design decision" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range meta:DesignDecision .
+
+meta:reconstructsProcess a rdf:Property ;
+    rdfs:label "reconstructs process" ;
+    rdfs:comment "Describes reconstructing the discussion and design process" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range rdfs:Literal .
+
+meta:providesInsightInto a rdf:Property ;
+    rdfs:label "provides insight into" ;
+    rdfs:comment "Indicates what the paper aims to illuminate" ;
+    rdfs:domain meta:Paper ;
+    rdfs:range rdfs:Literal .
+
+# Specification Properties
+
+meta:hasName a rdf:Property ;
+    rdfs:label "has name" ;
+    rdfs:comment "The name or identifier of an entity" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Literal .
+
+meta:providesDataModel a rdf:Property ;
+    rdfs:label "provides data model" ;
+    rdfs:comment "Indicates a specification provides a data model for something" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range rdfs:Literal .
+
+meta:providesVocabulary a rdf:Property ;
+    rdfs:label "provides vocabulary" ;
+    rdfs:comment "Indicates a specification provides vocabulary for something" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range rdfs:Literal .
+
+meta:expressedIn a rdf:Property ;
+    rdfs:label "expressed in" ;
+    rdfs:comment "The formal language used to express the specification" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range rdfs:Literal .
+
+meta:developedBy a rdf:Property ;
+    rdfs:label "developed by" ;
+    rdfs:comment "The working group that developed the specification" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range meta:WorkingGroup .
+
+meta:achievedStatus a rdf:Property ;
+    rdfs:label "achieved status" ;
+    rdfs:comment "The standardization status achieved" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range meta:Status .
+
+meta:hasComponent a rdf:Property ;
+    rdfs:label "has component" ;
+    rdfs:comment "A constituent component or part" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range meta:Component .
+
+meta:guidedByPrinciple a rdf:Property ;
+    rdfs:label "guided by principle" ;
+    rdfs:comment "A design principle that guided the design" ;
+    rdfs:domain meta:Specification ;
+    rdfs:range meta:DesignPrinciple .
+
+# DesignDecision Properties
+
+meta:hasRationale a rdf:Property ;
+    rdfs:label "has rationale" ;
+    rdfs:comment "The reasoning or justification for a decision" ;
+    rdfs:domain meta:DesignDecision ;
+    rdfs:range rdfs:Literal .
+
+meta:followsPrinciple a rdf:Property ;
+    rdfs:label "follows principle" ;
+    rdfs:comment "Indicates a decision follows a design principle" ;
+    rdfs:domain meta:DesignDecision ;
+    rdfs:range meta:DesignPrinciple .
+
+meta:addressesRequirement a rdf:Property ;
+    rdfs:label "addresses requirement" ;
+    rdfs:comment "Indicates a decision addresses a requirement or issue" ;
+    rdfs:domain meta:DesignDecision ;
+    rdfs:range meta:Requirement .
+
+# WorkingGroup Properties
+
+meta:operatedDuring a rdf:Property ;
+    rdfs:label "operated during" ;
+    rdfs:comment "The time period when a working group was active" ;
+    rdfs:domain meta:WorkingGroup ;
+    rdfs:range rdfs:Literal .
+
+meta:partOf a rdf:Property ;
+    rdfs:label "part of" ;
+    rdfs:comment "Indicates membership in a larger organization" ;
+    rdfs:domain meta:WorkingGroup ;
+    rdfs:range meta:Organization .
+
+# Component Properties
+
+meta:hasDescription a rdf:Property ;
+    rdfs:label "has description" ;
+    rdfs:comment "A textual description of an entity" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range rdfs:Literal .
+
+meta:formalizedIn a rdf:Property ;
+    rdfs:label "formalized in" ;
+    rdfs:comment "The formal language in which a component is expressed" ;
+    rdfs:domain meta:Component ;
+    rdfs:range rdfs:Literal .
+
+# Requirement Properties
+
+meta:influencedDesignOf a rdf:Property ;
+    rdfs:label "influenced design of" ;
+    rdfs:comment "Indicates a requirement influenced the design of something" ;
+    rdfs:domain meta:Requirement ;
+    rdfs:range meta:Specification .
+
+# ============================================
+# Instance Data: SKOS Paper
+# ============================================
+
+# The Paper
+
+inst:SKOSDesignPaper a meta:Paper ;
+    meta:hasTitle "SKOS: Design Decisions and Rationale" ;
+    meta:hasAbstract """Simple Knowledge Organization System (SKOS) provides a data model and vocabulary for expressing Knowledge Organization Systems (KOSs) such as thesauri and classification schemes in Semantic Web applications. This paper presents the main components of SKOS and their formal expression in Web Ontology Language (OWL), providing an extensive account of the design decisions taken by the Semantic Web Deployment (SWD) Working Group of the World Wide Web Consortium (W3C), which between 2006 and 2009 brought SKOS to the status of W3C Recommendation.""" ;
+    meta:presentsSpecification inst:SKOS ;
+    meta:explainsDesignDecision inst:MinimalCommitmentDecision ;
+    meta:explainsDesignDecision inst:OWLFormalizationDecision ;
+    meta:explainsDesignDecision inst:ComponentDesignDecisions ;
+    meta:reconstructsProcess "alternative features and design options with rationale" ;
+    meta:providesInsightInto "how SKOS turned out as it did, and why" ;
+    meta:providesInsightInto "deeper understanding for future revision and improvement" .
+
+# The Specification (SKOS)
+
+inst:SKOS a meta:Specification ;
+    meta:hasName "Simple Knowledge Organization System (SKOS)" ;
+    meta:providesDataModel "expressing Knowledge Organization Systems in Semantic Web applications" ;
+    meta:providesVocabulary "thesauri and classification schemes" ;
+    meta:expressedIn "Web Ontology Language (OWL)" ;
+    meta:developedBy inst:SWDWG ;
+    meta:achievedStatus inst:W3CRecommendation ;
+    meta:hasComponent inst:DataModel ;
+    meta:hasComponent inst:Vocabulary ;
+    meta:guidedByPrinciple inst:MinimalOntologicalCommitment .
+
+# Working Group
+
+inst:SWDWG a meta:WorkingGroup ;
+    meta:hasName "Semantic Web Deployment (SWD) Working Group" ;
+    meta:operatedDuring "2006-2009" ;
+    meta:partOf inst:W3C .
+
+# Organization
+
+inst:W3C a meta:Organization ;
+    meta:hasName "World Wide Web Consortium (W3C)" ;
+    meta:hasDescription "International standards organization for the Web" .
+
+# Status
+
+inst:W3CRecommendation a meta:Status ;
+    meta:hasName "W3C Recommendation" ;
+    meta:hasDescription "The highest maturity level for W3C specifications" .
+
+# Components
+
+inst:DataModel a meta:Component ;
+    meta:hasName "SKOS Data Model" ;
+    meta:hasDescription "Data model for expressing Knowledge Organization Systems" ;
+    meta:formalizedIn "Web Ontology Language (OWL)" .
+
+inst:Vocabulary a meta:Component ;
+    meta:hasName "SKOS Vocabulary" ;
+    meta:hasDescription "Vocabulary terms for thesauri and classification schemes" ;
+    meta:formalizedIn "Web Ontology Language (OWL)" .
+
+# Design Principles
+
+inst:MinimalOntologicalCommitment a meta:DesignPrinciple ;
+    meta:hasName "Minimal Ontological Commitment" ;
+    meta:hasDescription "Design principle that avoids imposing excessive semantic constraints, allowing flexible interpretation and use" .
+
+# Design Decisions
+
+inst:MinimalCommitmentDecision a meta:DesignDecision ;
+    meta:hasRationale "Enable flexible use across diverse Knowledge Organization Systems without imposing rigid semantic constraints" ;
+    meta:followsPrinciple inst:MinimalOntologicalCommitment ;
+    meta:addressesRequirement inst:FlexibilityRequirement .
+
+inst:OWLFormalizationDecision a meta:DesignDecision ;
+    meta:hasRationale "Use Web Ontology Language for formal expression to ensure compatibility with Semantic Web infrastructure" ;
+    meta:addressesRequirement inst:SemanticWebCompatibility .
+
+inst:ComponentDesignDecisions a meta:DesignDecision ;
+    meta:hasRationale "Systematic consideration of requirements and issues to design SKOS components appropriately" ;
+    meta:addressesRequirement inst:RequirementsAndIssues .
+
+# Requirements
+
+inst:FlexibilityRequirement a meta:Requirement ;
+    meta:hasDescription "Need for flexibility to accommodate diverse Knowledge Organization Systems" ;
+    meta:influencedDesignOf inst:SKOS .
+
+inst:SemanticWebCompatibility a meta:Requirement ;
+    meta:hasDescription "Requirement for compatibility with Semantic Web technologies and applications" ;
+    meta:influencedDesignOf inst:SKOS .
+
+inst:RequirementsAndIssues a meta:Requirement ;
+    meta:hasDescription "Various requirements and issues identified during the design process" ;
+    meta:influencedDesignOf inst:SKOS .
