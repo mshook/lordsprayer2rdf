@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000">
+  <defs>
+    <style>
+      .class-node { fill: #4A90E2; stroke: #2E5C8A; stroke-width: 2; }
+      .class-label { fill: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .property-edge { stroke: #E74C3C; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .property-label { fill: #E74C3C; font-family: Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .comment-text { fill: #555; font-family: Arial, sans-serif; font-size: 11px; }
+      .title-text { fill: #333; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; }
+      .legend-text { fill: #333; font-family: Arial, sans-serif; font-size: 14px; }
+      .node-hover:hover { filter: brightness(1.2); cursor: pointer; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#E74C3C" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="700" y="30" class="title-text" text-anchor="middle">Philosophical Discourse Schema (RDFS)</text>
+
+  <!-- Classes -->
+
+  <!-- PhilosophicalText -->
+  <g class="node-hover">
+    <rect x="50" y="100" width="180" height="60" rx="5" class="class-node"/>
+    <text x="140" y="135" class="class-label">PhilosophicalText</text>
+    <title>A written exposition exploring philosophical or theoretical ideas</title>
+  </g>
+
+  <!-- Theory -->
+  <g class="node-hover">
+    <rect x="350" y="100" width="120" height="60" rx="5" class="class-node"/>
+    <text x="410" y="135" class="class-label">Theory</text>
+    <title>An explanatory framework or model proposed to account for phenomena</title>
+  </g>
+
+  <!-- Theorist -->
+  <g class="node-hover">
+    <rect x="600" y="100" width="120" height="60" rx="5" class="class-node"/>
+    <text x="660" y="135" class="class-label">Theorist</text>
+    <title>A scholar or thinker who develops theoretical frameworks</title>
+  </g>
+
+  <!-- PhilosophicalPuzzle -->
+  <g class="node-hover">
+    <rect x="850" y="100" width="180" height="60" rx="5" class="class-node"/>
+    <text x="940" y="135" class="class-label">PhilosophicalPuzzle</text>
+    <title>A conceptual problem or question that requires philosophical analysis</title>
+  </g>
+
+  <!-- Claim -->
+  <g class="node-hover">
+    <rect x="350" y="300" width="120" height="60" rx="5" class="class-node"/>
+    <text x="410" y="335" class="class-label">Claim</text>
+    <title>A proposition or assertion made within a theoretical framework</title>
+  </g>
+
+  <!-- Concept -->
+  <g class="node-hover">
+    <rect x="600" y="300" width="120" height="60" rx="5" class="class-node"/>
+    <text x="660" y="335" class="class-label">Concept</text>
+    <title>An abstract idea or notion central to philosophical analysis</title>
+  </g>
+
+  <!-- Purpose -->
+  <g class="node-hover">
+    <rect x="850" y="300" width="120" height="60" rx="5" class="class-node"/>
+    <text x="910" y="335" class="class-label">Purpose</text>
+    <title>A function or goal that something serves</title>
+  </g>
+
+  <!-- Progression -->
+  <g class="node-hover">
+    <rect x="1100" y="100" width="120" height="60" rx="5" class="class-node"/>
+    <text x="1160" y="135" class="class-label">Progression</text>
+    <title>A developmental sequence or evolutionary trajectory</title>
+  </g>
+
+  <!-- Property edges (domain to range) -->
+
+  <!-- discusses: PhilosophicalText -> (Theory, Concept, Puzzle, etc.) -->
+  <path d="M 230 130 Q 290 130 350 130" class="property-edge"/>
+  <text x="290" y="120" class="property-label">discusses</text>
+
+  <!-- proposedBy: Theory -> Theorist -->
+  <path d="M 470 130 L 600 130" class="property-edge"/>
+  <text x="535" y="120" class="property-label">proposedBy</text>
+
+  <!-- addresses: Theory -> PhilosophicalPuzzle -->
+  <path d="M 470 120 Q 660 80 850 120" class="property-edge"/>
+  <text x="660" y="70" class="property-label">addresses</text>
+
+  <!-- makesClaim: Theory -> Claim -->
+  <path d="M 410 160 L 410 300" class="property-edge"/>
+  <text x="430" y="230" class="property-label">makesClaim</text>
+
+  <!-- involvesConcept: Theory -> Concept -->
+  <path d="M 450 160 Q 550 230 600 310" class="property-edge"/>
+  <text x="525" y="235" class="property-label">involvesConcept</text>
+
+  <!-- serves: Concept -> Purpose -->
+  <path d="M 720 330 L 850 330" class="property-edge"/>
+  <text x="785" y="320" class="property-label">serves</text>
+
+  <!-- requires: Concept -> Concept (self-loop) -->
+  <path d="M 660 300 Q 660 260 700 260 Q 740 260 720 300" class="property-edge"/>
+  <text x="685" y="245" class="property-label">requires</text>
+
+  <!-- describesProgression: Theory -> Progression -->
+  <path d="M 470 110 Q 790 60 1100 110" class="property-edge"/>
+  <text x="785" y="50" class="property-label">describesProgression</text>
+
+  <!-- Additional properties as text labels (for completeness) -->
+  <text x="50" y="500" class="legend-text" font-weight="bold">Additional Properties:</text>
+  <text x="50" y="525" class="comment-text">• hasContent: Resource → xsd:string (textual content)</text>
+  <text x="50" y="545" class="comment-text">• hasName: Resource → xsd:string (name of entity)</text>
+  <text x="50" y="565" class="comment-text">• fromStage: Progression → xsd:string (starting point)</text>
+  <text x="50" y="585" class="comment-text">• toStage: Progression → xsd:string (ending point)</text>
+  <text x="50" y="605" class="comment-text">• basedOn: Progression → xsd:string (basis of progression)</text>
+
+  <!-- Legend -->
+  <rect x="50" y="650" width="500" height="120" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="60" y="675" class="legend-text" font-weight="bold">Legend:</text>
+  <rect x="60" y="690" width="30" height="20" class="class-node"/>
+  <text x="100" y="705" class="legend-text">RDFS Class</text>
+  <line x1="60" y1="730" x2="90" y2="730" class="property-edge"/>
+  <text x="100" y="735" class="legend-text">Property (domain → range)</text>
+  <text x="60" y="760" class="comment-text">Hover over nodes to see rdfs:comment descriptions</text>
+
+  <!-- Statistics -->
+  <text x="700" y="650" class="legend-text" font-weight="bold">Schema Statistics:</text>
+  <text x="700" y="680" class="comment-text">Classes: 8</text>
+  <text x="700" y="700" class="comment-text">  • PhilosophicalText, Theory, Theorist</text>
+  <text x="700" y="720" class="comment-text">  • PhilosophicalPuzzle, Claim, Concept</text>
+  <text x="700" y="740" class="comment-text">  • Purpose, Progression</text>
+  <text x="700" y="770" class="comment-text">Object Properties: 8</text>
+  <text x="700" y="790" class="comment-text">  discusses, proposedBy, addresses, makesClaim,</text>
+  <text x="700" y="810" class="comment-text">  involvesConcept, serves, requires, describesProgression</text>
+  <text x="700" y="840" class="comment-text">Datatype Properties: 5</text>
+  <text x="700" y="860" class="comment-text">  hasContent, hasName, fromStage, toStage, basedOn</text>
+
+  <!-- Domain Note -->
+  <text x="50" y="900" class="legend-text" font-weight="bold">Schema Purpose:</text>
+  <text x="50" y="925" class="comment-text">Models philosophical and theoretical discourse, capturing theories, claims,</text>
+  <text x="50" y="945" class="comment-text">concepts, and their relationships in academic exposition.</text>
+</svg>

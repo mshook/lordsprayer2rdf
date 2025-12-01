@@ -4,13 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This project demonstrates RDF/RDFS (Turtle format) semantic modeling with five examples:
+This project demonstrates RDF/RDFS (Turtle format) semantic modeling with six examples:
 
 1. **Lord's Prayer** - A religious text modeled with classes for Prayer, Petition, and Doxology
 2. **Children's Story** - A narrative story modeled with classes for Story, Character, Event, Lesson, and Setting
 3. **Emily Dickinson Poem** - A literary poem modeled with classes for Poem, Stanza, Line, Theme, Metaphor, and Speaker
 4. **Academic Research Abstract** - A research paper abstract modeled with classes for Paper, Dataset, Method, Finding, Contribution, Model, and Capability
 5. **SKOS Meta-Research Paper** - An academic paper about design process modeled with classes for Paper, Specification, DesignDecision, DesignPrinciple, WorkingGroup, Requirement, Component, Organization, and Status
+6. **Philosophical Discourse** - A theoretical exposition about evolutionary reasoning modeled with classes for PhilosophicalText, Theory, Theorist, PhilosophicalPuzzle, Claim, Concept, Purpose, and Progression
 
 All examples include complete schema definitions, instance data, and interactive visualizations showing the semantic structure as linked data.
 
@@ -175,6 +176,36 @@ All examples include complete schema definitions, instance data, and interactive
   - Includes paper summary and meta-research context
   - Demonstrates knowledge graph for documenting design processes
 
+### Philosophical Discourse Files
+
+- **`ab.txt`** - Source text of philosophical exposition
+  - Text exploring Sperber and Mercier's evolutionary model of meaning and reason
+  - Discusses why reasoning evolved for social purposes rather than logical consistency
+  - Addresses the philosophical puzzle of human attachment to abstract truth
+  - Source material for RDF conversion
+
+- **`ab.ttl`** - RDF/RDFS representation of philosophical discourse
+  - Defines schema using RDFS (classes: PhilosophicalText, Theory, Theorist, PhilosophicalPuzzle, Claim, Concept, Purpose, Progression)
+  - Defines 13 properties (8 object properties, 5 datatype properties)
+  - Contains Sperber & Mercier evolutionary model instance with 1 theory, 3 claims, 4 concepts, 1 puzzle, 1 purpose, and 1 progression
+  - Uses namespaces: `phil:` for schema, `inst:` for instances
+  - Models theoretical argumentation: theory addresses puzzle, makes claims, involves concepts
+  - Compatible with `parse_prayer.py` for validation
+
+- **`ab_schema_graph.svg`** - Interactive SVG visualization (schema only)
+  - Visualizes the philosophical discourse RDFS schema definitions
+  - Shows 8 classes (PhilosophicalText, Theory, Theorist, PhilosophicalPuzzle, Claim, Concept, Purpose, Progression)
+  - Shows 13 properties with rdfs:domain and rdfs:range relationships
+  - Hover over nodes to see rdfs:comment descriptions
+  - View in any web browser
+
+- **`ab_graph.svg`** - Interactive SVG visualization (full discourse instance)
+  - Hand-crafted SVG showing Sperber & Mercier evolutionary model instance data
+  - Shows relationships between Text, Theory, Theorist, Puzzle, 3 Claims, 4 Concepts, Purpose, and Progression
+  - Displays theoretical argumentation structure and key insights
+  - Includes exposition summary and philosophical context
+  - Demonstrates knowledge graph for modeling theoretical discourse
+
 ## RDF Schema Design
 
 ### Lord's Prayer Schema
@@ -338,6 +369,44 @@ The SKOS design paper instance follows this pattern with:
 - 3 design decisions with rationale
 - 3 requirements that influenced the design
 
+### Philosophical Discourse Schema
+
+The philosophical discourse ontology models theoretical argumentation:
+
+```
+PhilosophicalText (class)
+├── discusses (property) → Theory, Concept, PhilosophicalPuzzle
+│
+Theory (class)
+├── proposedBy (property) → Theorist (class)
+│   └── hasName (property) → Literal
+├── addresses (property) → PhilosophicalPuzzle (class)
+│   └── hasContent (property) → Literal
+├── makesClaim (property) → Claim (class)
+│   └── hasContent (property) → Literal
+├── involvesConcept (property) → Concept (class)
+│   ├── hasName (property) → Literal
+│   ├── hasContent (property) → Literal
+│   ├── serves (property) → Purpose (class)
+│   │   └── hasContent (property) → Literal
+│   └── requires (property) → Concept (self-reference)
+└── describesProgression (property) → Progression (class)
+    ├── hasContent (property) → Literal
+    ├── fromStage (property) → Literal
+    ├── toStage (property) → Literal
+    └── basedOn (property) → Literal
+```
+
+The Sperber & Mercier evolutionary model instance follows this pattern with:
+- 1 philosophical text discussing evolutionary model of meaning and reason
+- 1 theory (Evolutionary Model of Meaning and Reason)
+- 2 theorists (Sperber and Mercier)
+- 1 philosophical puzzle (attachment to abstract truth)
+- 3 claims (reasoning not for logic, serves social purposes, requires language)
+- 4 concepts (Reasoning, Language, Inferences, Self-Deception)
+- 1 purpose (social function: rationalize preferences, enhance status)
+- 1 progression (cognitive complexity from worm to Wittgenstein)
+
 ## Common Commands
 
 ### Validate RDF files
@@ -356,6 +425,9 @@ python3 parse_prayer.py tinystory.ttl
 
 # Validate SKOS meta-research paper
 python3 parse_prayer.py skos_paper.ttl
+
+# Validate philosophical discourse
+python3 parse_prayer.py ab.ttl
 ```
 
 ### Generate graph visualization (requires dependencies)
@@ -376,6 +448,8 @@ xdg-open tinystory_graph.svg
 xdg-open tinystory_schema_graph.svg
 xdg-open skos_paper_graph.svg
 xdg-open skos_paper_schema_graph.svg
+xdg-open ab_graph.svg
+xdg-open ab_schema_graph.svg
 
 # macOS
 open prayer_graph.svg
@@ -388,6 +462,8 @@ open tinystory_graph.svg
 open tinystory_schema_graph.svg
 open skos_paper_graph.svg
 open skos_paper_schema_graph.svg
+open ab_graph.svg
+open ab_schema_graph.svg
 
 # Windows
 start prayer_graph.svg
@@ -400,6 +476,8 @@ start tinystory_graph.svg
 start tinystory_schema_graph.svg
 start skos_paper_graph.svg
 start skos_paper_schema_graph.svg
+start ab_graph.svg
+start ab_schema_graph.svg
 ```
 
 ## Original Prompts
@@ -499,6 +577,26 @@ This project was created through the following conversation flows:
    - Displayed paper, specification, working group, organization, status, components, design decisions, principle, and requirements
    - Included paper summary and reflexive nature of the knowledge graph
    - Demonstrated knowledge graph for documenting design rationale and decision-making processes
+
+### Philosophical Discourse (Extension)
+
+1. **Discourse conversion**: User provided `ab.txt` and requested "Do it for ab.txt"
+   - Text explores Sperber and Mercier's evolutionary model of meaning and reason
+   - Created `ab.ttl` with philosophical discourse-focused schema
+   - Modeled PhilosophicalText, Theory, Theorist, PhilosophicalPuzzle, Claim, Concept, Purpose, and Progression classes
+   - Used object properties to link theoretical elements (proposedBy, addresses, makesClaim, involvesConcept, serves, requires, describesProgression)
+   - Structured theoretical argumentation: theory addresses puzzle, makes claims, involves concepts
+
+2. **Schema visualization**: Created `ab_schema_graph.svg`
+   - Visualized philosophical discourse RDFS schema
+   - Showed 8 classes and 13 properties
+   - Displayed relationships between theoretical argumentation components
+
+3. **Instance visualization**: Created `ab_graph.svg`
+   - Showed Sperber & Mercier evolutionary model instance with all philosophical elements
+   - Displayed text, theory, theorist, puzzle, 3 claims, 4 concepts, purpose, and progression
+   - Included theoretical summary and key insight (reasoning evolved for social purposes, not logic)
+   - Demonstrated knowledge graph for modeling philosophical and theoretical discourse
 
 ## Python Implementation Notes
 
@@ -600,6 +698,18 @@ For meta-research papers (about design processes):
 - Show feedback loops (Requirements → influencedDesignOf → Specification)
 - Distinguish between components, principles, and decisions
 
+For philosophical discourse (theoretical argumentation):
+- Use appropriate namespaces (`phil:` for schema, `inst:` for instances)
+- Model theoretical structure: PhilosophicalText → Theory → Claims/Concepts
+- Link theory to theorist(s) using proposedBy property
+- Capture puzzles/problems that theories address
+- Model claims as distinct from the theory itself
+- Use involvesConcept to link theories to abstract concepts
+- Model concept dependencies with requires property (self-referential)
+- Capture functional purposes with serves property
+- Model developmental progressions (fromStage, toStage, basedOn)
+- Include hasContent for textual descriptions across all classes
+
 ### Modifying Visualizations
 
 When updating visualizations:
@@ -619,7 +729,7 @@ When updating visualizations:
 
 ## Reflections on the Knowledge Graph Creation Process
 
-Having created five knowledge graphs from disparate texts (prayer, story, poem, research abstract, meta-research paper), several insights emerge about RDF modeling:
+Having created six knowledge graphs from disparate texts (prayer, story, poem, research abstract, meta-research paper, philosophical discourse), several insights emerge about RDF modeling:
 
 ### Domain-Specific Ontologies Emerge Naturally
 
@@ -629,8 +739,9 @@ Each text type demanded fundamentally different schemas:
 - **Poem**: Literary-analytical (Metaphor with vehicle/tenor, Themes, Speaker/addressee)
 - **Research Abstract**: Methodological (Dataset, Method, Finding, Contribution, Model, Capability)
 - **Meta-Research Paper**: Process-oriented (DesignDecision, DesignPrinciple, Requirement, rationale)
+- **Philosophical Discourse**: Argumentation-focused (Theory, Claim, Concept, PhilosophicalPuzzle, Progression)
 
-The content itself dictates the ontology - you can't force a narrative schema onto a prayer, a poetic schema onto a story, or a research schema onto a design process description.
+The content itself dictates the ontology - you can't force a narrative schema onto a prayer, a poetic schema onto a story, a research schema onto a design process description, or a theoretical argumentation schema onto a narrative text.
 
 ### Common Structural Patterns
 
@@ -654,6 +765,7 @@ Each schema encodes a **particular interpretation**:
 - The poem schema applies New Critical literary analysis (metaphor, theme, close reading)
 - The research abstract schema focuses on scientific methodology (hypothesis, method, findings)
 - The meta-research schema emphasizes design rationale (decisions, principles, requirements)
+- The philosophical discourse schema focuses on argumentation structure (theory, claims, puzzles, concepts)
 
 Different scholarly or cultural perspectives would produce different schemas from the same texts.
 
@@ -661,12 +773,12 @@ Different scholarly or cultural perspectives would produce different schemas fro
 
 - **XML escaping** was a recurring issue (`&` → `&amp;`)
 - **Arrow directionality** matters semantically (domain arrows point FROM property TO class)
-- **Color coding** became a visual vocabulary across all three visualizations
+- **Color coding** became a visual vocabulary across all visualizations
 - **Namespace discipline** (`schema:` vs. `inst:` separation) proved valuable
 
 ### Reusability vs. Specificity
 
-- The generic parser (`parse_prayer.py`) worked across all five - showing good abstraction
+- The generic parser (`parse_prayer.py`) worked across all six examples - showing good abstraction
 - But each visualization was hand-crafted - showing that meaningful visualization requires domain understanding
 - Additional texts (legal documents, news articles, etc.) would need new schemas, but could reuse the patterns
 
@@ -679,7 +791,7 @@ The exercise shows that **knowledge graphs aren't neutral representations** - th
 4. **Pragmatic**: Design choices balance theoretical purity with practical usability
 5. **Reflexive**: The meta-research example demonstrates that knowledge graphs can model their own creation process
 
-The fact that we could model all five suggests RDF/RDFS is genuinely flexible, but the **very different schemas** show that semantic modeling is as much art as engineering - requiring deep understanding of both the domain and the intended uses.
+The fact that we could model all six suggests RDF/RDFS is genuinely flexible, but the **very different schemas** show that semantic modeling is as much art as engineering - requiring deep understanding of both the domain and the intended uses.
 
 ### Special Note on Meta-Research
 

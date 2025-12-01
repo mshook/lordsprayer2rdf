@@ -1,0 +1,218 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix phil: <http://example.org/philosophy/schema#> .
+@prefix inst: <http://example.org/philosophy/instance#> .
+
+# ============================================
+# RDFS Schema Definitions
+# ============================================
+
+# Classes
+
+phil:PhilosophicalText a rdfs:Class ;
+    rdfs:label "Philosophical Text" ;
+    rdfs:comment "A written exposition exploring philosophical or theoretical ideas" .
+
+phil:Theory a rdfs:Class ;
+    rdfs:label "Theory" ;
+    rdfs:comment "An explanatory framework or model proposed to account for phenomena" .
+
+phil:Theorist a rdfs:Class ;
+    rdfs:label "Theorist" ;
+    rdfs:comment "A scholar or thinker who develops theoretical frameworks" .
+
+phil:PhilosophicalPuzzle a rdfs:Class ;
+    rdfs:label "Philosophical Puzzle" ;
+    rdfs:comment "A conceptual problem or question that requires philosophical analysis" .
+
+phil:Claim a rdfs:Class ;
+    rdfs:label "Claim" ;
+    rdfs:comment "A proposition or assertion made within a theoretical framework" .
+
+phil:Concept a rdfs:Class ;
+    rdfs:label "Concept" ;
+    rdfs:comment "An abstract idea or notion central to philosophical analysis" .
+
+phil:Purpose a rdfs:Class ;
+    rdfs:label "Purpose" ;
+    rdfs:comment "A function or goal that something serves" .
+
+phil:Progression a rdfs:Class ;
+    rdfs:label "Progression" ;
+    rdfs:comment "A developmental sequence or evolutionary trajectory" .
+
+# Properties
+
+phil:discusses a rdf:Property ;
+    rdfs:label "discusses" ;
+    rdfs:comment "Indicates that a text discusses a theory, concept, or puzzle" ;
+    rdfs:domain phil:PhilosophicalText .
+
+phil:proposedBy a rdf:Property ;
+    rdfs:label "proposed by" ;
+    rdfs:comment "Links a theory to the theorist(s) who developed it" ;
+    rdfs:domain phil:Theory ;
+    rdfs:range phil:Theorist .
+
+phil:addresses a rdf:Property ;
+    rdfs:label "addresses" ;
+    rdfs:comment "Indicates that a theory addresses a particular puzzle or problem" ;
+    rdfs:domain phil:Theory ;
+    rdfs:range phil:PhilosophicalPuzzle .
+
+phil:makesClaim a rdf:Property ;
+    rdfs:label "makes claim" ;
+    rdfs:comment "Links a theory to claims it makes" ;
+    rdfs:domain phil:Theory ;
+    rdfs:range phil:Claim .
+
+phil:involvesConcept a rdf:Property ;
+    rdfs:label "involves concept" ;
+    rdfs:comment "Indicates that a theory or claim involves a particular concept" ;
+    rdfs:domain phil:Theory ;
+    rdfs:range phil:Concept .
+
+phil:hasContent a rdf:Property ;
+    rdfs:label "has content" ;
+    rdfs:comment "The textual content or description of something" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range xsd:string .
+
+phil:serves a rdf:Property ;
+    rdfs:label "serves" ;
+    rdfs:comment "Indicates the purpose or function something serves" ;
+    rdfs:domain phil:Concept ;
+    rdfs:range phil:Purpose .
+
+phil:requires a rdf:Property ;
+    rdfs:label "requires" ;
+    rdfs:comment "Indicates a dependency relationship between concepts" ;
+    rdfs:domain phil:Concept ;
+    rdfs:range phil:Concept .
+
+phil:describesProgression a rdf:Property ;
+    rdfs:label "describes progression" ;
+    rdfs:comment "Links a theory to a developmental progression it describes" ;
+    rdfs:domain phil:Theory ;
+    rdfs:range phil:Progression .
+
+phil:fromStage a rdf:Property ;
+    rdfs:label "from stage" ;
+    rdfs:comment "The starting point of a progression" ;
+    rdfs:domain phil:Progression ;
+    rdfs:range xsd:string .
+
+phil:toStage a rdf:Property ;
+    rdfs:label "to stage" ;
+    rdfs:comment "The ending point of a progression" ;
+    rdfs:domain phil:Progression ;
+    rdfs:range xsd:string .
+
+phil:basedOn a rdf:Property ;
+    rdfs:label "based on" ;
+    rdfs:comment "Indicates that a progression or process is based on something" ;
+    rdfs:domain phil:Progression ;
+    rdfs:range xsd:string .
+
+phil:hasName a rdf:Property ;
+    rdfs:label "has name" ;
+    rdfs:comment "The name of a person, concept, or entity" ;
+    rdfs:domain rdfs:Resource ;
+    rdfs:range xsd:string .
+
+# ============================================
+# Instance Data
+# ============================================
+
+# The Text
+
+inst:SMEvolutionaryText a phil:PhilosophicalText ;
+    rdfs:label "Sperber & Mercier Evolutionary Model Text" ;
+    phil:hasContent """The source explores an evolutionary model of meaning and reason, primarily informed by the work of Sperber and Mercier (S&M), which frames the human attachment to abstract truth as a profound philosophical puzzle. According to S&M, reasoning did not evolve to seek logical consistency but serves essential social purposes, largely helping individuals rationalize existing preferences and enhance their social status. Their theory describes a mechanical progression of thought, built upon non-conscious \"inferences\" (causal chains of neural responses), which accounts for the development of cognitive complexity all the way from worm to Wittgenstein. Ultimately, this framework suggests that while basic organisms can process information, true human reasoning—and the capacity for self-deception or the explicit pursuit of abstract ideas—requires language.""" ;
+    phil:discusses inst:EvolutionaryModelOfReason ;
+    phil:discusses inst:AbstractTruthPuzzle ;
+    phil:discusses inst:ReasoningConcept ;
+    phil:discusses inst:LanguageConcept .
+
+# Theorists
+
+inst:SperberAndMercier a phil:Theorist ;
+    phil:hasName "Sperber and Mercier" ;
+    rdfs:label "Sperber and Mercier (S&M)" .
+
+# The Main Theory
+
+inst:EvolutionaryModelOfReason a phil:Theory ;
+    rdfs:label "Evolutionary Model of Meaning and Reason" ;
+    phil:hasContent "A framework explaining reasoning as evolved for social purposes rather than logical consistency" ;
+    phil:proposedBy inst:SperberAndMercier ;
+    phil:addresses inst:AbstractTruthPuzzle ;
+    phil:makesClaim inst:ReasoningNotForLogicClaim ;
+    phil:makesClaim inst:SocialPurposeClaim ;
+    phil:makesClaim inst:LanguageRequirementClaim ;
+    phil:involvesConcept inst:ReasoningConcept ;
+    phil:involvesConcept inst:InferencesConcept ;
+    phil:involvesConcept inst:LanguageConcept ;
+    phil:involvesConcept inst:SelfDeceptionConcept ;
+    phil:describesProgression inst:CognitiveProgression .
+
+# The Philosophical Puzzle
+
+inst:AbstractTruthPuzzle a phil:PhilosophicalPuzzle ;
+    rdfs:label "The Puzzle of Human Attachment to Abstract Truth" ;
+    phil:hasContent "Why humans are attached to abstract truth despite reasoning's evolutionary origins in social rationalization" .
+
+# Claims
+
+inst:ReasoningNotForLogicClaim a phil:Claim ;
+    rdfs:label "Reasoning Did Not Evolve for Logical Consistency" ;
+    phil:hasContent "Reasoning did not evolve to seek logical consistency" .
+
+inst:SocialPurposeClaim a phil:Claim ;
+    rdfs:label "Reasoning Serves Social Purposes" ;
+    phil:hasContent "Reasoning serves essential social purposes, largely helping individuals rationalize existing preferences and enhance their social status" .
+
+inst:LanguageRequirementClaim a phil:Claim ;
+    rdfs:label "True Reasoning Requires Language" ;
+    phil:hasContent "While basic organisms can process information, true human reasoning—and the capacity for self-deception or the explicit pursuit of abstract ideas—requires language" .
+
+# Concepts
+
+inst:ReasoningConcept a phil:Concept ;
+    phil:hasName "Reasoning" ;
+    rdfs:label "Human Reasoning" ;
+    phil:hasContent "The human capacity for thought and justification" ;
+    phil:serves inst:SocialPurpose ;
+    phil:requires inst:LanguageConcept .
+
+inst:InferencesConcept a phil:Concept ;
+    phil:hasName "Inferences" ;
+    rdfs:label "Non-conscious Inferences" ;
+    phil:hasContent "Causal chains of neural responses that form the basis of thought" .
+
+inst:LanguageConcept a phil:Concept ;
+    phil:hasName "Language" ;
+    rdfs:label "Language" ;
+    phil:hasContent "The symbolic system necessary for true human reasoning" .
+
+inst:SelfDeceptionConcept a phil:Concept ;
+    phil:hasName "Self-Deception" ;
+    rdfs:label "Self-Deception" ;
+    phil:hasContent "The capacity to hold beliefs that rationalize preferences" ;
+    phil:requires inst:LanguageConcept .
+
+# Purposes
+
+inst:SocialPurpose a phil:Purpose ;
+    rdfs:label "Social Function" ;
+    phil:hasContent "Rationalizing existing preferences and enhancing social status" .
+
+# Progression
+
+inst:CognitiveProgression a phil:Progression ;
+    rdfs:label "Cognitive Complexity Progression" ;
+    phil:hasContent "A mechanical progression of thought accounting for development of cognitive complexity" ;
+    phil:fromStage "worm" ;
+    phil:toStage "Wittgenstein" ;
+    phil:basedOn "non-conscious inferences (causal chains of neural responses)" .

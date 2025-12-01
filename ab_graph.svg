@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200">
+  <defs>
+    <style>
+      .text-node { fill: #FFD700; stroke: #B8860B; stroke-width: 2; }
+      .theory-node { fill: #87CEEB; stroke: #4682B4; stroke-width: 2; }
+      .theorist-node { fill: #DDA0DD; stroke: #9370DB; stroke-width: 2; }
+      .puzzle-node { fill: #FFA07A; stroke: #CD5C5C; stroke-width: 2; }
+      .claim-node { fill: #98FB98; stroke: #228B22; stroke-width: 2; }
+      .concept-node { fill: #FFB6C1; stroke: #DB7093; stroke-width: 2; }
+      .purpose-node { fill: #F0E68C; stroke: #BDB76B; stroke-width: 2; }
+      .progression-node { fill: #B0C4DE; stroke: #6A5ACD; stroke-width: 2; }
+      .label { fill: #000; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; text-anchor: middle; }
+      .small-label { fill: #000; font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; }
+      .edge { stroke: #666; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+      .edge-label { fill: #666; font-family: Arial, sans-serif; font-size: 11px; text-anchor: middle; }
+      .title-text { fill: #333; font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; }
+      .info-text { fill: #555; font-family: Arial, sans-serif; font-size: 12px; }
+      .node-hover:hover { filter: brightness(1.15); cursor: pointer; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#666" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="800" y="30" class="title-text" text-anchor="middle">Sperber &amp; Mercier: Evolutionary Model of Meaning and Reason</text>
+  <text x="800" y="55" class="info-text" text-anchor="middle">RDF Instance Graph</text>
+
+  <!-- Main Text Node -->
+  <g class="node-hover">
+    <rect x="600" y="90" width="400" height="80" rx="5" class="text-node"/>
+    <text x="800" y="115" class="label">SMEvolutionaryText</text>
+    <text x="800" y="135" class="small-label">Philosophical exposition exploring</text>
+    <text x="800" y="150" class="small-label">evolutionary model of meaning and reason</text>
+    <title>PhilosophicalText: The source text discussing Sperber and Mercier's evolutionary framework</title>
+  </g>
+
+  <!-- Theory Node -->
+  <g class="node-hover">
+    <rect x="620" y="240" width="360" height="80" rx="5" class="theory-node"/>
+    <text x="800" y="265" class="label">Evolutionary Model of</text>
+    <text x="800" y="283" class="label">Meaning and Reason</text>
+    <text x="800" y="305" class="small-label">Framework explaining reasoning as evolved</text>
+    <title>Theory: Reasoning evolved for social purposes rather than logical consistency</title>
+  </g>
+
+  <!-- Theorist Node -->
+  <g class="node-hover">
+    <rect x="1050" y="240" width="180" height="60" rx="5" class="theorist-node"/>
+    <text x="1140" y="265" class="label">Sperber &amp; Mercier</text>
+    <text x="1140" y="283" class="small-label">(S&amp;M)</text>
+    <title>Theorist: The scholars who developed this evolutionary framework</title>
+  </g>
+
+  <!-- Puzzle Node -->
+  <g class="node-hover">
+    <rect x="330" y="240" width="220" height="80" rx="5" class="puzzle-node"/>
+    <text x="440" y="265" class="label">Abstract Truth Puzzle</text>
+    <text x="440" y="285" class="small-label">Why are humans attached</text>
+    <text x="440" y="300" class="small-label">to abstract truth?</text>
+    <title>PhilosophicalPuzzle: The puzzle of human attachment to abstract truth despite reasoning's social origins</title>
+  </g>
+
+  <!-- Claims (3) -->
+  <g class="node-hover">
+    <rect x="50" y="410" width="280" height="70" rx="5" class="claim-node"/>
+    <text x="190" y="432" class="label">Claim 1: Not For Logic</text>
+    <text x="190" y="450" class="small-label">Reasoning did not evolve to</text>
+    <text x="190" y="465" class="small-label">seek logical consistency</text>
+    <title>Claim: Reasoning did not evolve for logical consistency</title>
+  </g>
+
+  <g class="node-hover">
+    <rect x="360" y="410" width="280" height="70" rx="5" class="claim-node"/>
+    <text x="500" y="432" class="label">Claim 2: Social Purpose</text>
+    <text x="500" y="450" class="small-label">Serves to rationalize preferences</text>
+    <text x="500" y="465" class="small-label">and enhance social status</text>
+    <title>Claim: Reasoning serves social purposes - rationalizing preferences and enhancing status</title>
+  </g>
+
+  <g class="node-hover">
+    <rect x="670" y="410" width="280" height="70" rx="5" class="claim-node"/>
+    <text x="810" y="432" class="label">Claim 3: Language Required</text>
+    <text x="810" y="450" class="small-label">True reasoning requires language;</text>
+    <text x="810" y="465" class="small-label">basic organisms only process info</text>
+    <title>Claim: True human reasoning requires language</title>
+  </g>
+
+  <!-- Concepts (4) -->
+  <g class="node-hover">
+    <rect x="1020" y="410" width="160" height="60" rx="5" class="concept-node"/>
+    <text x="1100" y="432" class="label">Reasoning</text>
+    <text x="1100" y="450" class="small-label">Human capacity</text>
+    <text x="1100" y="465" class="small-label">for thought</text>
+    <title>Concept: Human reasoning - the capacity for thought and justification</title>
+  </g>
+
+  <g class="node-hover">
+    <rect x="1210" y="410" width="160" height="60" rx="5" class="concept-node"/>
+    <text x="1290" y="432" class="label">Language</text>
+    <text x="1290" y="450" class="small-label">Symbolic system</text>
+    <text x="1290" y="465" class="small-label">for reasoning</text>
+    <title>Concept: Language - necessary for true human reasoning</title>
+  </g>
+
+  <g class="node-hover">
+    <rect x="1020" y="540" width="160" height="60" rx="5" class="concept-node"/>
+    <text x="1100" y="562" class="label">Inferences</text>
+    <text x="1100" y="580" class="small-label">Neural response</text>
+    <text x="1100" y="595" class="small-label">chains</text>
+    <title>Concept: Non-conscious inferences - causal chains of neural responses</title>
+  </g>
+
+  <g class="node-hover">
+    <rect x="1210" y="540" width="160" height="60" rx="5" class="concept-node"/>
+    <text x="1290" y="562" class="label">Self-Deception</text>
+    <text x="1290" y="580" class="small-label">Rationalizing</text>
+    <text x="1290" y="595" class="small-label">beliefs</text>
+    <title>Concept: Self-deception - capacity to hold beliefs that rationalize preferences</title>
+  </g>
+
+  <!-- Purpose Node -->
+  <g class="node-hover">
+    <rect x="380" y="560" width="240" height="60" rx="5" class="purpose-node"/>
+    <text x="500" y="582" class="label">Social Function</text>
+    <text x="500" y="600" class="small-label">Rationalize preferences,</text>
+    <text x="500" y="615" class="small-label">enhance social status</text>
+    <title>Purpose: The social functions that reasoning serves</title>
+  </g>
+
+  <!-- Progression Node -->
+  <g class="node-hover">
+    <rect x="50" y="240" width="220" height="80" rx="5" class="progression-node"/>
+    <text x="160" y="265" class="label">Cognitive Progression</text>
+    <text x="160" y="283" class="small-label">From: worm</text>
+    <text x="160" y="298" class="small-label">To: Wittgenstein</text>
+    <text x="160" y="313" class="small-label">Via: neural inferences</text>
+    <title>Progression: Mechanical progression from worm to Wittgenstein via non-conscious inferences</title>
+  </g>
+
+  <!-- Edges -->
+
+  <!-- Text discusses Theory -->
+  <path d="M 800 170 L 800 240" class="edge"/>
+  <text x="820" y="205" class="edge-label">discusses</text>
+
+  <!-- Text discusses Puzzle -->
+  <path d="M 600 130 Q 470 180 450 240" class="edge"/>
+  <text x="500" y="185" class="edge-label">discusses</text>
+
+  <!-- Theory proposedBy Theorist -->
+  <path d="M 980 280 L 1050 270" class="edge"/>
+  <text x="1015" y="265" class="edge-label">proposedBy</text>
+
+  <!-- Theory addresses Puzzle -->
+  <path d="M 620 280 L 550 280" class="edge"/>
+  <text x="585" y="270" class="edge-label">addresses</text>
+
+  <!-- Theory makesClaim (3 claims) -->
+  <path d="M 650 320 Q 300 365 190 410" class="edge"/>
+  <text x="400" y="355" class="edge-label">makesClaim</text>
+
+  <path d="M 730 320 Q 610 365 500 410" class="edge"/>
+  <text x="610" y="355" class="edge-label">makesClaim</text>
+
+  <path d="M 810 320 L 810 410" class="edge"/>
+  <text x="830" y="365" class="edge-label">makesClaim</text>
+
+  <!-- Theory involvesConcept (4 concepts) -->
+  <path d="M 950 320 Q 1030 365 1100 410" class="edge"/>
+  <text x="1010" y="355" class="edge-label">involvesConcept</text>
+
+  <path d="M 970 300 Q 1150 340 1250 410" class="edge"/>
+  <text x="1100" y="340" class="edge-label">involvesConcept</text>
+
+  <path d="M 950 310 Q 1040 410 1100 540" class="edge"/>
+  <text x="960" y="400" class="edge-label">involvesConcept</text>
+
+  <path d="M 970 310 Q 1140 410 1290 540" class="edge"/>
+  <text x="1050" y="410" class="edge-label">involvesConcept</text>
+
+  <!-- Theory describesProgression -->
+  <path d="M 620 280 Q 390 280 270 280" class="edge"/>
+  <text x="445" y="270" class="edge-label">describesProgression</text>
+
+  <!-- Reasoning serves Purpose -->
+  <path d="M 1020 445 Q 760 500 620 580" class="edge"/>
+  <text x="820" y="500" class="edge-label">serves</text>
+
+  <!-- Reasoning requires Language -->
+  <path d="M 1180 440 L 1210 440" class="edge"/>
+  <text x="1195" y="430" class="edge-label">requires</text>
+
+  <!-- SelfDeception requires Language -->
+  <path d="M 1290 540 L 1290 470" class="edge"/>
+  <text x="1310" y="505" class="edge-label">requires</text>
+
+  <!-- Legend -->
+  <rect x="50" y="720" width="600" height="200" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="60" y="745" class="info-text" font-weight="bold">Legend:</text>
+
+  <rect x="60" y="760" width="40" height="25" class="text-node"/>
+  <text x="110" y="777" class="info-text">PhilosophicalText</text>
+
+  <rect x="240" y="760" width="40" height="25" class="theory-node"/>
+  <text x="290" y="777" class="info-text">Theory</text>
+
+  <rect x="380" y="760" width="40" height="25" class="theorist-node"/>
+  <text x="430" y="777" class="info-text">Theorist</text>
+
+  <rect x="60" y="800" width="40" height="25" class="puzzle-node"/>
+  <text x="110" y="817" class="info-text">PhilosophicalPuzzle</text>
+
+  <rect x="240" y="800" width="40" height="25" class="claim-node"/>
+  <text x="290" y="817" class="info-text">Claim</text>
+
+  <rect x="380" y="800" width="40" height="25" class="concept-node"/>
+  <text x="430" y="817" class="info-text">Concept</text>
+
+  <rect x="60" y="840" width="40" height="25" class="purpose-node"/>
+  <text x="110" y="857" class="info-text">Purpose</text>
+
+  <rect x="240" y="840" width="40" height="25" class="progression-node"/>
+  <text x="290" y="857" class="info-text">Progression</text>
+
+  <line x1="380" y1="852" x2="420" y2="852" class="edge"/>
+  <text x="430" y="857" class="info-text">Property relationship</text>
+
+  <text x="60" y="890" class="info-text">Hover over nodes for descriptions</text>
+
+  <!-- Statistics -->
+  <rect x="700" y="720" width="550" height="200" fill="none" stroke="#999" stroke-width="1"/>
+  <text x="710" y="745" class="info-text" font-weight="bold">Graph Statistics:</text>
+  <text x="710" y="770" class="info-text">Total Instances: 14</text>
+  <text x="710" y="790" class="info-text">  • 1 PhilosophicalText</text>
+  <text x="710" y="810" class="info-text">  • 1 Theory (Evolutionary Model)</text>
+  <text x="710" y="830" class="info-text">  • 1 Theorist (Sperber &amp; Mercier)</text>
+  <text x="710" y="850" class="info-text">  • 1 PhilosophicalPuzzle</text>
+  <text x="710" y="870" class="info-text">  • 3 Claims</text>
+  <text x="710" y="890" class="info-text">  • 4 Concepts</text>
+  <text x="710" y="910" class="info-text">  • 1 Purpose (Social Function)</text>
+
+  <text x="950" y="770" class="info-text">  • 1 Progression</text>
+  <text x="950" y="800" class="info-text">Total Properties: ~30 triples</text>
+  <text x="950" y="830" class="info-text">Key Insight:</text>
+  <text x="950" y="850" class="info-text">Reasoning evolved for social</text>
+  <text x="950" y="870" class="info-text">rationalization, not logical truth.</text>
+  <text x="950" y="890" class="info-text">True reasoning requires language.</text>
+
+  <!-- Summary Box -->
+  <rect x="50" y="950" width="1200" height="220" fill="#F9F9F9" stroke="#999" stroke-width="1"/>
+  <text x="60" y="975" class="info-text" font-weight="bold">Theoretical Summary:</text>
+  <text x="60" y="1000" class="info-text">Sperber and Mercier's evolutionary model addresses a profound philosophical puzzle: why are humans attached</text>
+  <text x="60" y="1020" class="info-text">to abstract truth? Their theory proposes that reasoning did not evolve to seek logical consistency but instead</text>
+  <text x="60" y="1040" class="info-text">serves essential social purposes—helping individuals rationalize existing preferences and enhance social status.</text>
+
+  <text x="60" y="1070" class="info-text">The framework describes a mechanical progression of thought built upon non-conscious "inferences" (causal chains</text>
+  <text x="60" y="1090" class="info-text">of neural responses), accounting for cognitive complexity development from simple organisms (worms) to complex</text>
+  <text x="60" y="1110" class="info-text">philosophical thinkers (Wittgenstein).</text>
+
+  <text x="60" y="1140" class="info-text">Crucially, the model distinguishes between basic information processing (available to simple organisms) and true</text>
+  <text x="60" y="1160" class="info-text">human reasoning—including the capacity for self-deception and explicit pursuit of abstract ideas—which requires language.</text>
+</svg>
